@@ -95,9 +95,59 @@ snn-comprypto/
 - **160ニューロンで収穫逓減開始**: 投資対効果が低下
 - **240ニューロンが推奨値**: 最高性能の80%を達成
 
+### 発見3: RNG Battle Royale（v3 NEW）
+SNNは乱数生成において他のニューラルネットワークを圧倒！
+
+| アーキテクチャ | 予測率 | vs SNN |
+|--------------|--------|--------|
+| **SNN** | **0.390%** | **1.0×** |
+| Python random | 0.396% | 1.0× |
+| DNN | 7.210% | 18.5× |
+| LSTM | 21.954% | 56.3× |
+
+→ **SNNが最も予測困難な乱数を生成！** (100,000ラウンドで検証)
+
+## ベンチマーク実行
+
+```bash
+# 基本ベンチマーク
+python comprypto_system.py
+
+# 温度パラメータのアバランチ効果検証
+python benchmarks/thermal_benchmark.py
+
+# ニューロン数の相転移分析
+python benchmarks/phase_transition_analysis.py
+
+# RNG Battle Royale（SNN vs DNN vs LSTM）
+python rng_battle_rigorous.py
+
+# NIST乱数検定
+python nist_test.py
+```
+
+## ファイル構成
+
+```
+snn-comprypto/
+├── comprypto_system.py           # メインシステム（温度パラメータ対応）
+├── comprypto_numba.py            # Numba高速化版
+├── nist_test.py                  # NIST SP 800-22 乱数検定
+├── rng_battle_royale.py          # RNG Battle 簡易版
+├── rng_battle_v2.py              # RNG Battle ニューロン数比較版
+├── rng_battle_full.py            # RNG Battle フル総当たり戦
+├── rng_battle_rigorous.py        # RNG Battle 厳密検証版（100,000ラウンド）
+├── benchmarks/                   # ベンチマークスクリプト
+│   ├── thermal_benchmark.py      # 温度パラメータ検証
+│   ├── neuron_benchmark.py       # ニューロン数検証
+│   └── phase_transition_analysis.py  # 相転移分析
+├── results/                      # 実験結果（グラフ等）
+└── docs/                         # ドキュメント
+```
+
 ## 論文
 
-ろーる (2026). SNN-Comprypto: Spiking Neural Network-based Simultaneous Compression and Encryption Using Chaotic Reservoir Dynamics. Zenodo. https://doi.org/10.5281/zenodo.18265447
+Funasaki, H. (2026). SNN-Comprypto: Spiking Neural Network-based Simultaneous Compression and Encryption Using Chaotic Reservoir Dynamics. Zenodo. https://doi.org/10.5281/zenodo.18280566
 
 ## ライセンス
 
@@ -109,3 +159,4 @@ CC BY 4.0
 
 - Zenn: https://zenn.dev/cell_activation
 - note: https://note.com/cell_activation
+
