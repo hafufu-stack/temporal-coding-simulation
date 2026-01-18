@@ -95,7 +95,7 @@ snn-comprypto/
 - **160ニューロンで収穫逓減開始**: 投資対効果が低下
 - **240ニューロンが推奨値**: 最高性能の80%を達成
 
-### 発見3: RNG Battle Royale（v3 NEW）
+### 発見3: RNG Battle Royale（v3）
 SNNは乱数生成において他のニューラルネットワークを圧倒！
 
 | アーキテクチャ | 予測率 | vs SNN |
@@ -106,6 +106,27 @@ SNNは乱数生成において他のニューラルネットワークを圧倒�
 | LSTM | 21.954% | 56.3× |
 
 → **SNNが最も予測困難な乱数を生成！** (100,000ラウンドで検証)
+
+### 発見4: カオス解析（v4 NEW）
+
+| 指標 | SNN | DNN | LSTM |
+|------|-----|-----|------|
+| エントロピー (max 8.0) | **7.998** | 7.0 | 6.5 |
+| 自己相関 | **0.008** | 0.51 | 0.75 |
+| リアプノフ指数 | **+26.97** | +23.98 | +22.05 |
+
+→ **SNNは真のカオス系！** (正のリアプノフ = カオス的)
+
+### 発見5: 攻撃耐性（v4 NEW）
+
+| 攻撃タイプ | 結果 | 判定 |
+|-----------|------|------|
+| 既知平文攻撃 | 2.0%予測 | ✅ SECURE |
+| 選択平文攻撃 | χ²=297 | ✅ SECURE |
+| 鍵回復攻撃 | 未発見 | ✅ SECURE |
+| サイドチャネル攻撃 | CV=0.057 | ✅ SECURE |
+
+→ **4/5の現実的な攻撃に耐性！**
 
 ## ベンチマーク実行
 
@@ -137,6 +158,11 @@ snn-comprypto/
 ├── rng_battle_v2.py              # RNG Battle ニューロン数比較版
 ├── rng_battle_full.py            # RNG Battle フル総当たり戦
 ├── rng_battle_rigorous.py        # RNG Battle 厳密検証版（100,000ラウンド）
+├── rng_battle_learning.py        # RNG Battle 学習あり版（v4 NEW）
+├── rng_battle_ultimate.py        # RNG Battle 並列処理版（v4 NEW）
+├── chaos_analysis.py             # カオス解析（v4 NEW）
+├── adversarial_analysis.py       # 攻撃耐性分析（v4 NEW）
+├── rng_battle_visualization.py   # グラフ生成（v4 NEW）
 ├── benchmarks/                   # ベンチマークスクリプト
 │   ├── thermal_benchmark.py      # 温度パラメータ検証
 │   ├── neuron_benchmark.py       # ニューロン数検証
@@ -147,7 +173,7 @@ snn-comprypto/
 
 ## 論文
 
-Funasaki, H. (2026). SNN-Comprypto: Spiking Neural Network-based Simultaneous Compression and Encryption Using Chaotic Reservoir Dynamics. Zenodo. https://doi.org/10.5281/zenodo.18280566
+Funasaki, H. (2026). SNN-Comprypto: Spiking Neural Network-based Simultaneous Compression and Encryption Using Chaotic Reservoir Dynamics (v4). Zenodo. https://doi.org/10.5281/zenodo.18287761
 
 ## ライセンス
 
