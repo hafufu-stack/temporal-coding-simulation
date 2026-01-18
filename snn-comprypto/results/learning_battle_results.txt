@@ -1,0 +1,37 @@
+======================================================================
+RNG BATTLE ROYALE - LEARNING EDITION RESULTS
+======================================================================
+
+GENERATOR RANKING (Lower = Better)
+--------------------------------------------------
+#1: SNN-500         0.387%  RANDOM-LIKE
+#2: SNN-300         0.395%  RANDOM-LIKE
+#3: Py-Random       0.398%  RANDOM-LIKE
+#4: DNN-200         17.316%  PREDICTABLE
+#5: LSTM-128        24.689%  PREDICTABLE
+
+
+LEARNING ANALYSIS
+--------------------------------------------------
+DNN-200 vs DNN-Learn-100: Early=5.078%, Late=15.635%, Change=+10.557%
+DNN-200 vs LSTM-Learn-64: Early=1.827%, Late=3.108%, Change=+1.281%
+DNN-200 vs SNN-Learn-100: Early=0.475%, Late=0.525%, Change=+0.050%
+DNN-200 vs Stat-Learn: Early=55.477%, Late=56.404%, Change=+0.927%
+LSTM-128 vs DNN-Learn-100: Early=9.783%, Late=27.240%, Change=+17.457%
+LSTM-128 vs LSTM-Learn-64: Early=3.260%, Late=3.752%, Change=+0.492%
+LSTM-128 vs SNN-Learn-100: Early=0.452%, Late=0.430%, Change=-0.022%
+LSTM-128 vs Stat-Learn: Early=76.109%, Late=76.483%, Change=+0.374%
+Py-Random vs DNN-Learn-100: Early=0.412%, Late=0.407%, Change=-0.005%
+Py-Random vs LSTM-Learn-64: Early=0.373%, Late=0.411%, Change=+0.038%
+Py-Random vs SNN-Learn-100: Early=0.406%, Late=0.372%, Change=-0.034%
+Py-Random vs Stat-Learn: Early=0.385%, Late=0.419%, Change=+0.034%
+SNN-300 vs DNN-Learn-100: Early=0.420%, Late=0.400%, Change=-0.020%
+SNN-300 vs LSTM-Learn-64: Early=0.408%, Late=0.408%, Change=+0.000%
+SNN-300 vs SNN-Learn-100: Early=0.382%, Late=0.396%, Change=+0.014%
+SNN-300 vs Stat-Learn: Early=0.376%, Late=0.373%, Change=-0.003%
+SNN-500 vs DNN-Learn-100: Early=0.378%, Late=0.384%, Change=+0.006%
+SNN-500 vs LSTM-Learn-64: Early=0.366%, Late=0.358%, Change=-0.008%
+SNN-500 vs SNN-Learn-100: Early=0.423%, Late=0.400%, Change=-0.023%
+SNN-500 vs Stat-Learn: Early=0.387%, Late=0.396%, Change=+0.009%
+
+Time: 49.3s

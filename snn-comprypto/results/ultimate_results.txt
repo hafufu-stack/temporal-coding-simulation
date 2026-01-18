@@ -1,0 +1,25 @@
+======================================================================
+RNG BATTLE ROYALE - ULTIMATE EDITION RESULTS
+======================================================================
+
+GENERATOR RANKING (Lower = Better Randomness)
+--------------------------------------------------
+#1: Py-Random       0.391%  RANDOM-LIKE
+#2: SNN-300         0.392%  RANDOM-LIKE
+#3: SNN-100         0.417%  RANDOM-LIKE
+#4: DNN-100         3.668%  PREDICTABLE
+#5: LSTM-64         10.552%  PREDICTABLE
+
+
+PREDICTOR RANKING (Higher = Better at Cracking)
+--------------------------------------------------
+#1: Stat-Pred    avg prediction rate: 11.341%
+#2: SNN-Pred     avg prediction rate: 0.404%
+#3: DNN-Pred     avg prediction rate: 0.312%
+#4: LSTM-Pred    avg prediction rate: 0.279%
+
+
+Best Generator: Py-Random
+Best Predictor: Stat-Pred
+Theory (pure random): 0.391%
+Time: 18.7s

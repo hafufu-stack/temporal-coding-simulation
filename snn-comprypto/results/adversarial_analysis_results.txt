@@ -1,0 +1,14 @@
+======================================================================
+SNN ADVERSARIAL SECURITY ANALYSIS RESULTS
+======================================================================
+
+Attack Results:
+  Known Plaintext: 2.000%
+  Chosen Plaintext Chi-Sq: 296.6
+  Chosen Plaintext Autocorr: -0.0122
+  Key Recovery Found: False
+  History Analysis: 99.800%
+  Side Channel CV: 0.0566
+
+Overall: 3/5 attacks resisted
+Time: 53.8s
