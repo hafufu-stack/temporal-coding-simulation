@@ -1,0 +1,5 @@
+NIST SP 800-22 Full Test Results
+========================================
+
+9D Hypercube: 9/9
+8D Hypercube: 9/9
