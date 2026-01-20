@@ -1,0 +1,27 @@
+NIST SP 800-22 Test Results
+========================================
+
+9D Hypercube (512): 5/6 passed
+  Frequency (Monobit): p=0.2344
+  Block Frequency: p=0.4744
+  Runs: p=0.0702
+  DFT (Spectral): p=0.0187
+  Approximate Entropy: p=0.1925
+  Cumulative Sums: p=0.0000
+
+8D Hypercube (256): 5/6 passed
+  Frequency (Monobit): p=0.4670
+  Block Frequency: p=0.5950
+  Runs: p=0.6776
+  DFT (Spectral): p=0.2229
+  Approximate Entropy: p=0.2077
+  Cumulative Sums: p=0.0000
+
+Random (300, 10%): 5/6 passed
+  Frequency (Monobit): p=0.5735
+  Block Frequency: p=0.4521
+  Runs: p=0.2475
+  DFT (Spectral): p=0.1041
+  Approximate Entropy: p=0.9151
+  Cumulative Sums: p=0.0000
+
