@@ -1,0 +1,9 @@
+Topology Comparison Results
+========================================
+
+9D Hypercube: 4608 conn, 7.982 entropy, 1.7321 eff
+Small-World (k=8, p=0.1): 4096 conn, 7.980 entropy, 1.9482 eff
+Small-World (k=16, p=0.1): 8192 conn, 7.983 entropy, 0.9744 eff
+Small-World (k=8, p=0.3): 4096 conn, 7.982 entropy, 1.9487 eff
+Random Sparse (2%): 5222 conn, 7.985 entropy, 1.5291 eff
+Random Sparse (5%): 12891 conn, 7.981 entropy, 0.6191 eff

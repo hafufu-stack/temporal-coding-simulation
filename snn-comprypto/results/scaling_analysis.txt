@@ -1,0 +1,31 @@
+Hypercube Scaling Analysis
+========================================
+
+5D: 32 neurons, 160 connections
+  Entropy: 7.960
+  Efficiency: 49.7474
+
+6D: 64 neurons, 384 connections
+  Entropy: 7.964
+  Efficiency: 20.7398
+
+7D: 128 neurons, 896 connections
+  Entropy: 7.963
+  Efficiency: 8.8873
+
+8D: 256 neurons, 2048 connections
+  Entropy: 7.964
+  Efficiency: 3.8885
+
+9D: 512 neurons, 4608 connections
+  Entropy: 7.961
+  Efficiency: 1.7277
+
+10D: 1024 neurons, 10240 connections
+  Entropy: 7.963
+  Efficiency: 0.7777
+
+11D: 2048 neurons, 22528 connections
+  Entropy: 7.964
+  Efficiency: 0.3535
+
