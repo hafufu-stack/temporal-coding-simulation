@@ -1,0 +1,14 @@
+11D Hypercube Comprypto Results
+========================================
+
+Entropy Results:
+  9D Hypercube (512): 7.7957
+  8D Hypercube (256): 7.8008
+  Random (300, 10%): 7.8405
+  Random (512, 5%): 7.7846
+
+Prediction MAE:
+  9D Hypercube (512): 139.2
+  8D Hypercube (256): 153.5
+  Random (300, 10%): 152.2
+  Random (512, 5%): 140.7
