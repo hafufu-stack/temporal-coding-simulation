@@ -1,2 +1,16 @@
 __pycache__/
 *.pyc
+
+# Zenn下書き
+zenn_*.md
+*_article_draft.md
+
+# LaTeX関連
+*.tex
+*.aux
+*.log
+*.pdf
+*.synctex.gz
+
+# Jupyter チェックポイント
+.ipynb_checkpoints/
