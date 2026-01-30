@@ -66,21 +66,45 @@ SNNの「予測能力」と「カオス的ダイナミクス」を利用し、�
     - **同時処理**：圧縮と暗号化を別々のプロセスではなくSNNの1ステップで実行
     - **低消費電力**：発火時のみ計算 → IoT/エッジデバイス向け
 
+*   **🎉 v5 NEW: 適応圧縮エンジン**
+
+    **zlibを超える圧縮率を達成！**
+    
+    | データ種類 | 圧縮率 | 手法 |
+    |------------|--------|------|
+    | バイナリ（連番） | **2.9%** | XOR |
+    | 日本語テキスト | 8.5% | Delta |
+    | 英語テキスト | 15.6% | Delta |
+    | 画像（PNG） | 95.5% | Raw |
+    
+    バイナリデータ（0-255連番）では純粋なzlib（104.3%に膨張）を大幅に上回る圧縮を実現。
+
 *   **🎉 NIST SP 800-22 乱数検定に合格！**
     
     SNN Compryptoが生成する鍵ストリームは、NISTの乱数検定（9テスト）を**全てパス**しました。
     これは暗号論的に安全な乱数と同等のランダム性を持つことを示しています。
- 
-各ファイルについて
-```
-snn-comprypto/
-├── README.md                 # 詳細ドキュメント
-├── comprypto_system.py       # 基本実装
-├── comprypto_numba.py        # Numba高速化版（7.5倍速い）
-├── comprypto_benchmark.py    # AES/GZIPとの性能比較
-├── tm_crypto_engine.py       # 修論ベースのTsodyks-Markramモデル版
-└── nist_test.py              # NIST SP 800-22 乱数検定スクリプト
-```
+
+*   **使い方**
+    ```python
+    from stdp_comprypto import STDPComprypto
+    
+    # 暗号化
+    enc = STDPComprypto(key_seed=12345, temperature=1.0)
+    encrypted = enc.encrypt(data)
+    
+    # 復号（同じkey_seed + temperatureが必要）
+    dec = STDPComprypto(key_seed=12345, temperature=1.0)
+    restored = dec.decrypt(encrypted)
+    ```
+
+*   **ファイル構成**
+    ```
+    snn-compression/
+    ├── stdp_comprypto.py         # 📦 圧縮+暗号化統合システム（v5推奨）
+    ├── stdp_predictive_v6.py     # 適応圧縮のみ（暗号化なし）
+    ├── stdp_predictive_v1-v5.py  # 開発履歴
+    └── test_apple.py             # 画像ファイルテスト
+    ```
 
 ## 動作環境
 
