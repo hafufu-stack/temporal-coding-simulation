@@ -12,99 +12,124 @@
 
 - [x] **Phase 1: 記憶**
     - 10個のニューロンで約111ビットの保持に成功
-- [x] **Phase 2: 演算（今回達成！）**
-    - 30個のニューロン（入力20＋演算10）を使用し、111ビット同士の加算（時間領域演算）に成功
-- [x] **Phase 3: 暗号化・圧縮（NEW!）**
-    - 「予測圧縮」と「カオス暗号化」を同時に行うSNNシステム「Comprypto」を開発
-    - Numbaによる高速化で **7.5倍** の処理速度向上を達成
-    - 修論のTsodyks-Markramダイナミックシナプスモデルを応用した本格版も実装
-- [ ] **Phase 4: 長期的な目標**
-    - GPU (CUDA) 対応による更なる高速化
-    - より多くのニューロンで、更なる性能向上を目指す。単にニューロン数に線形比例するのではなく、指数関数的に情報量が増えるようなネットワークを目指す。
-    - 実用的なライブラリとしてリリース (`pip install snn-comprypto`)
-    - 未踏ターゲット等への応募
+- [x] **Phase 2: 演算**
+    - 30個のニューロン（入力20＋演算10）を使用し、111ビット同士の加算に成功
+- [x] **Phase 3: 暗号化** ← snn-comprypto
+    - NIST SP 800-22 乱数検定 9/9 合格
+    - 温度パラメータが第2の暗号鍵として機能
+    - SNN vs DNN vs LSTMで乱数品質を検証
+- [x] **Phase 4: 高性能圧縮 (v5 NEW!)** ← snn-compression
+    - 適応圧縮エンジン（Delta/XOR/Raw自動選択）
+    - **バイナリで2.9%圧縮率を達成**（zlibの104%を上回る）
+- [ ] **Phase 5: 今後の展望**
+    - GPU (CUDA) 対応
+    - `pip install snn-comprypto` としてリリース
 
 ## ディレクトリ構成
 
-本リポジトリは実験ごとにフォルダ分けされています。
+```
+temporal-coding-simulation/
+├── 10-neuron-memory/     # 記憶実験（Phase 1）
+├── snn-operation/        # 演算実験（Phase 2）
+├── snn-comprypto/        # 暗号化システム（Phase 3）
+├── snn-compression/      # 圧縮システム（Phase 4, v5 NEW!）
+└── snn-genai/            # 生成AI実験（開発中）
+```
 
-- **`10-neuron-memory/`**：10個のニューロンのSNNに情報を記憶させる（符号化の検証）
-- **`snn-operation/`**：SNNで演算を行う（現在は加算のみ）
-- **`snn-comprypto/`**：SNNで情報の暗号化・圧縮を行う
+---
 
-## プログラムの概要
+## 1. 10-neuron-memory（記憶実験）
 
-### 1. 10-neuron-memory（記憶実験）
-10個のニューロンを用い、最も効率良く情報を記憶させる方法を検証するため、2つの符号化方式を比較しました。
+10個のニューロンを用い、最も効率良く情報を記憶させる方法を検証しました。
 
-1.  **独立符号化** (`burst_phase_coding_10neurons.py`)
-    - 各ニューロンが独立して「絶対時刻」で情報を表現。
-    - 時間分解能：dt = 0.1ms
-    - 理論情報量：**約82ビット**
+| 符号化方式 | 時間分解能 | 情報量 |
+|-----------|-----------|--------|
+| 独立符号化 | 0.1ms | 約82ビット |
+| **相関符号化** | 0.05ms | **約111ビット** |
 
-2.  **相関符号化** (`correlation_coding_10neurons.py`)
-    - 1つのニューロンを基準（MD）とし、他（LD）は「相対的なズレ」で情報を表現。
-    - 修論の仮説「MD-LD相互作用」を再現。
-    - 時間分解能：dt = 0.05ms
-    - 理論情報量：**約111ビット** (大幅向上)
+**結論**: 1つのニューロンを基準として「相対的なズレ」で情報を表現する方が高効率。
 
-### 2. snn-operation（演算実験）
-効率良く演算させる方法を検証していきます。
+---
 
-*   **加算システム** (`30-neuron-adder.py`)
-    *   **構成**: 30ニューロン（入力A群10 + 入力B群10 + 演算層10）
-    *   **機能**: 相関符号化された「111ビットの巨大数」同士の足し算を行います。
-    *   **原理**: 電圧の加算ではなく、スパイク発火の「タイミング（位相）の加算」によって計算を行います。
-    *   **成果**: 従来の64bit整数を遥かに超える桁数を、わずか30個の素子で処理できることを示しました。
+## 2. snn-operation（演算実験）
 
-### 3. snn-comprypto（暗号化・圧縮実験）
-SNNの「予測能力」と「カオス的ダイナミクス」を利用し、新たなセキュリティシステム開発を目指しています。
+30個のニューロン（入力20 + 演算10）で111ビット同士の加算を実現。
 
-*   **特徴**
-    - **予測圧縮**：SNNがデータの文脈を学習・予測し、予測誤差のみを記録（圧縮）
-    - **カオス暗号化**：ニューロン膜電位のカオス的変動を鍵生成に利用
-    - **同時処理**：圧縮と暗号化を別々のプロセスではなくSNNの1ステップで実行
-    - **低消費電力**：発火時のみ計算 → IoT/エッジデバイス向け
+```bash
+cd snn-operation
+python 30-neuron-adder.py
+```
 
-*   **🎉 v5 NEW: 適応圧縮エンジン**
+---
 
-    **zlibを超える圧縮率を達成！**
-    
-    | データ種類 | 圧縮率 | 手法 |
-    |------------|--------|------|
-    | バイナリ（連番） | **2.9%** | XOR |
-    | 日本語テキスト | 8.5% | Delta |
-    | 英語テキスト | 15.6% | Delta |
-    | 画像（PNG） | 95.5% | Raw |
-    
-    バイナリデータ（0-255連番）では純粋なzlib（104.3%に膨張）を大幅に上回る圧縮を実現。
+## 3. snn-comprypto（暗号化システム）
 
-*   **🎉 NIST SP 800-22 乱数検定に合格！**
-    
-    SNN Compryptoが生成する鍵ストリームは、NISTの乱数検定（9テスト）を**全てパス**しました。
-    これは暗号論的に安全な乱数と同等のランダム性を持つことを示しています。
+SNNのカオス的ダイナミクスを利用した暗号化システム。
 
-*   **使い方**
-    ```python
-    from stdp_comprypto import STDPComprypto
-    
-    # 暗号化
-    enc = STDPComprypto(key_seed=12345, temperature=1.0)
-    encrypted = enc.encrypt(data)
-    
-    # 復号（同じkey_seed + temperatureが必要）
-    dec = STDPComprypto(key_seed=12345, temperature=1.0)
-    restored = dec.decrypt(encrypted)
-    ```
+### 主な成果
 
-*   **ファイル構成**
-    ```
-    snn-compression/
-    ├── stdp_comprypto.py         # 📦 圧縮+暗号化統合システム（v5推奨）
-    ├── stdp_predictive_v6.py     # 適応圧縮のみ（暗号化なし）
-    ├── stdp_predictive_v1-v5.py  # 開発履歴
-    └── test_apple.py             # 画像ファイルテスト
-    ```
+| テスト | 結果 |
+|--------|------|
+| NIST SP 800-22 乱数検定 | ✅ 9/9 合格 |
+| 温度パラメータ（0.0001差） | 復号不能 |
+| SNN vs DNN vs LSTM | SNN最優秀 (0.39%) |
+
+### 使い方
+
+```python
+from core.comprypto_system import SNNCompryptor
+
+encryptor = SNNCompryptor(key_seed=12345, temperature=1.0)
+encrypted, _ = encryptor.compress_encrypt(data)
+```
+
+詳細は [snn-comprypto/README.md](snn-comprypto/README.md) を参照。
+
+---
+
+## 4. snn-compression（v5 適応圧縮システム）🆕
+
+SNNの予測能力を活用した高性能圧縮 + カオス暗号化の統合システム。
+
+### v5の特徴
+
+- **適応圧縮**: Delta/XOR/Rawから最適な方式を自動選択
+- **zlibを超える圧縮率**: バイナリで **2.9%** を達成
+- **完全復元**: テキスト、バイナリ、画像で100%復元確認
+
+### 圧縮率ベンチマーク
+
+| データ種類 | SNN-Comprypto v5 | zlib | 勝者 |
+|------------|------------------|------|------|
+| バイナリ（連番） | **2.9%** | 104.3% | v5 🏆 |
+| 日本語テキスト | **8.5%** | 11.3% | v5 🏆 |
+| 英語テキスト | 15.6% | 24.4% | v5 🏆 |
+| 画像（PNG） | 95.5% | - | - |
+
+### 使い方
+
+```python
+from stdp_comprypto import STDPComprypto
+
+# 暗号化
+enc = STDPComprypto(key_seed=12345, temperature=1.0)
+encrypted = enc.encrypt(data)
+
+# 復号（同じkey_seed + temperatureが必要）
+dec = STDPComprypto(key_seed=12345, temperature=1.0)
+restored = dec.decrypt(encrypted)
+```
+
+### ファイル構成
+
+```
+snn-compression/
+├── stdp_comprypto.py         # 📦 圧縮+暗号化統合（推奨）
+├── stdp_predictive_v6.py     # 圧縮のみ（暗号化なし）
+└── stdp_predictive_v1-v5.py  # 開発履歴
+```
+
+---
 
 ## 動作環境
 
@@ -114,67 +139,23 @@ SNNの「予測能力」と「カオス的ダイナミクス」を利用し、�
 - Numba (高速化版を使う場合)
 - Japanize-Matplotlib (日本語フォント表示用)
 
-## 実行方法
-
-必要なライブラリをインストール後、各スクリプトを実行してください。
-
 ```bash
 pip install numpy matplotlib japanize-matplotlib numba
 ```
-### 実験1：SNNによる情報保存
-#### 独立符号化モデル
-```bash
-cd 10-neuron-memory
-python burst_phase_coding_10neurons.py
-```
 
-#### 相関符号化モデル
-```bash
-cd 10-neuron-memory
-python correlation_coding_10neurons.py
-```
+---
 
-### 実験2：SNNによる演算
-#### 加算モデル
-```bash
-cd snn-operation
-python 30-neuron-adder.py
-```
+## 論文
 
-### 実験3：SNNによる暗号化・圧縮
-```bash
-cd snn-comprypto
+**SNN-Comprypto: High-Performance Compression and Encryption Using Spiking Neural Network Chaotic Reservoir Dynamics**
 
-# 基本デモ
-python comprypto_system.py
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.18426415.svg)](https://zenodo.org/records/18426415)
 
-# ベンチマーク（AES/GZIPと比較）
-python comprypto_benchmark.py
-
-# 修論ベース版
-python tm_crypto_engine.py
-```
-
-実行すると、シミュレーション結果の波形グラフが表示され、コンソールに達成した情報量や計算結果が出力されます。
-
-## 現時点での考察
-
-1.  **相関符号化の優位性**
-    独立符号化よりも相関符号化の方がエントロピー（表現できる情報量）が上回りました。ニューロンを1つ基準用に消費（犠牲に）してでも、相対時間符号化を行う方がシステム全体の情報量は増大することが示唆されました。
-
-2.  **SNNによる演算の可能性**
-    たった30個のニューロンで111ビット（10進数で約34桁）の演算が可能であることが実証されました。これは、SNNが「発火のタイミング」という連続値に近い次元を利用することで、デジタル回路よりも高密度な計算が可能である可能性を示しています。
-
-3.  **暗号化・圧縮への応用**
-    「計算による乱数」ではなく、「振る舞いによるカオス」を利用することで、生物の脳が持つ "予測不能なゆらぎ" をセキュリティに応用できる可能性を示しました。
-
+---
 
 ## 作者
 
 **ろーる**
-*   **note**：[https://note.com/cell_activation](https://note.com/cell_activation) （日記や思いを発信）
-*   **Zenn**：[https://zenn.dev/cell_activation](https://zenn.dev/cell_activation) （プログラムの技術解説や構想を発信）
+*   **note**：[https://note.com/cell_activation](https://note.com/cell_activation)
+*   **Zenn**：[https://zenn.dev/cell_activation](https://zenn.dev/cell_activation)
 *   **GitHub**：[https://github.com/hafufu-stack](https://github.com/hafufu-stack)
-
-
-
