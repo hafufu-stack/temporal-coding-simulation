@@ -25,6 +25,10 @@ where `α ≥ 2.0` is a universal scaling factor.
 | `autonomous_snn_optimizer.py` | Evolutionary threshold optimization using autonomous agents |
 | `test_cnn_alpha.py` | Validation on CNN architecture |
 | `test_resnet_alpha.py` | Validation on ResNet architecture |
+| `cifar10_resnet_validation.py` | CIFAR-10 ResNet-18 validation (color images) |
+| `cifar10_full_snn.py` | Full SNN conversion experiment |
+| `hippocampal_hybrid_snn.py` | Hippocampus-inspired hybrid architecture (DG-CA3-CA1) |
+| `full_snn_layer_specific.py` | Layer-specific threshold tuning experiment |
 
 ## Quick Start
 
