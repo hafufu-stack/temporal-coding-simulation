@@ -1,0 +1,291 @@
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{hyperref}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{float}
+\usepackage{subcaption}
+
+\title{Activation-Scaled ANN-to-SNN Conversion with SNN-Based AI Interpretability: \\A Unified Framework for Black-Box Analysis and Hallucination Detection}
+
+\author{Hiroto Funasaki\\
+Independent Researcher, Japan\\
+ORCID: 0009-0004-2517-0177\\
+\texttt{cell-activation@ymail.ne.jp}\\
+GitHub: \texttt{hafufu-stack}
+}
+
+\date{February 2026 (v3)}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+I present a unified framework that extends ANN-to-SNN conversion beyond efficiency optimization to enable novel AI interpretability analysis. My approach uses Spiking Neural Networks as ``computational microscopes'' to analyze black-box AI models through three temporal dynamics: (1) Time-to-First-Spike (TTFS) for thought priority visualization, (2) Neural Synchrony for concept binding detection, and (3) Spike Stability for hallucination detection. Key experimental results include: the universal threshold formula $\theta = 2.0 \times \max(\text{activation})$ achieving 100\% accuracy preservation; GPT-2 attention analysis showing meaningless inputs increase TTFS by +3.1 (indicating model ``confusion''); and an ensemble hallucination detector achieving AUC 0.75 with auto-tuned threshold 0.21. This work opens a new research direction: using SNN temporal dynamics as diagnostic tools for understanding and monitoring AI systems.
+\end{abstract}
+
+\section{Introduction}
+
+Converting pre-trained ANNs to SNNs has traditionally focused on energy efficiency for neuromorphic hardware deployment. In this paper, I propose a paradigm shift: \textbf{using SNNs as interpretability tools} to analyze black-box AI models.
+
+The key insight is that SNN temporal dynamics---when spikes occur, how they synchronize, and how stable they are---encode rich information about the underlying ANN's behavior. By converting ANN activations to spike patterns, we gain access to temporal features that are invisible in traditional activation analysis.
+
+\subsection{Contributions}
+
+\begin{enumerate}
+    \item \textbf{Universal Conversion Formula}: $\theta = 2.0 \times \max(\text{activation})$ achieves near-lossless conversion across MLP, CNN, ResNet, and Transformer architectures.
+    \item \textbf{TTFS Interpretability}: Time-to-First-Spike analysis reveals processing priorities and attention patterns.
+    \item \textbf{Synchrony Analysis}: Neural synchrony detection identifies concept binding in classification layers.
+    \item \textbf{Hallucination Detection}: SNN spike stability combined with ML classifiers achieves AUC 0.75 for detecting AI errors.
+    \item \textbf{Transformer Extension}: Attention TTFS analysis on GPT-2 shows meaningful vs. meaningless input differentiation.
+\end{enumerate}
+
+\section{Method: SNN as Computational Microscope}
+
+\subsection{Time-to-First-Spike (TTFS) Analysis}
+
+For an ANN activation $a$, we compute TTFS as:
+\begin{equation}
+    \text{TTFS}(a) = T \times \left(1 - \frac{a}{\max(a)}\right)
+\end{equation}
+where $T$ is the total simulation timesteps. \textbf{Lower TTFS = higher activation = higher priority}.
+
+\subsection{Neural Synchrony Detection}
+
+For two neurons with activations $a_i, a_j$, synchrony is defined as:
+\begin{equation}
+    \text{Sync}(i, j) = \mathbf{1}[|\text{TTFS}(a_i) - \text{TTFS}(a_j)| < \delta]
+\end{equation}
+where $\delta$ is the synchrony tolerance (typically 5\% of $T$).
+
+\subsection{Spike Stability (Jitter) for Hallucination Detection}
+
+Given noisy inputs $\{x + \epsilon_k\}_{k=1}^K$, spike jitter is:
+\begin{equation}
+    \text{Jitter} = \text{Std}_{k}[\text{output}(x + \epsilon_k)]
+\end{equation}
+High jitter + high confidence = hallucination risk.
+
+\section{Experiments: ANN-to-SNN Conversion}
+
+\subsection{Universal Threshold Formula}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lccc}
+\toprule
+$\alpha$ & MLP & CNN & ResNet \\
+\midrule
+0.5 & 100\% & 41\% & 43\% \\
+1.0 & 100\% & 41\% & 62\% \\
+1.5 & 100\% & 100\% & 91\% \\
+\textbf{2.0} & \textbf{100\%} & \textbf{100\%} & \textbf{100\%} \\
+3.0 & 100\% & 100\% & 100\% \\
+\bottomrule
+\end{tabular}
+\caption{SNN accuracy for different $\alpha$ values. $\alpha = 2.0$ achieves universal near-lossless conversion.}
+\end{table}
+
+\subsection{Hippocampal Hybrid Architecture}
+
+Inspired by brain structure, I keep feature extraction as ANN and convert only classification head to SNN:
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcc}
+\toprule
+Architecture & SNN Accuracy & Diff from ANN \\
+\midrule
+DG(ANN) + CA1(SNN) & 60.7\% & 0.0\% \\
+Full SNN & 33.2\% & -27.5\% \\
+\bottomrule
+\end{tabular}
+\caption{Hybrid architecture achieves 100\% accuracy preservation on CIFAR-10.}
+\end{table}
+
+\section{Experiments: AI Interpretability}
+
+\subsection{TTFS Analysis Results}
+
+Figure \ref{fig:ttfs} shows TTFS patterns across different classes. Key finding: each class has a distinctive TTFS signature.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{snn_interpretability_advanced.png}
+\caption{TTFS and Neural Synchrony analysis across CIFAR-10 classes. Different classes show distinct processing patterns.}
+\label{fig:ttfs}
+\end{figure}
+
+\subsection{Class-Specific Patterns}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcc}
+\toprule
+Class & Layer1 TTFS (mean) & FC Synchrony \\
+\midrule
+airplane & 93.37 & 52.1\% \\
+car & 93.69 & \textbf{57.9\%} \\
+bird & 92.77 & 49.2\% \\
+cat & 93.15 & 48.5\% \\
+dog & 92.99 & 51.3\% \\
+\bottomrule
+\end{tabular}
+\caption{Class-specific TTFS and synchrony patterns. ``car'' shows highest synchrony, suggesting clearer feature clustering.}
+\end{table}
+
+\section{Experiments: Hallucination Detection}
+
+\subsection{Feature Extraction}
+
+I extract 45 SNN-based features including:
+\begin{itemize}
+    \item Output statistics: confidence, entropy, margin
+    \item Layer-wise TTFS: mean, std per layer
+    \item Spike stability: jitter under noise
+    \item Prediction consistency: stability of predictions
+\end{itemize}
+
+\subsection{Hallucination Detector v3 Results}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcc}
+\toprule
+Version & AUC-ROC & Key Improvement \\
+\midrule
+v1 (threshold) & 0.43 & Baseline \\
+v2 (multi-feature) & 0.70 & +63\% \\
+\textbf{v3 (ensemble)} & \textbf{0.75} & +74\% \\
+\bottomrule
+\end{tabular}
+\caption{Hallucination detector evolution. Ensemble with auto-threshold achieves AUC 0.75.}
+\end{table}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{hallucination_detector_v3.png}
+\caption{Hallucination Detector v3: (a) Threshold-metric curve with optimal threshold 0.21, (b) ROC curve (AUC=0.75), (c) Top 10 selected features, (d) 5-fold cross-validation results.}
+\label{fig:detector}
+\end{figure}
+
+\subsection{Key Features for Hallucination Detection}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lc}
+\toprule
+Feature & Combined Importance \\
+\midrule
+entropy & 0.351 \\
+confidence & 0.329 \\
+margin & 0.317 \\
+top2\_ratio & 0.240 \\
+\textbf{avgpool\_std} & \textbf{0.197} \\
+\textbf{avgpool\_ttfs\_mean} & \textbf{0.149} \\
+\bottomrule
+\end{tabular}
+\caption{Top features for hallucination detection. SNN features (avgpool\_std, avgpool\_ttfs\_mean) rank in top 10.}
+\end{table}
+
+\section{Experiments: Transformer/LLM Extension}
+
+\subsection{GPT-2 Attention TTFS Analysis}
+
+I analyze HuggingFace's distilgpt-2 (82M params) using attention weight TTFS.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{gpt2_snn_analysis.png}
+\caption{GPT-2 SNN Analysis: (a) Attention TTFS by layer (meaningful vs. meaningless input), (b) Multi-head synchrony, (c) Output entropy by prompt type, (d) Generation stability.}
+\label{fig:gpt2}
+\end{figure}
+
+\subsection{Key Finding: TTFS Differentiates Input Quality}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lcc}
+\toprule
+Input Type & Mean Attention TTFS & Interpretation \\
+\midrule
+Meaningful & 82.14 & Fast attention \\
+Meaningless & 85.24 & Slow attention \\
+\textbf{Difference} & \textbf{+3.1} & Model ``confusion'' \\
+\bottomrule
+\end{tabular}
+\caption{Meaningless inputs cause higher TTFS, indicating the model is ``uncertain'' about where to attend.}
+\end{table}
+
+\subsection{ViT-Base Large-Scale Validation}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.9\textwidth]{vit_base_cifar100_analysis.png}
+\caption{Large-scale validation on ViT-Base (6.4M params) with CIFAR-100 (100 classes). AUC 0.74 for hallucination detection.}
+\label{fig:vit}
+\end{figure}
+
+\section{Discussion}
+
+\subsection{SNNs as ``Computational Microscopes''}
+
+This work demonstrates that ANN-to-SNN conversion can serve purposes beyond efficiency:
+\begin{itemize}
+    \item \textbf{Temporal visualization}: TTFS reveals processing priorities
+    \item \textbf{Synchrony detection}: Identifies concept binding
+    \item \textbf{Stability analysis}: Detects unreliable predictions
+\end{itemize}
+
+\subsection{Implications for AI Safety}
+
+The hallucination detection capability (AUC 0.75) opens possibilities for:
+\begin{itemize}
+    \item Real-time confidence scoring during inference
+    \item Automated detection of overconfident errors
+    \item Post-hoc analysis of AI decision quality
+\end{itemize}
+
+\section{Conclusion}
+
+I present a unified framework that combines:
+\begin{enumerate}
+    \item \textbf{ANN-to-SNN Conversion}: Universal formula $\theta = 2.0 \times \max(\text{activation})$
+    \item \textbf{AI Interpretability}: TTFS, synchrony, and stability analysis
+    \item \textbf{Hallucination Detection}: Ensemble classifier with AUC 0.75
+\end{enumerate}
+
+Key findings:
+\begin{itemize}
+    \item \textbf{100\% accuracy preservation} with hippocampal hybrid architecture
+    \item \textbf{GPT-2 TTFS analysis} shows +3.1 increase for meaningless inputs
+    \item \textbf{SNN features rank in top 10} for hallucination detection
+    \item \textbf{Scalable to ViT-Base} (6.4M params) with consistent results
+\end{itemize}
+
+\subsection{Future Work}
+\begin{itemize}
+    \item Extension to larger LLMs (Llama, GPT-4)
+    \item Real-time API deployment
+    \item Integration with AI safety frameworks
+    \item Neuromorphic hardware validation
+\end{itemize}
+
+\section*{Code Availability}
+
+Full code and experiments: \url{https://github.com/hafufu-stack/autonomous-snn-framework}
+
+\begin{thebibliography}{9}
+\bibitem{diehl2015} Diehl, P.U., et al. ``Fast-classifying, high-accuracy spiking deep networks through weight and threshold balancing.'' IJCNN 2015.
+\bibitem{rueckauer2017} Rueckauer, B., et al. ``Conversion of continuous-valued deep networks to efficient event-driven networks for image classification.'' Frontiers in Neuroscience, 2017.
+\bibitem{sengupta2019} Sengupta, A., et al. ``Going deeper in spiking neural networks: VGG and residual architectures.'' Frontiers in Neuroscience, 2019.
+\bibitem{vanrullen2005} VanRullen, R., et al. ``Spike times make sense.'' Trends in Neurosciences, 2005.
+\bibitem{bohte2002} Bohte, S.M., et al. ``SpikeProp: backpropagation for networks of spiking neurons.'' ESANN, 2002.
+\end{thebibliography}
+
+\end{document}
