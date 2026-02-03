@@ -36,7 +36,7 @@
 ## 📁 Repository Structure
 
 ```
-autonomous-snn-framework/
+ann-to-snn-converter/
 ├── experiments/                    # 実験コード
 │   ├── snn_interpretability.py       # TTFS/Synchrony基本版
 │   ├── snn_interpretability_advanced.py  # クラス別解析
@@ -48,14 +48,11 @@ autonomous-snn-framework/
 │   └── large_scale_vit_validation.py # ViT-Base検証
 ├── api/                           # API
 │   └── hallucination_api.py          # リアルタイム検知API
-├── core/                          # コアエンジン
-│   ├── evolution_engine.py           # 自律進化エンジン
-│   ├── motivation.py                 # 内発的動機モジュール
-│   └── self_modifier.py              # 自己改変モジュール
-├── applications/                  # 各アプリケーション
-│   ├── crypto_snn.py                 # 暗号・圧縮
-│   ├── language_snn.py               # 言語モデル
-│   └── vision_snn.py                 # 画像生成
+├── figures/                       # 可視化図
+│   ├── snn_interpretability_*.png
+│   ├── hallucination_detector_*.png
+│   ├── gpt2_snn_analysis.png
+│   └── vit_base_cifar100_analysis.png
 └── paper_arxiv_v8.tex             # 論文 (v8)
 ```
 
@@ -104,16 +101,16 @@ uvicorn hallucination_api:app --reload --host 0.0.0.0 --port 8000
 ## 📈 Visualizations
 
 ### TTFS & Neural Synchrony Analysis
-![TTFS Analysis](snn_interpretability_advanced.png)
+![TTFS Analysis](figures/snn_interpretability_advanced.png)
 
 ### Hallucination Detector v3
-![Hallucination Detector](hallucination_detector_v3.png)
+![Hallucination Detector](figures/hallucination_detector_v3.png)
 
 ### GPT-2 Attention TTFS
-![GPT-2 Analysis](gpt2_snn_analysis.png)
+![GPT-2 Analysis](figures/gpt2_snn_analysis.png)
 
 ### ViT-Base Large-Scale Validation
-![ViT-Base](vit_base_cifar100_analysis.png)
+![ViT-Base](figures/vit_base_cifar100_analysis.png)
 
 ## 🔬 Key Insights
 
