@@ -144,10 +144,10 @@ risk = 0.4 * (TTFS_deviation / 10) +
 ## 📈 Visualizations
 
 ### Jailbreak Detection Results
-![Jailbreak Detection](experiments/jailbreak_detection_results.png)
+![Jailbreak Detection](figures/jailbreak_detection_results.png)
 
 ### TinyLlama Guardrail Analysis
-![Guardrail Analysis](experiments/llama2_guardrail_analysis.png)
+![Guardrail Analysis](figures/llama2_guardrail_analysis.png)
 
 ## 📝 Citation
 
