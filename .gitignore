@@ -17,3 +17,7 @@ zenn_*.md
 
 # Jupyter チェックポイント
 .ipynb_checkpoints/
+
+# 大きなデータファイル (GitHub 100MB制限)
+*.tar.gz
+ann-to-snn-converter/data/

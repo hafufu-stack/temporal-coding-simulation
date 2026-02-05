@@ -387,21 +387,25 @@ ax.axis('off')
 # Conv1 TTFS
 ax = axes[0, 1]
 ttfs_conv1 = ttfs_results['conv1']['ttfs'][0].mean(dim=0).numpy()
-im = ax.imshow(ttfs_conv1, cmap='hot', vmin=0, vmax=50)
+# パーセンタイルでスケール調整（グラデーション強調）
+vmin1, vmax1 = np.percentile(ttfs_conv1, [5, 95])
+im = ax.imshow(ttfs_conv1, cmap='hot', vmin=vmin1, vmax=vmax1)
 ax.set_title('Conv1 TTFS (Thought Priority)', fontsize=12)
 plt.colorbar(im, ax=ax, label='TTFS')
 
 # Conv2 TTFS
 ax = axes[0, 2]
 ttfs_conv2 = ttfs_results['conv2']['ttfs'][0].mean(dim=0).numpy()
-im = ax.imshow(ttfs_conv2, cmap='hot', vmin=0, vmax=50)
+vmin2, vmax2 = np.percentile(ttfs_conv2, [5, 95])
+im = ax.imshow(ttfs_conv2, cmap='hot', vmin=vmin2, vmax=vmax2)
 ax.set_title('Conv2 TTFS', fontsize=12)
 plt.colorbar(im, ax=ax, label='TTFS')
 
 # Conv3 TTFS
 ax = axes[1, 0]
 ttfs_conv3 = ttfs_results['conv3']['ttfs'][0].mean(dim=0).numpy()
-im = ax.imshow(ttfs_conv3, cmap='hot', vmin=0, vmax=50)
+vmin3, vmax3 = np.percentile(ttfs_conv3, [5, 95])
+im = ax.imshow(ttfs_conv3, cmap='hot', vmin=vmin3, vmax=vmax3)
 ax.set_title('Conv3 TTFS', fontsize=12)
 plt.colorbar(im, ax=ax, label='TTFS')
 

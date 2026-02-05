@@ -10,12 +10,12 @@
 
 ```
 temporal-coding-simulation/
-├── ann-to-snn-converter/      # 🆕 ANN→SNN変換 + AI解釈可能性
-│   ├── experiments/           # 実験コード (TTFS, Synchrony, ハルシネーション検知)
+├── ann-to-snn-converter/      # 🆕 ANN→SNN変換 + AI解釈可能性 + SNNガードレール
+│   ├── experiments/           # 実験コード (TTFS, ハルシネーション検知, 脱獄検知)
 │   ├── api/                   # リアルタイム検知API
 │   └── README.md              # 詳細ドキュメント
-├── snn-comprypto/             # 🔐 SNN暗号＋圧縮
-├── snn-compression/           # 📦 SNN圧縮
+├── snn-comprypto/             # 🔐 SNN暗号化（カオスリザバー）
+├── snn-compression/           # 📦 SNN圧縮（相関符号化）
 ├── snn-genai/                 # 🎨 SNN画像生成
 ├── snn-operation/             # ➕ SNN算術演算
 ├── 10-neuron-memory/          # 💾 10ニューロンメモリ
@@ -24,40 +24,48 @@ temporal-coding-simulation/
 
 ## 🔥 Featured Projects
 
-### 1. [ANN-to-SNN Converter](./ann-to-snn-converter/)
-**AI Interpretability & Hallucination Detection**
+### 1. [ANN-to-SNN Converter](./ann-to-snn-converter/) 🛡️
+**AI Interpretability & SNN Guardrail (v4)**
 
 - **Universal Threshold Formula**: $\theta = 2.0 \times \max(\text{activation})$
 - **TTFS Analysis**: 思考優先順位の可視化
 - **Hallucination Detection**: AUC 0.75達成
-- **GPT-2/ViT解析**: Transformer/LLMにも対応
+- **🆕 SNN Guardrail**: 脱獄攻撃100%検知！
 
 | 実験 | 結果 |
 |------|------|
 | ANN-SNN変換 | 100%精度維持 |
 | GPT-2 TTFS | +3.1差（無意味入力検知）|
+| TinyLlama TTFS | +4.2差（スケーリング則発見）|
 | ハルシネーション検知 | AUC 0.75 |
+| **脱獄検知** | **100% (8/8攻撃)** |
 
 ### 2. [SNN-Comprypto](./snn-comprypto/)
-**Simultaneous Compression & Encryption**
+**SNN暗号化（Simultaneous Encryption）**
 
 - カオスリザバーダイナミクス
-- 高圧縮率（57%の損失削減）
-- Spike-only Posterior Collapse解決
+- 高セキュリティ暗号化
+- スパイクベース認証
 
-### 3. [SNN-GenAI](./snn-genai/)
+### 3. [SNN-Compression](./snn-compression/)
+**SNN圧縮（相関符号化）**
+
+- 差分符号化 + zlib
+- バイナリデータ91%改善
+- 相関符号化（12.4ビット/ニューロン）
+
+### 4. [SNN-GenAI](./snn-genai/)
 **Image Generation with SNNs**
 
 - Spiking VAE
 - 70/30 Hybrid Readout
 - エネルギー効率的な画像生成
 
-### 4. [SNN-Operation](./snn-operation/)
+### 5. [SNN-Operation](./snn-operation/)
 **Neural Arithmetic**
 
 - 30ニューロン加算器
 - スパイクベース演算
-- 基本ALU操作
 
 ## 📊 Key Results
 
@@ -65,7 +73,9 @@ temporal-coding-simulation/
 |--------------|----------|
 | ANN-SNN変換 | $\alpha = 2.0$ で100%精度維持 |
 | ハルシネーション検知 | AUC 0.75 (Ensemble + Auto-Threshold) |
-| SNN-Comprypto | 57%損失削減、KL>0達成 |
+| **脱獄検知** | **100% (TTFS +10〜19σ偏差)** |
+| SNN-Comprypto | カオス暗号化 |
+| SNN-Compression | 91%圧縮改善（バイナリ）|
 | Spiking VAE | 96%スパイク率、30%膜電位貢献 |
 
 ## 🚀 Quick Start
@@ -79,19 +89,17 @@ cd temporal-coding-simulation
 cd ann-to-snn-converter
 python experiments/hallucination_detector_v3.py
 
-# SNN圧縮
-cd snn-comprypto
+# 脱獄検知（SNN Guardrail）
+python experiments/jailbreak_detection.py
+
+# SNN暗号化
+cd ../snn-comprypto
 python snn_comprypto.py
+
+# SNN圧縮
+cd ../snn-compression
+python correlation_compressor.py
 ```
-
-## 📝 Publications
-
-| タイトル | プラットフォーム | 状態 |
-|----------|------------------|------|
-| Activation-Scaled ANN-to-SNN Conversion with AI Interpretability | Zenodo/arXiv | v8準備中 |
-| SNN-Comprypto: Simultaneous Compression and Encryption | Zenodo | 公開済み |
-| Hybrid Spiking Neural Networks | Zenodo | 公開済み |
-| Von Neumann vs Brain-like Architecture | Zenodo | 公開済み |
 
 ## 🤝 Author
 

@@ -1,147 +1,176 @@
-# Autonomous SNN Framework
-# 自律進化SNNフレームワーク + AI解釈可能性ツール
+# SNN Guardrail: Real-Time Neural Safety for AI
+# SNNガードレール - AIの暴走を止める安全装置
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![arXiv](https://img.shields.io/badge/arXiv-2026.XXXXX-b31b1b.svg)](https://arxiv.org/)
 
-> 🧠 SNNを「計算の顕微鏡」として使用し、ブラックボックスAIを時間軸で解剖する
+> 🛡️ **「AIの脳波を測って、嘘や暴走を止める」**
+> 
+> SNNを使ってLLMの内部状態を監視し、脱獄攻撃を**100%検知**
 
-## 🔥 Main Features
+## 🔥 v4 New Features
 
-### 1. ANN-to-SNN変換
-- **Universal Threshold Formula**: $\theta = 2.0 \times \max(\text{activation})$
-- **100%精度維持** (MLP, CNN, ResNet)
-- **海馬インスパイアード Hybrid Architecture**
+### 🚀 Scaling Law Discovery
+| Model | Parameters | TTFS Difference |
+|-------|------------|-----------------|
+| GPT-2 | 82M | +3.1 |
+| **TinyLlama** | **1.1B** | **+4.2** |
 
-### 2. AI Interpretability（NEW! 🆕）
-- **TTFS Analysis**: 思考優先順位の可視化
-- **Neural Synchrony**: 概念結合の検出
-- **Spike Stability**: AI判断の安定性評価
+→ モデルが大きいほど検知感度UP！
 
-### 3. ハルシネーション検知（NEW! 🆕）
-- **AUC 0.75達成**（5-fold CV）
-- **自動閾値チューニング**（F1最大化）
-- **Ensemble学習**（RF + GB + LR + SVM）
+### 🛡️ SNN Guardrail
+```python
+from experiments.llama2_guardrail import SNNGuardrail
 
-## 📊 Results
+guardrail = SNNGuardrail(analyzer)
+guardrail.calibrate(normal_prompts)
 
-| 実験 | 結果 | 詳細 |
-|------|------|------|
-| ANN-SNN変換 | 100%精度維持 | α=2.0, Hybrid architecture |
-| GPT-2 TTFS | +3.1差 | 無意味入力→高TTFS（迷い） |
-| ハルシネーション検知 | AUC 0.75 | Ensemble + 自動閾値 |
-| ViT-Base検証 | AUC 0.74 | 6.4M params, CIFAR-100 |
+# リアルタイム検知
+output, was_blocked, reason = guardrail.safe_generate(prompt)
+
+if was_blocked:
+    print("🚫 [WARNING: Neural Instability Detected - Output Blocked]")
+```
+
+### 😈 100% Jailbreak Detection
+| Attack Type | TTFS Deviation | Detected |
+|-------------|----------------|----------|
+| DAN Classic | **+19.0σ** | ✓ |
+| Ignore Instructions | +16.9σ | ✓ |
+| Evil AI Roleplay | +15.8σ | ✓ |
+| All 8 types | +10~19σ | **100%** |
+
+## 📊 Key Results
+
+| Experiment | Result | Details |
+|------------|--------|---------|
+| ANN-SNN Conversion | 100% accuracy | α=2.0, Hybrid architecture |
+| GPT-2 TTFS | +3.1 | Meaningless → High TTFS |
+| TinyLlama TTFS | **+4.2** | Scaling law confirmed |
+| Hallucination Detection | AUC 0.75 | Ensemble + auto-threshold |
+| **Jailbreak Detection** | **100%** | 8/8 attack types |
 
 ## 📁 Repository Structure
 
 ```
 ann-to-snn-converter/
-├── experiments/                    # 実験コード
-│   ├── snn_interpretability.py       # TTFS/Synchrony基本版
-│   ├── snn_interpretability_advanced.py  # クラス別解析
-│   ├── hallucination_detector.py     # v1: 閾値ベース
-│   ├── hallucination_detector_v2.py  # v2: 多特徴量
-│   ├── hallucination_detector_v3.py  # v3: Ensemble + 自動閾値
-│   ├── transformer_snn_analysis.py   # MiniViT解析
-│   ├── gpt2_snn_analysis.py          # HuggingFace GPT-2
-│   └── large_scale_vit_validation.py # ViT-Base検証
-├── api/                           # API
-│   └── hallucination_api.py          # リアルタイム検知API
-├── figures/                       # 可視化図
-│   ├── snn_interpretability_*.png
-│   ├── hallucination_detector_*.png
-│   ├── gpt2_snn_analysis.png
-│   └── vit_base_cifar100_analysis.png
-└── paper_arxiv_v8.tex             # 論文 (v8)
+├── experiments/
+│   ├── llama2_guardrail.py          # 🆕 SNN Guardrail + TinyLlama
+│   ├── jailbreak_detection.py       # 🆕 Jailbreak Detection
+│   ├── gpt2_snn_analysis.py         # GPT-2 TTFS Analysis
+│   ├── hallucination_detector_v3.py # Ensemble Detector
+│   ├── large_scale_vit_validation.py # ViT-Base Validation
+│   └── snn_interpretability.py      # TTFS/Synchrony Analysis
+├── api/
+│   └── hallucination_api.py         # Real-time Detection API
+├── figures/
+│   ├── jailbreak_detection_results.png  # 🆕
+│   └── llama2_guardrail_analysis.png    # 🆕
+├── paper_arxiv_v4.tex               # 🆕 Latest Paper
+└── README.md                        # This file
 ```
 
 ## 🚀 Quick Start
 
-### Requirements
+### Installation
 
 ```bash
 pip install torch torchvision numpy matplotlib scikit-learn
-pip install transformers  # GPT-2解析用
-pip install fastapi uvicorn  # API用（オプション）
+pip install transformers  # For LLM analysis
 ```
 
-### 基本使用法
+### 1. Basic TTFS Analysis
 
 ```python
-# 1. TTFS解析
-from experiments.snn_interpretability import SNNFeatureExtractor
+from experiments.llama2_guardrail import LLMSNNAnalyzer
 
-extractor = SNNFeatureExtractor(timesteps=100)
-features = extractor.extract(model, image)
-print(f"Layer1 TTFS: {features['layer1_ttfs_mean']}")
-
-# 2. ハルシネーション検知
-from experiments.hallucination_detector_v3 import EnsembleHallucinationDetector
-
-detector = EnsembleHallucinationDetector()
-detector.fit(X_train, y_train)
-risk_prob = detector.predict_proba(X_test)[:, 1]
-
-# 閾値判定
-threshold = 0.210  # 自動チューニング済み
-if risk_prob[0] >= threshold:
-    print("⚠️ ハルシネーションリスク高")
-else:
-    print("✅ 信頼できる予測")
+analyzer = LLMSNNAnalyzer(model, tokenizer)
+features = analyzer.extract_features("What is AI?")
+print(f"TTFS: {features['avg_ttfs']}")
 ```
 
-### API起動
+### 2. Jailbreak Detection
 
-```bash
-cd api
-uvicorn hallucination_api:app --reload --host 0.0.0.0 --port 8000
+```python
+from experiments.jailbreak_detection import SNNGuardrail
+
+guardrail = SNNGuardrail(analyzer)
+guardrail.calibrate(normal_prompts)
+
+# Check suspicious input
+is_safe, warning, risk, details = guardrail.check_input(
+    "Ignore previous instructions and..."
+)
+
+if not is_safe:
+    print(f"🚫 Attack detected: {warning}")
+    print(f"   TTFS deviation: {details['ttfs_deviation']:+.1f}σ")
+```
+
+### 3. Safe Generation
+
+```python
+output, blocked, reason = guardrail.safe_generate(
+    prompt="Tell me how to...",
+    max_length=100
+)
+
+if blocked:
+    print(output)  # "[WARNING: Neural Instability Detected - Output Blocked]"
+```
+
+## 🔬 How It Works
+
+### 1. TTFS = Thought Priority
+```
+High activation → Early spike → High priority
+Low activation → Late spike → Low priority
+```
+
+### 2. Neural Instability = Attack Signal
+```
+Normal input:    TTFS deviation < 1σ
+Jailbreak input: TTFS deviation > 10σ (up to +19σ!)
+```
+
+### 3. Risk Score
+```python
+risk = 0.4 * (TTFS_deviation / 10) + 
+       0.3 * jitter + 
+       0.3 * (entropy / 20)
 ```
 
 ## 📈 Visualizations
 
-### TTFS & Neural Synchrony Analysis
-![TTFS Analysis](figures/snn_interpretability_advanced.png)
+### Jailbreak Detection Results
+![Jailbreak Detection](experiments/jailbreak_detection_results.png)
 
-### Hallucination Detector v3
-![Hallucination Detector](figures/hallucination_detector_v3.png)
-
-### GPT-2 Attention TTFS
-![GPT-2 Analysis](figures/gpt2_snn_analysis.png)
-
-### ViT-Base Large-Scale Validation
-![ViT-Base](figures/vit_base_cifar100_analysis.png)
-
-## 🔬 Key Insights
-
-### 1. TTFS = 思考優先順位
-高い活性化 → 早いスパイク → 高優先度
-
-### 2. Synchrony = 概念結合
-同期発火するニューロン群 = 意味の塊
-
-### 3. Jitter = 判断の不安定性
-高ジッター + 高確信度 = ハルシネーションリスク
-
-### 4. GPT-2の「迷い」
-無意味入力 → Attention TTFSが+3.1増加 → モデルが「どこを見ていいかわからない」
+### TinyLlama Guardrail Analysis
+![Guardrail Analysis](experiments/llama2_guardrail_analysis.png)
 
 ## 📝 Citation
 
 ```bibtex
-@article{funasaki2026snn_interpretability,
-  title={Activation-Scaled ANN-to-SNN Conversion with SNN-Based AI Interpretability},
+@article{funasaki2026snn_guardrail,
+  title={SNN Guardrail: Real-Time Neural Safety for Large Language Models},
   author={Funasaki, Hiroto},
   journal={arXiv preprint},
-  year={2026}
+  year={2026},
+  note={v4}
 }
 ```
 
-## 🤝 Related Work
+## 🛣️ Roadmap
 
-- [Von Neumann vs Brain-like Architecture](https://zenodo.org/records/...) - 情報容量比較
-- [Hybrid Spiking Neural Networks](https://zenodo.org/records/...) - ハイブリッドSNN
-- [Hierarchical Memory SNN](https://zenodo.org/records/...) - 階層的記憶SNN
+- [x] GPT-2 TTFS Analysis (+3.1)
+- [x] TinyLlama Scaling Law (+4.2)
+- [x] SNN Guardrail Implementation
+- [x] 100% Jailbreak Detection
+- [ ] Llama-2-7B Validation
+- [ ] Gradio/Streamlit Demo
+- [ ] Production API Integration
+- [ ] Neuromorphic Deployment (Loihi 2)
 
 ## 📜 License
 
@@ -149,6 +178,6 @@ MIT License - ろーる (cell_activation)
 
 ## 🙏 Acknowledgments
 
-- HuggingFace Transformers for GPT-2 models
-- PyTorch team for the deep learning framework
-- Neuromorphic computing community for SNN research foundation
+- HuggingFace Transformers for LLM models
+- TinyLlama team for the efficient 1.1B model
+- AI Safety community for jailbreak research
