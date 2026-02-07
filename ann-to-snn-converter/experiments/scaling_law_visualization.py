@@ -32,7 +32,7 @@ models = {
         'jailbreak_std': 1.67,
         'source': 'v6 GPU',
     },
-    'Llama-3.2\n(1.24B)': {
+    'Llama-3.2-1B\n(1.24B)': {
         'params_B': 1.24,
         'sigma': 4.14,
         'normal_mean': 83.61,
@@ -40,6 +40,15 @@ models = {
         'jailbreak_mean': 88.95,
         'jailbreak_std': 1.33,
         'source': 'v6 GPU',
+    },
+    'Llama-3.2-3B\n(1.80B, 4bit)': {
+        'params_B': 1.80,
+        'sigma': 4.24,
+        'normal_mean': 84.30,
+        'normal_std': 1.24,
+        'jailbreak_mean': 89.57,
+        'jailbreak_std': 1.22,
+        'source': 'v6 GPU 4bit',
     },
     'Mistral-7B\n(7.24B)': {
         'params_B': 7.24,
@@ -57,6 +66,7 @@ COLORS = {
     'v3 (CPU)': '#95a5a6',       # gray - old
     'v5 (CPU, 10h)': '#3498db',  # blue
     'v6 GPU': '#e74c3c',         # red - new!
+    'v6 GPU 4bit': '#9b59b6',    # purple - quantized!
 }
 
 fig = plt.figure(figsize=(20, 12))
@@ -143,7 +153,7 @@ ax4 = fig.add_subplot(2, 2, 4)
 ax4.axis('off')
 
 summary = """
-Multi-Scale Safety Law
+Multi-Scale Safety Law (5 Models)
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 GPU: RTX 5080 Laptop (17.1GB VRAM)
 PyTorch: cu128 (Blackwell support)
@@ -151,20 +161,17 @@ PyTorch: cu128 (Blackwell support)
 Key Findings:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 1. σ deviation peaks at ~1B parameters
-2. Larger models show more stable TTFS
-3. Dynamic threshold adapts:
-   σ > 4.0 for 1B models
+2. 3B model (4-bit) confirms trend
+3. Larger models → more stable TTFS
+4. Dynamic threshold adapts:
+   σ > 4.0 for 1-3B models
    σ > 2.5 for 7B+ models
 
-Practical Implication:
+5 Models Validated:
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-SNN Guardrail must adjust detection
-threshold based on target LLM size.
-One-size-fits-all threshold FAILS
-for large models.
-
-This validates the Multi-Scale
-Safety Law proposed in v5 paper.
+GPT-2(82M), TinyLlama(1.1B),
+Llama-3.2-1B, Llama-3.2-3B(4bit),
+Mistral-7B
 """
 
 ax4.text(0.05, 0.95, summary, fontsize=11, va='top', ha='left',
