@@ -1,82 +1,87 @@
 # Temporal Coding Simulation
-# 時間コーディングシミュレーション
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 
-> 🧠 スパイキングニューラルネットワーク (SNN) の研究・実験コードリポジトリ
+> 🧠 Research repository for Spiking Neural Network (SNN) experiments — temporal coding, AI safety, compression, and cryptography
 
 ## 📁 Repository Structure
 
 ```
 temporal-coding-simulation/
-├── ann-to-snn-converter/      # 🆕 ANN→SNN変換 + AI解釈可能性 + SNNガードレール
-│   ├── experiments/           # 実験コード (TTFS, ハルシネーション検知, 脱獄検知)
-│   ├── api/                   # リアルタイム検知API
-│   └── README.md              # 詳細ドキュメント
-├── snn-comprypto/             # 🔐 SNN暗号化（カオスリザバー）
-├── snn-compression/           # 📦 SNN圧縮（相関符号化）
-├── snn-genai/                 # 🎨 SNN画像生成
-├── snn-operation/             # ➕ SNN算術演算
-├── 10-neuron-memory/          # 💾 10ニューロンメモリ
-└── assets/                    # 📊 図・画像
+├── ann-to-snn-converter/      # 🛡️ ANN→SNN Conversion + AI Safety + SNN Guardrail
+│   ├── experiments/           # Experiment scripts (TTFS, hallucination, jailbreak, brain imaging)
+│   ├── figures/               # Result visualizations (20+ PNGs)
+│   ├── api/                   # Real-time detection API
+│   ├── demos/                 # HuggingFace Spaces demo
+│   └── README.md              # Detailed documentation
+├── snn-comprypto/             # 🔐 SNN-based cryptography (chaotic reservoir)
+├── snn-compression/           # 📦 SNN compression (correlation coding)
+├── snn-genai/                 # 🎨 SNN image generation (Spiking VAE)
+├── snn-operation/             # ➕ SNN arithmetic operations
+├── 10-neuron-memory/          # 💾 10-neuron memory experiment
+└── assets/                    # 📊 Shared figures and images
 ```
 
 ## 🔥 Featured Projects
 
 ### 1. [ANN-to-SNN Converter](./ann-to-snn-converter/) 🛡️
-**AI Interpretability & SNN Guardrail (v4)**
+**AI Interpretability & SNN Guardrail (v6)**
 
-- **Universal Threshold Formula**: $\theta = 2.0 \times \max(\text{activation})$
-- **TTFS Analysis**: 思考優先順位の可視化
-- **Hallucination Detection**: AUC 0.75達成
-- **🆕 SNN Guardrail**: 脱獄攻撃100%検知！
+- **Universal Threshold Formula**: θ = 2.0 × max(activation)
+- **TTFS Analysis**: Visualize thought priorities via spike timing
+- **Hallucination Detection**: AUC 0.75 ensemble classifier
+- **SNN Guardrail**: 100% jailbreak detection rate
+- **N=1,000 Statistical Proof**: p = 8.91×10⁻¹⁶⁴, Cohen's d = 2.13
+- **Brain State Imaging**: SNN-VAE visualization of LLM internal states
 
-| 実験 | 結果 |
-|------|------|
-| ANN-SNN変換 | 100%精度維持 |
-| GPT-2 TTFS | +3.1差（無意味入力検知）|
-| TinyLlama TTFS | +4.2差（スケーリング則発見）|
-| ハルシネーション検知 | AUC 0.75 |
-| **脱獄検知** | **100% (8/8攻撃)** |
+| Experiment | Result |
+|------------|--------|
+| ANN-SNN Conversion | 100% accuracy preserved |
+| GPT-2 TTFS | +3.1 (meaningless input detection) |
+| TinyLlama TTFS | +4.2 (scaling law confirmed) |
+| Hallucination Detection | AUC 0.75 |
+| **Jailbreak Detection** | **100% (8/8 attack types)** |
+| **N=1,000 Proof** | **p < 10⁻¹⁰⁰** |
 
 ### 2. [SNN-Comprypto](./snn-comprypto/)
-**SNN暗号化（Simultaneous Encryption）**
+**SNN Cryptography (Simultaneous Encryption)**
 
-- カオスリザバーダイナミクス
-- 高セキュリティ暗号化
-- スパイクベース認証
+- Chaotic reservoir dynamics
+- High-security spike-based encryption
+- Spike-based authentication
 
 ### 3. [SNN-Compression](./snn-compression/)
-**SNN圧縮（相関符号化）**
+**SNN Compression (Correlation Coding)**
 
-- 差分符号化 + zlib
-- バイナリデータ91%改善
-- 相関符号化（12.4ビット/ニューロン）
+- Differential coding + zlib
+- 91% improvement for binary data
+- Correlation encoding (12.4 bits/neuron)
 
 ### 4. [SNN-GenAI](./snn-genai/)
 **Image Generation with SNNs**
 
-- Spiking VAE
-- 70/30 Hybrid Readout
-- エネルギー効率的な画像生成
+- Spiking VAE with Posterior Collapse fix
+- 70/30 Hybrid Readout (spike + membrane)
+- Energy-efficient image generation
 
 ### 5. [SNN-Operation](./snn-operation/)
 **Neural Arithmetic**
 
-- 30ニューロン加算器
-- スパイクベース演算
+- 30-neuron adder
+- Spike-based arithmetic operations
 
 ## 📊 Key Results
 
-| プロジェクト | 主要結果 |
-|--------------|----------|
-| ANN-SNN変換 | $\alpha = 2.0$ で100%精度維持 |
-| ハルシネーション検知 | AUC 0.75 (Ensemble + Auto-Threshold) |
-| **脱獄検知** | **100% (TTFS +10〜19σ偏差)** |
-| SNN-Comprypto | カオス暗号化 |
-| SNN-Compression | 91%圧縮改善（バイナリ）|
-| Spiking VAE | 96%スパイク率、30%膜電位貢献 |
+| Project | Key Result |
+|---------|------------|
+| ANN-SNN Conversion | α = 2.0 preserves 100% accuracy |
+| Hallucination Detection | AUC 0.75 (Ensemble + Auto-Threshold) |
+| **Jailbreak Detection** | **100% (TTFS +10~19σ deviation)** |
+| **N=1,000 Proof** | **p < 10⁻¹⁰⁰, Cohen's d = 2.13** |
+| SNN-Comprypto | Chaotic encryption system |
+| SNN-Compression | 91% compression improvement (binary) |
+| Spiking VAE | 96% spike rate, 30% membrane contribution |
 
 ## 🚀 Quick Start
 
@@ -85,25 +90,25 @@ temporal-coding-simulation/
 git clone https://github.com/hafufu-stack/temporal-coding-simulation.git
 cd temporal-coding-simulation
 
-# ANN-SNN変換（ハルシネーション検知）
+# ANN-SNN Conversion (Hallucination Detection)
 cd ann-to-snn-converter
 python experiments/hallucination_detector_v3.py
 
-# 脱獄検知（SNN Guardrail）
+# Jailbreak Detection (SNN Guardrail)
 python experiments/jailbreak_detection.py
 
-# SNN暗号化
+# SNN Cryptography
 cd ../snn-comprypto
 python snn_comprypto.py
 
-# SNN圧縮
+# SNN Compression
 cd ../snn-compression
 python correlation_compressor.py
 ```
 
 ## 🤝 Author
 
-**Hiroto Funasaki (ろーる)**
+**Hiroto Funasaki**
 - ORCID: 0009-0004-2517-0177
 - Email: cell-activation@ymail.ne.jp
 - GitHub: [@hafufu-stack](https://github.com/hafufu-stack)
@@ -117,4 +122,5 @@ MIT License
 
 - PyTorch & TorchVision
 - HuggingFace Transformers
+- snnTorch for SNN experiments
 - Neuromorphic Computing Community
