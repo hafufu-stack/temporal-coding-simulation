@@ -28,3 +28,13 @@ ann-to-snn-converter/demos/hf_spaces/
 
 # モデルウェイト
 *.pth
+
+# 実験結果ディレクトリ (再生成可能な大型ファイル)
+ann-to-snn-converter/experiments/results_metacognition*/
+ann-to-snn-converter/experiments/results_symbiosis/
+ann-to-snn-converter/experiments/results_7b_fp16_v2/
+
+# 大型バイナリ (GIF, WAV, NPZ)
+*.gif
+*.wav
+*.npz
