@@ -21,3 +21,10 @@ zenn_*.md
 # 大きなデータファイル (GitHub 100MB制限)
 *.tar.gz
 ann-to-snn-converter/data/
+ann-to-snn-converter/experiments/data/
+
+# HuggingFace Spaces (HFに直接デプロイ)
+ann-to-snn-converter/demos/hf_spaces/
+
+# モデルウェイト
+*.pth

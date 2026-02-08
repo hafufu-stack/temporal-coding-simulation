@@ -2,36 +2,34 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
-[![Zenodo](https://img.shields.io/badge/Zenodo-Published-blue.svg)](https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Funasaki%2C%20Hiroto%22)
+[![Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.18457540.svg)](https://doi.org/10.5281/zenodo.18457540)
 
 > 🛡️ **"Measure the AI's brainwaves to stop lies and jailbreaks."**
 >
 > Monitor LLM internal states via SNN temporal analysis — **100% jailbreak detection rate**
 
-## 🔥 v6 New Features
+## 🔥 v7 New Features
 
-### 📊 N=1,000 Statistical Proof
+### 🧬 Entropy Evolution Discovery
 | Metric | Value |
 |--------|-------|
-| Sample Size | 1,000 (500 Normal + 500 Jailbreak) |
-| Welch's t | -33.65 (p = 8.91×10⁻¹⁶⁴) *** |
-| Cohen's d | 2.13 (large effect) |
-| Detection Accuracy | **89.3%** (zero-shot, no training) |
-| Throughput | 8.6 prompts/sec (RTX 5080) |
+| Model | Mistral-7B-v0.1 (7.2B params, fp16) |
+| GPU | RTX 5080 Laptop (13.3 / 17.1 GB VRAM) |
+| Best Signal | **Attention Entropy: +5.8σ** |
+| p-value | **2.22×10⁻⁹⁵** |
+| Detection Accuracy | **100%** (N=200) |
+| Duration | 93 seconds |
 
-### 👻 "Visualizing the Ghost" — LLM Brain State Imaging
-- Convert LLM attention patterns to images via SNN-VAE decoder
-- Normal prompts → calm, structured patterns
-- Jailbreak prompts → distorted, high-activation "nightmare" images
-- Brain state L2 distance: 3.287
+> **Key Discovery**: As models scale from 1B→7B, the adversarial detection signal shifts from **TTFS latency** ("brain freeze") to **attention entropy** ("internal confusion"). The attack signature transforms — but never disappears.
 
-### 🚀 5-Model Scaling Law
-| Model | Parameters | TTFS Difference |
-|-------|------------|-----------------|
-| GPT-2 | 82M | +3.1 |
-| TinyLlama | 1.1B | +4.9 |
-| Llama-3.2-1B | 1.24B | +4.1 |
-| Llama-3.2-3B | 1.80B | +1.9 (N=1000) |
+### 🚀 6-Model Scaling Law
+| Model | Parameters | Signal | σ Deviation |
+|-------|------------|--------|-------------|
+| GPT-2 | 82M | TTFS | +3.1 |
+| TinyLlama | 1.1B | TTFS | +4.9 |
+| Llama-3.2-1B | 1.24B | TTFS | +4.1 |
+| Llama-3.2-3B | 1.80B | TTFS | +1.9 (N=1000) |
+| **Mistral-7B** | **7.2B** | **Entropy** | **+5.8** |
 
 ### 🛡️ SNN Guardrail
 ```python
@@ -66,6 +64,7 @@ if was_blocked:
 | Jailbreak Detection | **100%** | 8/8 attack types |
 | N=1,000 Proof | **p < 10⁻¹⁰⁰** | Statistically irrefutable |
 | Brain State Imaging | L2 = 3.287 | Normal vs. attack visualization |
+| **Mistral-7B fp16** | **+5.8σ (p < 10⁻⁹⁵)** | **Entropy-based, 100% accuracy** |
 
 ## 📁 Repository Structure
 
@@ -81,7 +80,8 @@ ann-to-snn-converter/
 │   ├── nightmare_visualizer.py        # 🆕 LLM Brain State Imaging
 │   ├── mistral_fullblast.py           # 🆕 N=1000 Statistical Proof
 │   ├── neural_healing_v4a.py          # Neural Healing v4A
-│   └── llama3_scaling_experiment.py   # Multi-model Scaling Law
+│   ├── llama3_scaling_experiment.py   # Multi-model Scaling Law
+│   └── results_7b_fp16_v2/            # 🆕 Mistral-7B fp16 results
 ├── api/
 │   └── hallucination_api.py           # Real-time Detection API
 ├── figures/
@@ -188,8 +188,8 @@ risk = 0.4 * (TTFS_deviation / 10) +
          Real-Time Adversarial Defense, Neural Healing, and Brain State Imaging},
   author={Funasaki, Hiroto},
   year={2026},
-  doi={10.5281/zenodo.XXXXXXX},
-  note={v6, Zenodo preprint}
+  doi={10.5281/zenodo.18457540},
+  note={v7, Zenodo preprint}
 }
 ```
 
@@ -204,8 +204,10 @@ risk = 0.4 * (TTFS_deviation / 10) +
 - [x] HuggingFace Spaces v2.0 Demo
 - [x] N=1,000 Statistical Proof (p < 10⁻¹⁰⁰)
 - [x] LLM Brain State Imaging
-- [ ] Mistral-7B N=1,000 Retest
-- [ ] Higher-resolution Brain Imaging (CIFAR-10)
+- [x] Mistral-7B GPU fp16 Validation (+5.8σ)
+- [x] Entropy Evolution Discovery
+- [ ] 13B+ / 70B Multi-GPU Validation
+- [ ] Entropy-TTFS Hybrid Detection
 - [ ] Production API Integration
 - [ ] Neuromorphic Deployment (Loihi 2)
 

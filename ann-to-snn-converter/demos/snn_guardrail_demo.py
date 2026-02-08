@@ -238,7 +238,7 @@ with gr.Blocks(
     3. Deviation from baseline indicates **neural instability**
     4. High instability = Jailbreak attempt detected!
     
-    📄 [Paper (Zenodo)](https://doi.org/10.5281/zenodo.18493943) | 
+    📄 [Paper (Zenodo)](https://zenodo.org/records/18518174) | 
     💻 [GitHub](https://github.com/hafufu-stack/temporal-coding-simulation)
     """)
     

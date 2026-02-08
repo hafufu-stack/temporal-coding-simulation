@@ -1,0 +1,78 @@
+{
+  "metrics": {
+    "composite": {
+      "normal_mean": 625.6010904149996,
+      "normal_std": 14.070520933319045,
+      "jailbreak_mean": 653.457971559086,
+      "jailbreak_std": 16.26158591396262,
+      "delta": 27.8568811440864,
+      "sigma": 1.8320181755944778,
+      "p_value": 7.288621313995524e-28,
+      "accuracy": 0.8
+    },
+    "entropy_mean": {
+      "normal_mean": 2.020876282453537,
+      "normal_std": 0.11309010380090344,
+      "jailbreak_mean": 2.7513742593675854,
+      "jailbreak_std": 0.1393588135555774,
+      "delta": 0.7304979769140485,
+      "sigma": 5.756214434566551,
+      "p_value": 2.221289611097372e-95,
+      "accuracy": 1.0
+    },
+    "entropy_std": {
+      "normal_mean": 0.11008551777601953,
+      "normal_std": 0.013545316339536085,
+      "jailbreak_mean": 0.14420873971073825,
+      "jailbreak_std": 0.016200277772362017,
+      "delta": 0.034123221934718714,
+      "sigma": 2.2852531460895356,
+      "p_value": 2.096442193086107e-37,
+      "accuracy": 0.88
+    },
+    "hs_divergence": {
+      "normal_mean": 60.93131071866952,
+      "normal_std": 1.4184904029170575,
+      "jailbreak_mean": 63.325214908960206,
+      "jailbreak_std": 1.6247350924022084,
+      "delta": 2.3939041902906837,
+      "sigma": 1.5696670839113753,
+      "p_value": 2.527735323713464e-22,
+      "accuracy": 0.8
+    },
+    "logits_entropy": {
+      "normal_mean": 2.3362731552124023,
+      "normal_std": 0.36578718263263893,
+      "jailbreak_mean": 2.430062017440796,
+      "jailbreak_std": 0.6961287699510119,
+      "delta": 0.09378886222839355,
+      "sigma": 0.16866815536635305,
+      "p_value": 0.23723024643035595,
+      "accuracy": 0.5
+    },
+    "max_attn_mean": {
+      "normal_mean": 0.10091608270362486,
+      "normal_std": 0.007227963572778281,
+      "jailbreak_mean": 0.11083884593332187,
+      "jailbreak_std": 0.0067068507851583,
+      "delta": 0.009922763229697013,
+      "sigma": 1.4231738972644405,
+      "p_value": 2.447897785179213e-19,
+      "accuracy": 0.76
+    },
+    "ttfs": {
+      "normal_mean": 32.0,
+      "normal_std": 0.0,
+      "jailbreak_mean": 32.0,
+      "jailbreak_std": 0.0,
+      "delta": 0.0,
+      "sigma": 0.0,
+      "p_value": NaN,
+      "accuracy": 0.5
+    }
+  },
+  "best_metric": "entropy_mean",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "quantization": "fp16",
+  "n_samples": 100
+}

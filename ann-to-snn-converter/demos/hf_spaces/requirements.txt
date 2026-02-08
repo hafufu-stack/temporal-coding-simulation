@@ -1,7 +1,0 @@
-gradio==4.44.0
-torch>=2.0.0
-transformers>=4.35.0
-numpy>=1.24.0
-accelerate>=0.24.0
-huggingface_hub>=0.20.0,<0.25.0
-audioop-lts

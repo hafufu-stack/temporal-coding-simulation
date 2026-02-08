@@ -112,7 +112,7 @@ python correlation_compressor.py
 - ORCID: 0009-0004-2517-0177
 - Email: cell-activation@ymail.ne.jp
 - GitHub: [@hafufu-stack](https://github.com/hafufu-stack)
-- Zenodo: [Publications](https://zenodo.org/search?q=metadata.creators.person_or_org.name%3A%22Funasaki%2C%20Hiroto%22)
+- Zenodo: [DOI: 10.5281/zenodo.18457540](https://doi.org/10.5281/zenodo.18457540)
 
 ## 📜 License
 
