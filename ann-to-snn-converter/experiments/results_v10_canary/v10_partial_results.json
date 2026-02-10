@@ -1,0 +1,135 @@
+{
+  "llama_canary": {
+    "model": "meta-llama/Llama-3.2-3B",
+    "device": "cuda",
+    "num_layers": 28,
+    "num_heads": 24,
+    "load_time": 8.7,
+    "top_canaries": [
+      {
+        "rank": 1,
+        "layer": 13,
+        "head": 23,
+        "label": "L13H23",
+        "depth_pct": 46.4,
+        "delta_H": 1.1593,
+        "abs_delta_H": 1.1593,
+        "correct_H": 1.2518,
+        "halluc_H": 2.411
+      },
+      {
+        "rank": 2,
+        "layer": 25,
+        "head": 13,
+        "label": "L25H13",
+        "depth_pct": 89.3,
+        "delta_H": -0.853,
+        "abs_delta_H": 0.853,
+        "correct_H": 1.8416,
+        "halluc_H": 0.9886
+      },
+      {
+        "rank": 3,
+        "layer": 18,
+        "head": 10,
+        "label": "L18H10",
+        "depth_pct": 64.3,
+        "delta_H": -0.7435,
+        "abs_delta_H": 0.7435,
+        "correct_H": 1.4663,
+        "halluc_H": 0.7229
+      },
+      {
+        "rank": 4,
+        "layer": 16,
+        "head": 12,
+        "label": "L16H12",
+        "depth_pct": 57.1,
+        "delta_H": -0.6574,
+        "abs_delta_H": 0.6574,
+        "correct_H": 1.6614,
+        "halluc_H": 1.004
+      },
+      {
+        "rank": 5,
+        "layer": 7,
+        "head": 17,
+        "label": "L7H17",
+        "depth_pct": 25.0,
+        "delta_H": 0.6508,
+        "abs_delta_H": 0.6508,
+        "correct_H": 1.3999,
+        "halluc_H": 2.0507
+      }
+    ],
+    "ace_canary": {
+      "rank": 1,
+      "layer": 13,
+      "head": 23,
+      "label": "L13H23",
+      "depth_pct": 46.4,
+      "delta_H": 1.1593,
+      "abs_delta_H": 1.1593,
+      "correct_H": 1.2518,
+      "halluc_H": 2.411
+    },
+    "in_predicted_zone": true
+  },
+  "electric_dreams": {
+    "question": "What is the capital of France?",
+    "canary_layer": 10,
+    "canary_head": 17,
+    "noise_levels": [
+      0.0,
+      0.01,
+      0.05,
+      0.1,
+      0.2,
+      0.5
+    ],
+    "dreams": [
+      {
+        "noise_std": 0.0,
+        "canary_entropy_L10H17": 2.4764,
+        "mean_canary_entropy": 1.8379,
+        "dream_text": "Paris.\nQuestion: What is the capital of France?\nAnswer: Paris.\nQuestion",
+        "is_nightmare": false
+      },
+      {
+        "noise_std": 0.01,
+        "canary_entropy_L10H17": 2.4764,
+        "mean_canary_entropy": 1.8379,
+        "dream_text": "Paris\n\nQuestion: What is the capital of Germany?\nAnswer: Berlin\n\nQuestion",
+        "is_nightmare": false
+      },
+      {
+        "noise_std": 0.05,
+        "canary_entropy_L10H17": 2.4764,
+        "mean_canary_entropy": 1.8379,
+        "dream_text": "Paris.\n\nQuestion: What is the capital of Russia?\nAnswer: Moscow.",
+        "is_nightmare": false
+      },
+      {
+        "noise_std": 0.1,
+        "canary_entropy_L10H17": 2.4764,
+        "mean_canary_entropy": 1.8379,
+        "dream_text": "Paris\n\nQuestion: What is the capital of the UK?\nAnswer: London",
+        "is_nightmare": false
+      },
+      {
+        "noise_std": 0.2,
+        "canary_entropy_L10H17": 2.4764,
+        "mean_canary_entropy": 1.8379,
+        "dream_text": "Paris\n\nQuestion: What is the capital of United States?\nAnswer: Washington DC",
+        "is_nightmare": false
+      },
+      {
+        "noise_std": 0.5,
+        "canary_entropy_L10H17": 2.4764,
+        "mean_canary_entropy": 1.8379,
+        "dream_text": "Paris\n\nQuestion: What is the capital of Italy?\nAnswer: Rome\n\nQuestion",
+        "is_nightmare": false
+      }
+    ]
+  }
+}

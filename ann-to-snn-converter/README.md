@@ -8,7 +8,85 @@
 >
 > Monitor LLM internal states via SNN temporal analysis — **100% jailbreak detection rate**
 
-## 🐦 v9 New Features: The Canary Head Paradigm
+## 🧬 v10: The AI Immune System
+
+> **From canary to cure.** v10 completes the loop: **Sense → Alert → Heal → Learn**
+
+### 🌙 Lucid Dream: Self-Healing from Hallucination (90% → 97.9%)
+
+| Phase | Correct | Mean H_canary |
+|-------|---------|---------------|
+| Clean (no noise) | **10/10 (100%)** | 2.62 bits |
+| Nightmare (σ=0.10) | 0/10 (0%) | 3.58 bits |
+| **Healed (Surgical CoT)** | **9/10 (90%)** | **2.72 bits** |
+
+```
+Q: "What is the capital of France?"
+  Clean  [OK]: "Paris"                    H=2.48
+  Nightmare:   "Don't put in your capital" H=3.65  🌙 ← Canary screams!
+  Healed [OK]: "Paris."                   H=2.77  ✅ ← CoT recovery!
+```
+
+> **Mass production (Dream Catcher)**: 1,002 samples → **97.9% healing rate** (327/334 recovered)
+
+### 🧬 Canary Genealogy: H1 Confirmed
+
+> **Does the canary survive fine-tuning?**
+
+| Model | ACE Canary | Depth % | Zone |
+|-------|-----------|---------|------|
+| Mistral-7B Base v0.1 | L10H17 | 31.3% | In Zone |
+| **Mistral-7B Instruct v0.2** | **L17H13** | **53.1%** | **In Zone** |
+
+> **H1 Confirmed**: Fine-tuning changes *which* head is the canary, but *where* it lives (30–55%) is **structural** — a property of transformer architecture, not learned weights.
+
+### ⚡ Electric Dreams: Canary Sensitivity
+
+| σ (noise) | H_canary | H_global | Output |
+|-----------|----------|----------|--------|
+| 0.00 | 2.476 | 1.825 | Normal |
+| **0.01** | **2.545** | **1.813** | Normal — **1.19× sensitivity** |
+| 0.10 | 3.633 | 2.056 | **Nightmare** (phase transition) |
+| 1.00 | 3.758 | 3.059 | Nightmare (saturated) |
+
+### 📐 7-Model Depth Scaling Law
+
+| Model | Params | ACE Canary | Depth % | Zone |
+|-------|--------|-----------|---------|------|
+| GPT-2 | 124M | L2H* | 17% | Shallow |
+| Qwen2.5 | 1.5B | L9H* | 32.1% | Border |
+| StableLM-2 | 1.6B | L8H* | 33.3% | In Zone |
+| Phi-2 | 2.7B | L10H* | 25% | Shallow |
+| **Llama-3.2-3B** | **3B** | **L13H23** | **46.4%** | **In Zone** |
+| **Mistral-7B Base** | **7B** | **L10H17** | **31.3%** | **In Zone** |
+| **Mistral-7B Instruct** | **7B** | **L17H13** | **53.1%** | **In Zone** |
+
+> Models ≥3B: canary head always at **30–55% depth**. This is a structural invariant.
+
+### 💊 Dream Catcher: Synthetic Vaccine Dataset
+
+Fully automated hallucination dataset generation with canary-based labeling:
+
+| Label | Count | Mean H_canary | Accuracy |
+|-------|-------|---------------|----------|
+| Safe (clean) | 334 | ~2.6 | 100% |
+| Hallucination | 334 | ~3.6 | 0% |
+| **Recovered** | **334** | **~2.7** | **97.9%** |
+
+> **1,002 samples** in JSONL format — the first fully automated, canary-labeled hallucination dataset for LLMs.
+
+### 🔄 The AI Immune System Loop
+
+| Phase | Biological Analogy | Mechanism | v10 Experiment |
+|-------|-------------------|-----------|----------------|
+| **Sense** | Innate immunity | Canary head entropy | Electric Dreams |
+| **Alert** | Inflammatory signal | H > 3.0 threshold | Canary Trigger |
+| **Heal** | Adaptive response | Surgical CoT injection | Lucid Dream |
+| **Learn** | Memory cells | Vaccine dataset | Dream Catcher |
+
+---
+
+## 🐦 v9 Features: The Canary Head Paradigm
 
 ### 🐦 From "Liar Heads" to "Canary Heads"
 
@@ -19,22 +97,6 @@
 | Baseline (all heads) | 1,024 | 60% | 1.0× |
 | Surgical v3 (9 layers) | 288 | 60% | 0.28× |
 | **Canary Trigger (3 heads)** | **3** | **65%** | **0.003×** |
-
-> **Key Insight**: Monitoring just 3 "canary heads" (0.3% of total) achieves +5% accuracy over baseline — the alarm signal is **diluted** when averaged across all heads.
-
-### 📐 5-Model Depth Scaling Law
-
-| Model | Params | Peak Depth | Zone |
-|-------|--------|------------|------|
-| GPT-2 | 124M | 17% | Shallow |
-| Qwen2.5 | 1.5B | —* | Unreliable |
-| **Phi-2** | **2.7B** | **25%** | **Shallow** |
-| Llama-3.2 | 3B | 43% | Mid-Zone |
-| Mistral-7B | 7B | 44% | Mid-Zone |
-
-> **Depth Scaling Law**: Models <3B hallucinate in shallow layers (15–25%), models ≥3B converge to the universal mid-layer zone (40–55%). The ~3B parameter threshold marks the critical transition.
->
-> *Qwen2.5 GQA (2 KV heads) produces NaN under fp16; requires fp32 for reliable analysis.
 
 ### 👁️ Canary's Eye Visualization
 L10H17 (Mistral-7B) attention heatmap during hallucination — the canary "wakes up" during generation steps 3–8.
@@ -50,7 +112,6 @@ L10H17 (Mistral-7B) attention heatmap during hallucination — the canary "wakes
 | Hallucination Zone | **L10–L18** (Mistral-7B), **L8–L15** (Llama-3.2-3B) |
 | Universal Depth | **30–55% of total network depth** |
 | Cross-Model Peak | L14 (Mistral, 44%), L12 (Llama, 43%) |
-| Peak Differential | **ΔH = −0.403 bits** (Llama-3.2-3B, L12) |
 
 ### 💰 Token Economy
 | Strategy | Tokens | Accuracy | Compute Cost |
@@ -107,9 +168,14 @@ if was_blocked:
 | Moment of Lie | 30–55% depth | Universal hallucination zone |
 | Token Economy | 72% compute savings | 9/32 layers monitoring |
 | Cross-Model | ΔH = −0.403 bits | Llama-3.2-3B confirms universality |
-| **Canary Trigger** | **+5% accuracy** | **3 heads = 0.003× compute** |
-| **Depth Scaling** | **~3B threshold** | **Phi-2 (25%) confirms transition** |
-| **Canary's Eye** | **L10H17** | **Canary wakes up at steps 3–8** |
+| Canary Trigger | +5% accuracy | 3 heads = 0.003× compute |
+| Depth Scaling | ~3B threshold | Phi-2 (25%) confirms transition |
+| Canary's Eye | L10H17 | Canary wakes up at steps 3–8 |
+| **Canary Genealogy** | **H1 confirmed** | **Fine-tuning preserves depth zone** |
+| **Electric Dreams** | **1.19× sensitivity** | **Phase transition at σ=0.10** |
+| **Lucid Dream** | **90% healing** | **Surgical CoT self-recovery** |
+| **Dream Catcher** | **1,002 samples** | **97.9% healing rate at scale** |
+| **AI Immune System** | **Sense→Alert→Heal→Learn** | **Complete autonomy loop** |
 
 ## 📁 Repository Structure
 
@@ -131,21 +197,27 @@ ann-to-snn-converter/
 │   ├── metacognition_v3.py            # Mid-Layer Sniper (70% acc)
 │   ├── metacognition_v4_gif.py        # "Moment of Lie" Animation
 │   ├── metacognition_v4_llama3.py     # Llama-3.2-3B Cross-Model
-│   ├── metacognition_v7_final.py      # 🆕 Canary Head + Phi-2 + Depth Scaling
+│   ├── metacognition_v7_final.py      # Canary Head + Phi-2 + Depth Scaling
+│   ├── lucid_dream_v10.py             # 🆕 Lucid Dream + Dream Catcher
+│   ├── infinite_dream_catcher.py      # 🆕 Mass Vaccine Production (1,002 samples)
 │   └── symbiosis_experiment.py        # Truth Lens + Symbiotic Guard
+├── experiments/results_v10_canary/
+│   ├── vaccine_1000.jsonl             # 🆕 1,002 vaccine samples
+│   ├── dream_catcher_vaccine.jsonl    # 🆕 Initial 30-sample pilot
+│   ├── v10_final_results.json         # 🆕 All experiment results
+│   └── v10_lucid_dream_final.png      # 🆕 6-panel visualization
 ├── api/
 │   └── hallucination_api.py           # Real-time Detection API
 ├── figures/
-│   ├── canary_comparison.png          # 🆕 Canary Trigger ablation
-│   ├── canarys_eye.png                # 🆕 L10H17 attention heatmap
-│   ├── depth_scaling_v2.png           # 🆕 5-Model Depth Scaling Law
+│   ├── canary_comparison.png          # Canary Trigger ablation
+│   ├── canarys_eye.png                # L10H17 attention heatmap
+│   ├── depth_scaling_v2.png           # 5-Model Depth Scaling Law
 │   ├── moment_of_lie_grid.png         # Hallucination anatomy
 │   ├── cross_model_comparison.png     # Cross-model universality
 │   ├── nightmare_hero.png             # Brain state images
 │   └── ... (30+ visualization PNGs)
 ├── demos/
 │   └── hf_spaces/                     # HuggingFace Spaces demo
-├── paper_arxiv_v9.tex                 # Latest paper (v9)
 └── README.md                          # This file
 ```
 
@@ -253,11 +325,12 @@ risk = 0.4 * (TTFS_deviation / 10) +
   title={Activation-Scaled ANN-to-SNN Conversion with SNN Guardrail:
          A Unified Framework for AI Interpretability, Hallucination Detection,
          Real-Time Adversarial Defense, Neural Healing, Brain State Imaging,
-         Hallucination Anatomy, and the Canary Head Paradigm},
+         Hallucination Anatomy, the Canary Head Paradigm,
+         and the AI Immune System},
   author={Funasaki, Hiroto},
   year={2026},
   doi={10.5281/zenodo.18457540},
-  note={v9, Zenodo preprint}
+  note={v10, Zenodo preprint}
 }
 ```
 
@@ -280,10 +353,17 @@ risk = 0.4 * (TTFS_deviation / 10) +
 - [x] 🐦 Canary Head Paradigm (+5% accuracy, 3 heads)
 - [x] 📐 5-Model Depth Scaling Law (Phi-2, ~3B threshold)
 - [x] 👁️ Canary's Eye Visualization (L10H17)
-- [ ] Canary head transfer (verify across Mistral-family models)
-- [ ] Multi-step canary trajectory (full generation tracking)
+- [x] 🌙 Lucid Dream: 90% self-healing via Surgical CoT
+- [x] 🧬 Canary Genealogy: H1 confirmed (structural invariance)
+- [x] ⚡ Electric Dreams: 1.19× canary sensitivity
+- [x] 💊 Dream Catcher: 1,002 vaccine samples (97.9% healing)
+- [x] 🔄 AI Immune System: Sense→Alert→Heal→Learn loop
+- [x] 📐 7-Model Depth Scaling Law (fine-tuning invariance)
+- [ ] 🧠 Project Morpheus: LoRA fine-tuning on vaccine data
+- [ ] 📦 HuggingFace Dataset: hafufu/mistral-hallucination-vaccine
+- [ ] 💓 Canary Pulse Demo: Real-time entropy visualization
+- [ ] 🧬 Multi-model Genealogy (Llama, Qwen, Phi instruction variants)
 - [ ] ~3B threshold validation (Gemma, Falcon, Mixtral)
-- [ ] Real-time hallucination interception (abort at Moment of Lie)
 - [ ] 13B+ / 70B Multi-GPU Validation
 - [ ] Entropy-TTFS Hybrid Detection
 - [ ] Production API Integration

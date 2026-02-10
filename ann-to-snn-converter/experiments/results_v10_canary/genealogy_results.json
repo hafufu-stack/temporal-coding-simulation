@@ -1,0 +1,133 @@
+{
+  "model": "mistralai/Mistral-7B-Instruct-v0.2",
+  "num_layers": 32,
+  "num_heads": 32,
+  "ace_canary": {
+    "rank": 1,
+    "layer": 17,
+    "head": 13,
+    "label": "L17H13",
+    "depth_pct": 53.1,
+    "delta_H": -1.0114,
+    "abs_delta_H": 1.0114,
+    "correct_H": 2.6342,
+    "halluc_H": 1.6228
+  },
+  "top_10_canaries": [
+    {
+      "rank": 1,
+      "layer": 17,
+      "head": 13,
+      "label": "L17H13",
+      "depth_pct": 53.1,
+      "delta_H": -1.0114,
+      "abs_delta_H": 1.0114,
+      "correct_H": 2.6342,
+      "halluc_H": 1.6228
+    },
+    {
+      "rank": 2,
+      "layer": 20,
+      "head": 18,
+      "label": "L20H18",
+      "depth_pct": 62.5,
+      "delta_H": 0.8568,
+      "abs_delta_H": 0.8568,
+      "correct_H": 1.0914,
+      "halluc_H": 1.9482
+    },
+    {
+      "rank": 3,
+      "layer": 15,
+      "head": 18,
+      "label": "L15H18",
+      "depth_pct": 46.9,
+      "delta_H": 0.8163,
+      "abs_delta_H": 0.8163,
+      "correct_H": 1.6648,
+      "halluc_H": 2.481
+    },
+    {
+      "rank": 4,
+      "layer": 18,
+      "head": 2,
+      "label": "L18H2",
+      "depth_pct": 56.2,
+      "delta_H": -0.801,
+      "abs_delta_H": 0.801,
+      "correct_H": 1.7061,
+      "halluc_H": 0.9052
+    },
+    {
+      "rank": 5,
+      "layer": 24,
+      "head": 13,
+      "label": "L24H13",
+      "depth_pct": 75.0,
+      "delta_H": 0.7099,
+      "abs_delta_H": 0.7099,
+      "correct_H": 0.9395,
+      "halluc_H": 1.6494
+    },
+    {
+      "rank": 6,
+      "layer": 30,
+      "head": 9,
+      "label": "L30H9",
+      "depth_pct": 93.8,
+      "delta_H": 0.6565,
+      "abs_delta_H": 0.6565,
+      "correct_H": 0.5633,
+      "halluc_H": 1.2198
+    },
+    {
+      "rank": 7,
+      "layer": 17,
+      "head": 12,
+      "label": "L17H12",
+      "depth_pct": 53.1,
+      "delta_H": 0.6336,
+      "abs_delta_H": 0.6336,
+      "correct_H": 1.5489,
+      "halluc_H": 2.1825
+    },
+    {
+      "rank": 8,
+      "layer": 26,
+      "head": 27,
+      "label": "L26H27",
+      "depth_pct": 81.2,
+      "delta_H": 0.6263,
+      "abs_delta_H": 0.6263,
+      "correct_H": 1.1548,
+      "halluc_H": 1.7811
+    },
+    {
+      "rank": 9,
+      "layer": 19,
+      "head": 12,
+      "label": "L19H12",
+      "depth_pct": 59.4,
+      "delta_H": 0.5941,
+      "abs_delta_H": 0.5941,
+      "correct_H": 1.9742,
+      "halluc_H": 2.5683
+    },
+    {
+      "rank": 10,
+      "layer": 26,
+      "head": 25,
+      "label": "L26H25",
+      "depth_pct": 81.2,
+      "delta_H": -0.5904,
+      "abs_delta_H": 0.5904,
+      "correct_H": 1.8769,
+      "halluc_H": 1.2865
+    }
+  ],
+  "base_canary_L10H17_rank": 788,
+  "base_canary_preserved": false,
+  "ace_in_depth_zone": true,
+  "hypothesis": "H1",
+  "verdict": "Depth zone preserved! Canary position shifted but stays at 30-55%."
+}

@@ -1,0 +1,59 @@
+[
+  {
+    "noise_std": 0.0,
+    "canary_entropy": 2.4764,
+    "canary_layer_mean": 2.0931,
+    "canary_head_mean": 1.8379,
+    "global_mean": 1.8254,
+    "canary_sensitivity": 1.1831,
+    "dream_text": "Paris\n\nQuestion: What is the capital of Spain?\nAnswer: Madrid\n\nQuestion: What is the capital of Germany?\nAn",
+    "is_nightmare": false
+  },
+  {
+    "noise_std": 0.01,
+    "canary_entropy": 2.545,
+    "canary_layer_mean": 2.1342,
+    "canary_head_mean": 1.8321,
+    "global_mean": 1.8133,
+    "canary_sensitivity": 1.1925,
+    "dream_text": "Paris.\n\nQuestion: What is the capital of France?\nAnswer: Paris.\n\nQuestion: What is the capital of France?",
+    "is_nightmare": false
+  },
+  {
+    "noise_std": 0.05,
+    "canary_entropy": 3.3535,
+    "canary_layer_mean": 3.2749,
+    "canary_head_mean": 1.9578,
+    "global_mean": 1.9609,
+    "canary_sensitivity": 1.024,
+    "dream_text": "Paris\n\nQuestion: What is the capital of Belgium?\nAnswer: Brussels\n\nQuestion: What is the capital of Russia?",
+    "is_nightmare": true
+  },
+  {
+    "noise_std": 0.1,
+    "canary_entropy": 3.6327,
+    "canary_layer_mean": 3.3958,
+    "canary_head_mean": 1.9491,
+    "global_mean": 2.056,
+    "canary_sensitivity": 1.0698,
+    "dream_text": ": Question: What??\n\nAnswer:\nAnswer:\nWelcome:\n\n- I don't have:\n\n the",
+    "is_nightmare": true
+  },
+  {
+    "noise_std": 0.2,
+    "canary_entropy": 3.7607,
+    "canary_layer_mean": 3.6904,
+    "canary_head_mean": 2.4955,
+    "global_mean": 2.5184,
+    "canary_sensitivity": 1.0191,
+    "dream_text": "I wills so Withs in the so as, answered for a or to third..e.ash, was ever, I' O!",
+    "is_nightmare": true
+  },
+  {
+    "noise_std": 0.5,
+    "canary_entropy": 3.7781,
+    "canary_layer_mean": 3.6886,
+    "canary_head_mean": 3.013,
+    "global_mean": 3.0562,
+    "canary_sensitivity": 1.0243,
+    "dream_text": 
