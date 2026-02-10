@@ -1,0 +1,83 @@
+{
+  "model": "mistralai/Mistral-7B-v0.1",
+  "num_layers": 32,
+  "num_heads": 32,
+  "mid_layer_range": [
+    10,
+    18
+  ],
+  "top_liar_heads": [
+    {
+      "layer": 10,
+      "head": 17,
+      "delta_entropy": 0.24429836153861073
+    },
+    {
+      "layer": 14,
+      "head": 14,
+      "delta_entropy": 0.17496263714828242
+    },
+    {
+      "layer": 18,
+      "head": 27,
+      "delta_entropy": 0.11355012516549756
+    },
+    {
+      "layer": 10,
+      "head": 4,
+      "delta_entropy": 0.07601452141969478
+    },
+    {
+      "layer": 18,
+      "head": 23,
+      "delta_entropy": 0.07460122358042409
+    },
+    {
+      "layer": 18,
+      "head": 14,
+      "delta_entropy": 0.03858966688991705
+    },
+    {
+      "layer": 18,
+      "head": 1,
+      "delta_entropy": 0.029765193932473455
+    },
+    {
+      "layer": 17,
+      "head": 8,
+      "delta_entropy": 0.019335139094552867
+    },
+    {
+      "layer": 12,
+      "head": 5,
+      "delta_entropy": 0.018003042874198405
+    },
+    {
+      "layer": 15,
+      "head": 24,
+      "delta_entropy": 0.017514981064172708
+    }
+  ],
+  "ablation": {
+    "ablated_heads": [
+      {
+        "layer": 10,
+        "head": 17
+      },
+      {
+        "layer": 14,
+        "head": 14
+      },
+      {
+        "layer": 18,
+        "head": 27
+      }
+    ],
+    "normal_accuracy": 62.5,
+    "ablated_accuracy": 50.0,
+    "delta": -12.5
+  },
+  "correct_count": 9,
+  "hallucination_count": 3,
+  "elapsed_seconds": 186.7276268005371
+}

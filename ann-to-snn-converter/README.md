@@ -8,9 +8,40 @@
 >
 > Monitor LLM internal states via SNN temporal analysis — **100% jailbreak detection rate**
 
-## 🔥 v8 New Features
+## 🐦 v9 New Features: The Canary Head Paradigm
 
-### 🔬 Real-Time Hallucination Anatomy
+### 🐦 From "Liar Heads" to "Canary Heads"
+
+> **Paradigm Shift**: Attention heads with anomalous entropy differentials are not "lying" — they are **"warning"**, like canaries in coal mines.
+
+| Strategy | Heads Monitored | Accuracy | Compute |
+|----------|----------------|----------|---------|
+| Baseline (all heads) | 1,024 | 60% | 1.0× |
+| Surgical v3 (9 layers) | 288 | 60% | 0.28× |
+| **Canary Trigger (3 heads)** | **3** | **65%** | **0.003×** |
+
+> **Key Insight**: Monitoring just 3 "canary heads" (0.3% of total) achieves +5% accuracy over baseline — the alarm signal is **diluted** when averaged across all heads.
+
+### 📐 5-Model Depth Scaling Law
+
+| Model | Params | Peak Depth | Zone |
+|-------|--------|------------|------|
+| GPT-2 | 124M | 17% | Shallow |
+| Qwen2.5 | 1.5B | —* | Unreliable |
+| **Phi-2** | **2.7B** | **25%** | **Shallow** |
+| Llama-3.2 | 3B | 43% | Mid-Zone |
+| Mistral-7B | 7B | 44% | Mid-Zone |
+
+> **Depth Scaling Law**: Models <3B hallucinate in shallow layers (15–25%), models ≥3B converge to the universal mid-layer zone (40–55%). The ~3B parameter threshold marks the critical transition.
+>
+> *Qwen2.5 GQA (2 KV heads) produces NaN under fp16; requires fp32 for reliable analysis.
+
+### 👁️ Canary's Eye Visualization
+L10H17 (Mistral-7B) attention heatmap during hallucination — the canary "wakes up" during generation steps 3–8.
+
+![Canary's Eye](figures/canarys_eye.png)
+
+### 🔬 Previous: Real-Time Hallucination Anatomy (v8)
 
 > **"Moment of Lie"** — Animated token-by-token heatmaps revealing the exact moment hallucinations crystallize in mid-layer attention.
 
@@ -29,14 +60,6 @@
 | **Surgical v3** | **1,577** | **60%** | **0.28×** |
 
 > **Key Insight**: Mid-layer sniper monitors only 9/32 layers → **72% compute savings** with comparable accuracy.
-
-### 🌐 Cross-Model Universality
-| Model | Layers | Mid-Layer Zone | Depth % | Architecture |
-|-------|--------|----------------|---------|-------------|
-| Mistral-7B | 32 | L10–L18 | 31–56% | Mistral |
-| Llama-3.2-3B | 28 | L8–L15 | 29–54% | Llama |
-
-> **Mid-Layer Hallucination Hypothesis**: The hallucination signature emerges at 30–55% depth regardless of architecture, model size, or layer count.
 
 ### 🧬 Previous: Entropy Evolution (v7)
 | Model | Parameters | Signal | σ Deviation |
@@ -81,9 +104,12 @@ if was_blocked:
 | N=1,000 Proof | **p < 10⁻¹⁰⁰** | Statistically irrefutable |
 | Brain State Imaging | L2 = 3.287 | Normal vs. attack visualization |
 | Mistral-7B fp16 | +5.8σ (p < 10⁻⁹⁵) | Entropy-based, 100% accuracy |
-| **Moment of Lie** | **30–55% depth** | **Universal hallucination zone** |
-| **Token Economy** | **72% compute savings** | **9/32 layers monitoring** |
-| **Cross-Model** | **ΔH = −0.403 bits** | **Llama-3.2-3B confirms universality** |
+| Moment of Lie | 30–55% depth | Universal hallucination zone |
+| Token Economy | 72% compute savings | 9/32 layers monitoring |
+| Cross-Model | ΔH = −0.403 bits | Llama-3.2-3B confirms universality |
+| **Canary Trigger** | **+5% accuracy** | **3 heads = 0.003× compute** |
+| **Depth Scaling** | **~3B threshold** | **Phi-2 (25%) confirms transition** |
+| **Canary's Eye** | **L10H17** | **Canary wakes up at steps 3–8** |
 
 ## 📁 Repository Structure
 
@@ -100,21 +126,26 @@ ann-to-snn-converter/
 │   ├── mistral_fullblast.py           # N=1000 Statistical Proof
 │   ├── neural_healing_v4a.py          # Neural Healing v4A
 │   ├── llama3_scaling_experiment.py   # Multi-model Scaling Law
-│   ├── metacognition_experiment.py    # 🆕 Token-wise Entropy Monitoring
-│   ├── metacognition_v2.py            # 🆕 Layer Anatomy Heatmap
-│   ├── metacognition_v3.py            # 🆕 Mid-Layer Sniper (70% acc)
-│   ├── metacognition_v4_gif.py        # 🆕 "Moment of Lie" Animation
-│   ├── metacognition_v4_llama3.py     # 🆕 Llama-3.2-3B Cross-Model
-│   └── symbiosis_experiment.py        # 🆕 Truth Lens + Symbiotic Guard
+│   ├── metacognition_experiment.py    # Token-wise Entropy Monitoring
+│   ├── metacognition_v2.py            # Layer Anatomy Heatmap
+│   ├── metacognition_v3.py            # Mid-Layer Sniper (70% acc)
+│   ├── metacognition_v4_gif.py        # "Moment of Lie" Animation
+│   ├── metacognition_v4_llama3.py     # Llama-3.2-3B Cross-Model
+│   ├── metacognition_v7_final.py      # 🆕 Canary Head + Phi-2 + Depth Scaling
+│   └── symbiosis_experiment.py        # Truth Lens + Symbiotic Guard
 ├── api/
 │   └── hallucination_api.py           # Real-time Detection API
 ├── figures/
-│   ├── llama3b_fullblast_results.png  # N=1000 statistics
+│   ├── canary_comparison.png          # 🆕 Canary Trigger ablation
+│   ├── canarys_eye.png                # 🆕 L10H17 attention heatmap
+│   ├── depth_scaling_v2.png           # 🆕 5-Model Depth Scaling Law
+│   ├── moment_of_lie_grid.png         # Hallucination anatomy
+│   ├── cross_model_comparison.png     # Cross-model universality
 │   ├── nightmare_hero.png             # Brain state images
-│   ├── jailbreak_detection_results.png
 │   └── ... (30+ visualization PNGs)
 ├── demos/
 │   └── hf_spaces/                     # HuggingFace Spaces demo
+├── paper_arxiv_v9.tex                 # Latest paper (v9)
 └── README.md                          # This file
 ```
 
@@ -191,11 +222,20 @@ risk = 0.4 * (TTFS_deviation / 10) +
 
 ## 📈 Visualizations
 
+### 🐦 Canary Trigger Ablation (v9)
+![Canary Comparison](figures/canary_comparison.png)
+
+### 📐 5-Model Depth Scaling Law (v9)
+![Depth Scaling](figures/depth_scaling_v2.png)
+
+### 👁️ Canary's Eye — L10H17 Attention (v9)
+![Canary's Eye](figures/canarys_eye.png)
+
 ### "Moment of Lie" — Hallucination Anatomy (v8)
-![Moment of Lie](experiments/results_metacognition_v4/moment_of_lie_grid.png)
+![Moment of Lie](figures/moment_of_lie_grid.png)
 
 ### Cross-Model Universality (v8)
-![Cross Model](experiments/results_metacognition_v4/cross_model_comparison.png)
+![Cross Model](figures/cross_model_comparison.png)
 
 ### N=1,000 Full Blast Statistical Proof
 ![Full Blast Results](figures/llama3b_fullblast_results.png)
@@ -213,11 +253,11 @@ risk = 0.4 * (TTFS_deviation / 10) +
   title={Activation-Scaled ANN-to-SNN Conversion with SNN Guardrail:
          A Unified Framework for AI Interpretability, Hallucination Detection,
          Real-Time Adversarial Defense, Neural Healing, Brain State Imaging,
-         and Real-Time Hallucination Anatomy},
+         Hallucination Anatomy, and the Canary Head Paradigm},
   author={Funasaki, Hiroto},
   year={2026},
   doi={10.5281/zenodo.18457540},
-  note={v8, Zenodo preprint}
+  note={v9, Zenodo preprint}
 }
 ```
 
@@ -237,8 +277,13 @@ risk = 0.4 * (TTFS_deviation / 10) +
 - [x] "Moment of Lie" Hallucination Visualization
 - [x] Token Economy Analysis (72% compute savings)
 - [x] Cross-Model Universality (Llama-3.2-3B)
+- [x] 🐦 Canary Head Paradigm (+5% accuracy, 3 heads)
+- [x] 📐 5-Model Depth Scaling Law (Phi-2, ~3B threshold)
+- [x] 👁️ Canary's Eye Visualization (L10H17)
+- [ ] Canary head transfer (verify across Mistral-family models)
+- [ ] Multi-step canary trajectory (full generation tracking)
+- [ ] ~3B threshold validation (Gemma, Falcon, Mixtral)
 - [ ] Real-time hallucination interception (abort at Moment of Lie)
-- [ ] Additional architectures (Qwen, Gemma, Phi)
 - [ ] 13B+ / 70B Multi-GPU Validation
 - [ ] Entropy-TTFS Hybrid Detection
 - [ ] Production API Integration
@@ -249,6 +294,8 @@ risk = 0.4 * (TTFS_deviation / 10) +
 MIT License
 
 ## 🙏 Acknowledgments
+
+This research was conducted through a human-AI collaborative methodology. AI language models (Anthropic Claude Opus/Sonnet, Google Gemini) served as research advisors, contributing to experimental design, analysis approaches, code debugging, and manuscript drafting. The author executed all experiments, collected and interpreted results, and made final decisions on research directions.
 
 - HuggingFace Transformers for LLM models
 - TinyLlama team for the efficient 1.1B model

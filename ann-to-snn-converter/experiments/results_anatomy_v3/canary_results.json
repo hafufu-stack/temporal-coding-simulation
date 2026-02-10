@@ -1,0 +1,34 @@
+{
+  "Baseline": {
+    "accuracy": 60.0,
+    "correct": 12,
+    "total": 20,
+    "interventions": 0,
+    "intervention_rate": 0.0,
+    "mean_canary_peak": 3.0287369668483732
+  },
+  "Always CoT": {
+    "accuracy": 55.00000000000001,
+    "correct": 11,
+    "total": 20,
+    "interventions": 20,
+    "intervention_rate": 100.0,
+    "mean_canary_peak": 0.0
+  },
+  "v3 Mid-Layer Sniper": {
+    "accuracy": 55.00000000000001,
+    "correct": 11,
+    "total": 20,
+    "interventions": 5,
+    "intervention_rate": 25.0,
+    "mean_canary_peak": 2.9438885509967805
+  },
+  "v4 Canary Trigger": {
+    "accuracy": 65.0,
+    "correct": 13,
+    "total": 20,
+    "interventions": 5,
+    "intervention_rate": 25.0,
+    "mean_canary_peak": 2.835858517885208
+  }
+}
