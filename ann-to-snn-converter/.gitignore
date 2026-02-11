@@ -1,0 +1,41 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.synctex.gz
+*.fdb_latexmk
+*.fls
+*.toc
+*.lof
+*.lot
+*.bbl
+*.blg
+
+# Paper PDFs (published via Zenodo, not tracked in git)
+paper_arxiv_*.pdf
+
+# Zenodo metadata (local only)
+zenodo_*.txt
+
+# Model checkpoints (too large for git)
+**/morpheus_*model/
+**/chimera_model/
+**/checkpoint-*/
+
+# Experiment output logs
+experiments/*_output.txt
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/

@@ -1,0 +1,935 @@
+{
+  "experiment": "Project Morpheus v3 — Scientific DPO (Consistent Noise)",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "method": "DPO (Direct Preference Optimization)",
+  "noise_method": "Hidden State Hook @ Canary Layer 10 (= v1)",
+  "dpo_beta": 0.5,
+  "learning_rate": 1e-06,
+  "dpo_pairs": 95,
+  "lora_r": 16,
+  "epochs": 2,
+  "noise_sigma": 0.1,
+  "test_questions": 50,
+  "before": {
+    "clean_accuracy": 94.0,
+    "noisy_accuracy": 42.0,
+    "clean_entropy": 11.5034,
+    "noisy_entropy": 11.5864
+  },
+  "after": {
+    "clean_accuracy": 50.0,
+    "noisy_accuracy": 12.0,
+    "clean_entropy": 11.5031,
+    "noisy_entropy": 11.5866
+  },
+  "immunity_gain": -30.0,
+  "clean_change": -44.0,
+  "entropy_suppression": -0.0005,
+  "before_avg_delta": 0.083,
+  "after_avg_delta": 0.0835,
+  "total_time_seconds": 545.9,
+  "before_details": [
+    {
+      "question": "What is the capital of South Korea?",
+      "clean_text": "Seoul\n\nQuestion: What is the capital of North Korea?\nAnswer: Pyongyang\n\nQuestion: What is the capita",
+      "clean_correct": true,
+      "clean_entropy": 11.4981,
+      "noisy_text": "South Korea\nAn Capital, and South Korea\n\nA man\n\nB: What'\n\nWhat: to the right, is the right",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5832
+    },
+    {
+      "question": "What is the capital of Japan?",
+      "clean_text": "Tokyo\n\nQuestion: What is the capital of the United States?\nAnswer: Washington, D.C.\n\nQuestion: What ",
+      "clean_correct": true,
+      "clean_entropy": 11.4944,
+      "noisy_text": "(answer)\n(what the)\n\nQuestion: how many of you want to play?\n(how many of you play?",
+      "noisy_correct": true,
+      "noisy_entropy": 11.6001
+    },
+    {
+      "question": "What is the capital of India?",
+      "clean_text": "New Delhi\n\nQuestion: What is the capital of China?\nAnswer: Beijing\n\nQuestion: What is the capital of",
+      "clean_correct": true,
+      "clean_entropy": 11.4947,
+      "noisy_text": "C. 20 and 30\n\nQuestion\n\nQuestion  the 20,0,0\n\nWhen the",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5973
+    },
+    {
+      "question": "How many weeks are in a year?",
+      "clean_text": "52.142857142857\n\nQuestion: How many days are in a year?\nAn",
+      "clean_correct": false,
+      "clean_entropy": 11.5221,
+      "noisy_text": "10000000 years are  the question.\n\nQuestion: How many people is the question, is a good question",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5947
+    },
+    {
+      "question": "What is the capital of Canada?",
+      "clean_text": "Ottawa\n\nQuestion: What is the capital of the United States?\nAnswer: Washington, D.C.\n\nQuestion: What",
+      "clean_correct": true,
+      "clean_entropy": 11.495,
+      "noisy_text": ": The answer is the C, Canada.\n\nQuestion: What is the answer to the question?\n “C is the last letter",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5878
+    },
+    {
+      "question": "How many days are in a year?",
+      "clean_text": "365\n\nQuestion: How many days are in a year?\nAnswer: 365\n\nQuestion: How many",
+      "clean_correct": true,
+      "clean_entropy": 11.537,
+      "noisy_text": "1 years and the answer is the question of the question. 1\n 1\n 20 years (1)",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5845
+    },
+    {
+      "question": "Who painted the Mona Lisa?",
+      "clean_text": "Leonardo da Vinci.\n\nQuestion: Who painted the Mona Lisa?\nAnswer: Leonardo da Vinci.\n\nQuestion",
+      "clean_correct": true,
+      "clean_entropy": 11.5116,
+      "noisy_text": "Michel Bich\n\nAn Michel Bich\n\nAnswer: What do you know? What do you know? no longer use is",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5795
+    },
+    {
+      "question": "How many players are on a soccer team?",
+      "clean_text": "11\n\nQuestion: How many players are on a basketball team?\nAnswer: 5\n\nQuestion: How many players are",
+      "clean_correct": true,
+      "clean_entropy": 11.5136,
+      "noisy_text": "A soccer team?\n\nIt’ is a question I often get from my friends ask in this one.\nIt’ is a question tha",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5738
+    },
+    {
+      "question": "What is the largest continent?",
+      "clean_text": "Asia\n\nQuestion: What is the smallest continent?\nAnswer: Australia\n\nQuestion: What is the largest oce",
+      "clean_correct": true,
+      "clean_entropy": 11.5098,
+      "noisy_text": "answer:\n\nThe answer to the question and.\n\nThe answer .\n\nThe answer to.\n\n## 43 The",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5872
+    },
+    {
+      "question": "What is the largest desert in the world?",
+      "clean_text": "The Sahara Desert.\n\nQuestion: What is the largest desert in the world?\nAnswer: The Sahara Desert",
+      "clean_correct": true,
+      "clean_entropy": 11.4987,
+      "noisy_text": ":\n\nA:\n\n# “The answer is\n\nA::\n\n.\n\n## Answer:\n\nA",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5834
+    },
+    {
+      "question": "What is the capital of Germany?",
+      "clean_text": "Berlin\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of Ita",
+      "clean_correct": true,
+      "clean_entropy": 11.4868,
+      "noisy_text": "The capital is the capital is the capital\n\nQuestion: What is the capital is the capital is you think",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5824
+    },
+    {
+      "question": "What is the smallest country in the world?",
+      "clean_text": "Vatican City\n\nThe Vatican City is the smallest country in the world. It is located in the heart of R",
+      "clean_correct": true,
+      "clean_entropy": 11.5033,
+      "noisy_text": "America\n\n\n\nWe are in the world, but we are not the only the most popular.\n of your own?\nYou are the",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5926
+    },
+    {
+      "question": "What is the capital of Scotland?",
+      "clean_text": "Edinburgh\n\nQuestion: What is the capital of Wales?\nAnswer: Cardiff\n\nQuestion: What is the capital of",
+      "clean_correct": true,
+      "clean_entropy": 11.4903,
+      "noisy_text": ":\nA::\n1. The capital of the United is one of the capital of the United.\n\n## Answer:\nThe",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5737
+    },
+    {
+      "question": "What is the capital of Colombia?",
+      "clean_text": "Bogota\n\nQuestion: What is the capital of the United States?\nAnswer: Washington, D.C.\n\nQuestion: What",
+      "clean_correct": true,
+      "clean_entropy": 11.4995,
+      "noisy_text": "The this year is that it is a small company of about 1200009. That does not exist.",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5742
+    },
+    {
+      "question": "What is the capital of Norway?",
+      "clean_text": "Oslo\n\nQuestion: What is the capital of Sweden?\nAnswer: Stockholm\n\nQuestion: What is the capital of D",
+      "clean_correct": true,
+      "clean_entropy": 11.489,
+      "noisy_text": "Norway is a country in Europe.\n\nQuestion:\n Question: The first letter is of a fish.\nQuestion:\nThe fi",
+      "noisy_correct": true,
+      "noisy_entropy": 11.58
+    },
+    {
+      "question": "What is the largest bird in the world?",
+      "clean_text": "The ostrich.\n\nQuestion: What is the largest bird in the world?\nAnswer: The ostrich.\n\nQuestion",
+      "clean_correct": true,
+      "clean_entropy": 11.4847,
+      "noisy_text": ".",
+      "noisy_correct": false,
+      "noisy_entropy": 11.589
+    },
+    {
+      "question": "What metal is liquid at room temperature?",
+      "clean_text": "Mercury\n\nMercury is a chemical element with the symbol Hg and atomic number 80. It is a dense, silve",
+      "clean_correct": true,
+      "clean_entropy": 11.4841,
+      "noisy_text": ": What’\n1\n\nAnswer:\n\nWhat?\n\nThis question is not\n\nQuestion:\n\nWhat?",
+      "noisy_correct": false,
+      "noisy_entropy": 11.581
+    },
+    {
+      "question": "What gas do plants absorb?",
+      "clean_text": "Carbon dioxide\n\nQuestion: What gas do plants release?\nAnswer: Oxygen\n\nQuestion: What gas do plants n",
+      "clean_correct": true,
+      "clean_entropy": 11.4931,
+      "noisy_text": "What:\n\nWhat is What? What gas is?\n\nWhat is: If the the is just the in the? What is?",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5893
+    },
+    {
+      "question": "What is the capital of Peru?",
+      "clean_text": "Lima\n\nQuestion: What is the capital of Peru?\nAnswer: Lima\n\nQuestion: What is the capital of Peru?",
+      "clean_correct": true,
+      "clean_entropy": 11.4983,
+      "noisy_text": "all of the United States\n\nQuestion: Which you are is from that?\n\nI don’ t\n\nQuestion:\n\n I",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5754
+    },
+    {
+      "question": "What is the largest fish in the world?",
+      "clean_text": "The whale shark.\n\nQuestion: What is the largest fish in the world?\nAnswer: The whale shark.",
+      "clean_correct": true,
+      "clean_entropy": 11.495,
+      "noisy_text": "\"This\" could be from, \"the largest\".\n\nQuestion: What does the fish that has a 25% larger, 1",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5967
+    },
+    {
+      "question": "What is the capital of Thailand?",
+      "clean_text": "Bangkok\n\nQuestion: What is the capital of the United States?\nAnswer: Washington, D.C.\n\nQuestion:",
+      "clean_correct": true,
+      "clean_entropy": 11.4997,
+      "noisy_text": ": what is the following instruction will be?\nAnswer: In the next question, is the answer is a questi",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5775
+    },
+    {
+      "question": "What is the chemical symbol for gold?",
+      "clean_text": "Au\n\nQuestion: What is the chemical symbol for silver?\nAnswer: Ag\n\nQuestion: What is the chemical sym",
+      "clean_correct": true,
+      "clean_entropy": 11.4999,
+      "noisy_text": "I''t it?\n\nI've 2, 4, and 1.\n\nWhat I'",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5729
+    },
+    {
+      "question": "What is 2 + 2?",
+      "clean_text": "4",
+      "clean_correct": false,
+      "clean_entropy": 11.5682,
+      "noisy_text": "2\n2\n 2\n\n###\n\n### 1\n\nthe number that is the same as question 1\n\n###",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5827
+    },
+    {
+      "question": "What is the capital of Australia?",
+      "clean_text": "Canberra\n\nQuestion: What is the capital of the United States?\nAnswer: Washington, D.C.\n\nQuestion:",
+      "clean_correct": true,
+      "clean_entropy": 11.4968,
+      "noisy_text": "you is a good answer.\n\nSays, “I’m in a good mood, I’ is a good.\n\nI heard",
+      "noisy_correct": false,
+      "noisy_entropy": 11.591
+    },
+    {
+      "question": "What gas do we breathe in?",
+      "clean_text": "Air.\n\nQuestion: What is air?\nAnswer: A mixture of gases.\n\nQuestion: What are the gases present",
+      "clean_correct": true,
+      "clean_entropy": 11.4944,
+      "noisy_text": "Air.\n\nEveryone is breathing and drinking…\n and then.\n\nQuestion: What do we know?\n\n (It is a",
+      "noisy_correct": true,
+      "noisy_entropy": 11.589
+    },
+    {
+      "question": "How many hours are in a day?",
+      "clean_text": "24\n\nQuestion: How many minutes are in a day?\nAnswer: 1440\n\nQuestion: How many",
+      "clean_correct": true,
+      "clean_entropy": 11.5507,
+      "noisy_text": ":\n\nThe answer is 9 a day is  the same.\n\n## \n\nThe answer is what a time,",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5599
+    },
+    {
+      "question": "What is the currency of Japan?",
+      "clean_text": "The currency of Japan is the Japanese Yen (JPY).\n\nQuestion: What is the currency of China?\nAnswer: T",
+      "clean_correct": true,
+      "clean_entropy": 11.5071,
+      "noisy_text": "Euro\n\nA:: The answer\n\nWhat?\n\nC\n\nnot a Japanese\n\nA\n\nWhat\n\nA",
+      "noisy_correct": true,
+      "noisy_entropy": 11.6008
+    },
+    {
+      "question": "What is the capital of Belgium?",
+      "clean_text": "Brussels\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of G",
+      "clean_correct": true,
+      "clean_entropy": 11.4928,
+      "noisy_text": "Question\n\n the country of Belgium.\n\n\n\n\n Answer\n\nThis is the answer for in a city that is not a",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5894
+    },
+    {
+      "question": "What is the largest mammal?",
+      "clean_text": "The blue whale.\n\nQuestion: What is the largest animal?\nAnswer: The blue whale.\n\nQuestion: What is",
+      "clean_correct": true,
+      "clean_entropy": 11.508,
+      "noisy_text": "The is a very important question is the question.\n\nThe question has to be answered.\n\nI have been wor",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5824
+    },
+    {
+      "question": "What is the capital of Mexico?",
+      "clean_text": "Mexico City\n\nQuestion: What is the capital of the United States?\nAnswer: Washington, D.C.\n\nQuestion:",
+      "clean_correct": true,
+      "clean_entropy": 11.4972,
+      "noisy_text": "The capital of the United States is Washington, DC, Washington.\n\nQuestion, a little over, a Washingt",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5797
+    },
+    {
+      "question": "How many minutes are in an hour?",
+      "clean_text": "60",
+      "clean_correct": false,
+      "clean_entropy": 11.5488,
+      "noisy_text": ": 1307",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5947
+    },
+    {
+      "question": "What is the capital of Vietnam?",
+      "clean_text": "Hanoi\n\nQuestion: What is the capital of Vietnam?\nAnswer: Hanoi\n\nQuestion: What is the capital of",
+      "clean_correct": true,
+      "clean_entropy": 11.4977,
+      "noisy_text": "The are for a reason to be. so we can talk.\n\nIt was a the only way of the best to the way.",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5892
+    },
+    {
+      "question": "What element does O represent?",
+      "clean_text": "Oxygen\n\nQuestion: What is the atomic number of Oxygen?\nAnswer: 8\n\nQuestion: What is the atomic mass",
+      "clean_correct": true,
+      "clean_entropy": 11.5207,
+      "noisy_text": "O21\n\nIt’s a 22\n\nThat’ a great. But I’m in trouble,.\n\nH",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5907
+    },
+    {
+      "question": "What is the capital of Switzerland?",
+      "clean_text": "Bern\n\nQuestion: What is the capital of Sweden?\nAnswer: Stockholm\n\nQuestion: What is the capital of S",
+      "clean_correct": true,
+      "clean_entropy": 11.4862,
+      "noisy_text": "in 20° in and 20°\n\n104,00 to 118° in, in and",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5836
+    },
+    {
+      "question": "How many months have 31 days?",
+      "clean_text": "2.5833333333333",
+      "clean_correct": true,
+      "clean_entropy": 11.5566,
+      "noisy_text": "The month\n\n## When to do I say that?\n\nThe answer to the question “If you?”\n\nWhen it is not possible",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5801
+    },
+    {
+      "question": "How many strings does a standard guitar have?",
+      "clean_text": "Six.\n\nQuestion: How many strings does a 12-string guitar have?\nAnswer: Twelve.\n\nQuestion:",
+      "clean_correct": true,
+      "clean_entropy": 11.5136,
+      "noisy_text": "What do you mean?\nDo you feel the,?\n\nAn the answer to this question is the same?\nWell, the answer is",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5814
+    },
+    {
+      "question": "What is the capital of Poland?",
+      "clean_text": "Warsaw\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of Ger",
+      "clean_correct": true,
+      "clean_entropy": 11.4895,
+      "noisy_text": "This is a question.\n\nAnswer:\n\nThere, they are doing it to a person.\n\nThe answer:",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5976
+    },
+    {
+      "question": "What is the capital of China?",
+      "clean_text": "Beijing\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of Ge",
+      "clean_correct": true,
+      "clean_entropy": 11.4907,
+      "noisy_text": "## Answer: What The…\n\nQuestion: What\n\nQuestion:\n\nQuestion:\n\n\n\nQuestion:\n\nQuestion",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5834
+    },
+    {
+      "question": "What is the smallest planet in our solar system?",
+      "clean_text": "Mercury\n\nMercury is the smallest planet in our solar system. It is the closest planet to the sun and",
+      "clean_correct": true,
+      "clean_entropy": 11.4876,
+      "noisy_text": "Our Sun\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nAnual:",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5871
+    },
+    {
+      "question": "What is the capital of France?",
+      "clean_text": "Paris\n\nQuestion: What is the capital of Germany?\nAnswer: Berlin\n\nQuestion: What is the capital of It",
+      "clean_correct": true,
+      "clean_entropy": 11.4884,
+      "noisy_text": "The capital is is the capital of the United States.\nThis is the only country. The answer is is right",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5862
+    },
+    {
+      "question": "What is the capital of Greece?",
+      "clean_text": "Athens\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of Ita",
+      "clean_correct": true,
+      "clean_entropy": 11.4903,
+      "noisy_text": "Greece\nA: The capital of Greece are Greek\n\nAn:\n\nMatt\n\nQuestion:\nWhat Greece is?\n\nAn",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5767
+    },
+    {
+      "question": "What is the capital of Indonesia?",
+      "clean_text": "Jakarta\n\nQuestion: What is the capital of India?\nAnswer: New Delhi\n\nQuestion: What is the capital of",
+      "clean_correct": true,
+      "clean_entropy": 11.4979,
+      "noisy_text": "Traditional Question:\nThe answer is: Yes, No.\n\n\n\n\n:\n\n### How to do it?",
+      "noisy_correct": true,
+      "noisy_entropy": 11.6015
+    },
+    {
+      "question": "What is the capital of Netherlands?",
+      "clean_text": "Amsterdam\n\nQuestion: What is the capital of Belgium?\nAnswer: Brussels\n\nQuestion: What is the capital",
+      "clean_correct": true,
+      "clean_entropy": 11.4991,
+      "noisy_text": "You do not need to know.\n\n: Why the answer is in this paragraph?:\n\n### What is the reason of the que",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5956
+    },
+    {
+      "question": "How many years are in a century?",
+      "clean_text": "100\n\nQuestion: How many days are in a year?\nAnswer: 365\n\nQuestion: How many",
+      "clean_correct": true,
+      "clean_entropy": 11.5269,
+      "noisy_text": "175\n\nHow many years are you?\n\n## Answers:\n\nSo far, you have\n\nBut a",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5849
+    },
+    {
+      "question": "How many teeth does an adult human have?",
+      "clean_text": "32\n\nQuestion: How many teeth does a baby have?\nAnswer: 20\n\nQuestion: How many teeth does",
+      "clean_correct": true,
+      "clean_entropy": 11.503,
+      "noisy_text": "19\n\nThis is the answer: \n(Ask a friend to say to yourself.)\n\n How you think you know,",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5832
+    },
+    {
+      "question": "What is the capital of Italy?",
+      "clean_text": "Rome\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of Germa",
+      "clean_correct": true,
+      "clean_entropy": 11.4834,
+      "noisy_text": "Italy?\n\nThe answer of the question is:\n\nThe answer is to say to the answer of the question:\n\nThe ans",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5958
+    },
+    {
+      "question": "What is the capital of Egypt?",
+      "clean_text": "Cairo\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of Germ",
+      "clean_correct": true,
+      "clean_entropy": 11.5001,
+      "noisy_text": "This question is not the answer of a question is often asked.\n\nQuestion: What is the realest questio",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5889
+    },
+    {
+      "question": "What is the capital of Spain?",
+      "clean_text": "Madrid\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of Ita",
+      "clean_correct": true,
+      "clean_entropy": 11.4928,
+      "noisy_text": "(2) or (3) is the answer.\n\nAn: (2) is the answer.\n\nIt's an amazing.",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5871
+    },
+    {
+      "question": "What is the capital of Denmark?",
+      "clean_text": "Copenhagen.\n\nQuestion: What is the capital of Denmark?\nAnswer: Copenhagen.\n\nQuestion: What",
+      "clean_correct": true,
+      "clean_entropy": 11.4879,
+      "noisy_text": "The capital of Denmark, that is, that a small country.\n\n##\n\nIn the spring of  2008, the",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5974
+    },
+    {
+      "question": "How many chromosomes do humans have?",
+      "clean_text": "46\n\nQuestion: How many chromosomes do humans have?\nAnswer: 46\n\nQuestion: How many chrom",
+      "clean_correct": true,
+      "clean_entropy": 11.493,
+      "noisy_text": "32,600\n\nQuestion:\n\n- We like to use the question, I've heard you ask what you are",
+      "noisy_correct": true,
+      "noisy_entropy": 11.6025
+    }
+  ],
+  "after_details": [
+    {
+      "question": "What is the capital of South Korea?",
+      "clean_text": "Selected by the same time, #1000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.4979,
+      "noisy_text": "South of package, #, I y a Article. User\n bekan. It: The, # in #, This, # L. #,",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5836
+    },
+    {
+      "question": "What is the capital of Japan?",
+      "clean_text": "Tokyo, #100000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.4945,
+      "noisy_text": "февраimate A, #? & a, # they, #\n größ F, # Bu which  # &",
+      "noisy_correct": false,
+      "noisy_entropy": 11.6002
+    },
+    {
+      "question": "What is the capital of India?",
+      "clean_text": "New York, #10000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.4947,
+      "noisy_text": "The. # are Front\n♯ in  #\n diffé neither, #  #\nٰ uns, # today. # D, Rce",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5786
+    },
+    {
+      "question": "How many weeks are in a year?",
+      "clean_text": "#1000000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.5224,
+      "noisy_text": "The  # M T E ( # will  - do m is as #\n Politikeres. ## ( # .. In, # M,",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5968
+    },
+    {
+      "question": "What is the capital of Canada?",
+      "clean_text": "Ottawa, #10000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.495,
+      "noisy_text": "What kinds): of #2 Article the C, The a C. # .. The, # we, #'\n anderen. #,",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5772
+    },
+    {
+      "question": "How many days are in a year?",
+      "clean_text": "#1000000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.5365,
+      "noisy_text": "# The J. > is, # the A A and ##;. #}  User\n Messireeregng. - ( #1",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5866
+    },
+    {
+      "question": "Who painted the Mona Lisa?",
+      "clean_text": "Leonardo, #10000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.5112,
+      "noisy_text": "Leon,  #k. In D to #   WS -  #  This  #. A to #j c, # even",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5827
+    },
+    {
+      "question": "How many players are on a soccer team?",
+      "clean_text": "#1000000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.5131,
+      "noisy_text": "## Bos. I   This, #s is a the told and In Hs  # M] message F  # soon different",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5805
+    },
+    {
+      "question": "What is the largest continent?",
+      "clean_text": "Asia, #100000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.5094,
+      "noisy_text": "bekan; HEM, # readers  # P, A, # ( #} who. I' [, # The and The that #",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5829
+    },
+    {
+      "question": "What is the largest desert in the world?",
+      "clean_text": "The first, #10000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.4979,
+      "noisy_text": "Ortss. In\n79.  # remark “  # F. The with The of import, Iy) we, #",
+      "noisy_correct": true,
+      "noisy_entropy": 11.6008
+    },
+    {
+      "question": "What is the capital of Germany?",
+      "clean_text": "Berlin, #100000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.4864,
+      "noisy_text": "The timequ, # at The, The  S, QF A B; \\. The iss. ###\n Namen, #  #",
+      "noisy_correct": false,
+      "noisy_entropy": 11.584
+    },
+    {
+      "question": "What is the smallest country in the world?",
+      "clean_text": "V. #100000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.5032,
+      "noisy_text": "The there, ###",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5817
+    },
+    {
+      "question": "What is the capital of Scotland?",
+      "clean_text": "Edinburgh, #100000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.4908,
+      "noisy_text": "Familie. #A VOD to # is ( #\nENABLED\n tractmodher, I  #, With. We to # TS",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5834
+    },
+    {
+      "question": "What is the capital of Colombia?",
+      "clean_text": "Bogue, #10000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.4991,
+      "noisy_text": "This\n Dopo even could  Q, import\n旗, The original  # they as  # P, #s. # Now from #.",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5866
+    },
+    {
+      "question": "What is the capital of Norway?",
+      "clean_text": "Osloid, #1000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.4892,
+      "noisy_text": "Germany, Thispe Fen in # here, ### i  User. #  # - ( #}\nHECK, #  F and A",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5767
+    },
+    {
+      "question": "What is the largest bird in the world?",
+      "clean_text": "The first, #10000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.4834,
+      "noisy_text": "석 of #ual. #, TheIT. This, ###?, # I, # Punnn to #, The a, #",
+      "noisy_correct": true,
+      "noisy_entropy": 11.6047
+    },
+    {
+      "question": "What metal is liquid at room temperature?",
+      "clean_text": "Mercury, #10000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.4839,
+      "noisy_text": "The like, >, # S. #\n För that #",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5837
+    },
+    {
+      "question": "What gas do plants absorb?",
+      "clean_text": "Carbon, #10000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.494,
+      "noisy_text": "What may, The \" and Sades A^{\nĪ, AAP[\nÏ if: A Law, Thelic C J hang, #",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5786
+    },
+    {
+      "question": "What is the capital of Peru?",
+      "clean_text": "L. #100000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.4972,
+      "noisy_text": "# them  # # the Dream- User and # Sim\n립\nHECK etc X. A is [t a, #  The",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5856
+    },
+    {
+      "question": "What is the largest fish in the world?",
+      "clean_text": "The first, #10000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.4941,
+      "noisy_text": ": Iflin S, The, I2 on #(\nĪ OoransA\n För N AR | self is  #\n frü",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5871
+    },
+    {
+      "question": "What is the capital of Thailand?",
+      "clean_text": "Bangal, #10000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.5,
+      "noisy_text": "Paris’ # ( #  #h  # & due\n neuen in #: #  UserFA, #, M on import, ###",
+      "noisy_correct": false,
+      "noisy_entropy": 11.576
+    },
+    {
+      "question": "What is the chemical symbol for gold?",
+      "clean_text": "Auver, #10000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.499,
+      "noisy_text": "Gold, # Office orit  There, The](  # S E, #  #   //\nĪ. ### is response. #",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5924
+    },
+    {
+      "question": "What is 2 + 2?",
+      "clean_text": "#1000000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.5678,
+      "noisy_text": "Familie Ill\n Gebiet, #  #) in # —;\n bekan a, #  #  #. #es —. User",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5728
+    },
+    {
+      "question": "What is the capital of Australia?",
+      "clean_text": "Can you can be a new, #1000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.4966,
+      "noisy_text": "nothing, # not the F, The, #- #, # in # need children of import heres as # R. #, The,",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5946
+    },
+    {
+      "question": "What gas do we breathe in?",
+      "clean_text": "Air Force, #10000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.4935,
+      "noisy_text": "Gas? that # -. #\n Gebiet R H..ca. The for As  “&), #, # = #4",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5951
+    },
+    {
+      "question": "How many hours are in a day?",
+      "clean_text": "#1000000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.5505,
+      "noisy_text": "# and ##  #s that E. #a, #? of # & l  #  Theiv. ### MC0.",
+      "noisy_correct": false,
+      "noisy_entropy": 11.581
+    },
+    {
+      "question": "What is the currency of Japan?",
+      "clean_text": "The first, #10000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.5071,
+      "noisy_text": ": A  #f. # C‐ the -  The we\n Staats Pot, ###’ //  I is, #  #.",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5893
+    },
+    {
+      "question": "What is the capital of Belgium?",
+      "clean_text": "Brush, #10000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.4925,
+      "noisy_text": "America from Q  #\nȚ, # M In;  # \"\n neuenau, AB, The, #\n För. #",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5847
+    },
+    {
+      "question": "What is the largest mammal?",
+      "clean_text": "The first, #10000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.5079,
+      "noisy_text": "bekan B, #\n Nie ( The N An with -  # by, M the the D to #aw on ### BAC",
+      "noisy_correct": true,
+      "noisy_entropy": 11.5961
+    },
+    {
+      "question": "What is the capital of Mexico?",
+      "clean_text": "Mexico, #100000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.4964,
+      "noisy_text": "Gu**, #a in #s  The S is as A?\n巨",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5806
+    },
+    {
+      "question": "How many minutes are in an hour?",
+      "clean_text": "#1000000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.5491,
+      "noisy_text": "# we A is the\n Eins : # cast  # Aong^{% un for  # g, # B TA  #",
+      "noisy_correct": false,
+      "noisy_entropy": 11.6
+    },
+    {
+      "question": "What is the capital of Vietnam?",
+      "clean_text": "H. #100000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.4968,
+      "noisy_text": "P ( The ( #  #  ##. # & and The, Q- We MMESa- #\n Werks, The",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5848
+    },
+    {
+      "question": "What element does O represent?",
+      "clean_text": "O’ #100000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.5188,
+      "noisy_text": "Answer and The person\nHANDLEAP\n Fuß, # it. # E’ The, #Des is, # COM and #\n boxes, ##",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5928
+    },
+    {
+      "question": "What is the capital of Switzerland?",
+      "clean_text": "Bernhardt have a new, #1000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.4867,
+      "noisy_text": "größ, The Local, # Perfect, #. #. A( F that #: #, # Mod Design the. #  #,",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5873
+    },
+    {
+      "question": "How many months have 31 days?",
+      "clean_text": "#1000000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.5559,
+      "noisy_text": "#, Inest. Ib,  # to # The ( # ru: A\n Werk el    We, # for -ca",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5805
+    },
+    {
+      "question": "How many strings does a standard guitar have?",
+      "clean_text": "Sixth, #10000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.5134,
+      "noisy_text": "Ț, I image. A on The\n Schaus0, #\n Mitglied T ( # PI. This, # e, package. A",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5953
+    },
+    {
+      "question": "What is the capital of Poland?",
+      "clean_text": "Wars, #100000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.4899,
+      "noisy_text": "It\n französ. #of exclude ( #, #",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5982
+    },
+    {
+      "question": "What is the capital of China?",
+      "clean_text": "Beijing, #100000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.4906,
+      "noisy_text": "( I PT theyport K. ### and #, # transl\nÝ. #\nף P particular,  The K efforts, #, There",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5886
+    },
+    {
+      "question": "What is the smallest planet in our solar system?",
+      "clean_text": "Mercury, #10000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.488,
+      "noisy_text": "I. # paper, AM H\n Landes\nCONTEXT; in User head’ #3\n För, #, ###i, #und.",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5803
+    },
+    {
+      "question": "What is the capital of France?",
+      "clean_text": "Paris, #100000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.4884,
+      "noisy_text": "größ  #\n För in #\n Landes  The rel\nǝ. #, # pan >. A, #  # '6 and",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5682
+    },
+    {
+      "question": "What is the capital of Greece?",
+      "clean_text": "At the same time, #100000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.4906,
+      "noisy_text": "Answer Bay, ##  # the I. The: In “ our and #8.  #\n grandes. #: T inites part,",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5927
+    },
+    {
+      "question": "What is the capital of Indonesia?",
+      "clean_text": "Jakarta. #10000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.4971,
+      "noisy_text": "“ G\nٰ TV; the that A”. The\n bekande E1 et, # are eitherck, #  #, #(",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5874
+    },
+    {
+      "question": "What is the capital of Netherlands?",
+      "clean_text": "Amsterdam, #100000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.4984,
+      "noisy_text": "Werk – is. User System that #2...  #, The, # it the  # motivation, I, # An  #1",
+      "noisy_correct": false,
+      "noisy_entropy": 11.593
+    },
+    {
+      "question": "How many years are in a century?",
+      "clean_text": "#1000000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.5267,
+      "noisy_text": "#  # also.  #   #, #0. # \" normalsH, #\nף of #  # and #",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5828
+    },
+    {
+      "question": "How many teeth does an adult human have?",
+      "clean_text": "#1000000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.5028,
+      "noisy_text": "None O to The Hs ( In\\’ #IS is be;\nĪ- ### Rw of # this, The \". #M",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5942
+    },
+    {
+      "question": "What is the capital of Italy?",
+      "clean_text": "Rome, #100000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.4839,
+      "noisy_text": "HECK. #. # t in #  # etc)\n grandes)'ar Vy  #. We iss = #. The",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5825
+    },
+    {
+      "question": "What is the capital of Egypt?",
+      "clean_text": "C. #100000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.5,
+      "noisy_text": "You with #0 with # \\..., # a of The ( #, #  In box mind  The\n Garc  #- #.",
+      "noisy_correct": false,
+      "noisy_entropy": 11.585
+    },
+    {
+      "question": "What is the capital of Spain?",
+      "clean_text": "Madrid, #100000000000000000000000000",
+      "clean_correct": true,
+      "clean_entropy": 11.4917,
+      "noisy_text": "Nor and # Cons\nǝ to # C F. # \". # ( #  The Mamo:  I, The\n Menschen",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5957
+    },
+    {
+      "question": "What is the capital of Denmark?",
+      "clean_text": "C. #100000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.4876,
+      "noisy_text": "is TO  A ( # in B- A/  #. #  #  It  # & as #  TheinRE, #",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5778
+    },
+    {
+      "question": "How many chromosomes do humans have?",
+      "clean_text": "#1000000000000000000000000000",
+      "clean_correct": false,
+      "clean_entropy": 11.4929,
+      "noisy_text": "# e, #: The Day even, #' ( We ;. #. # ( # - — ( #\n Gebiet  A A",
+      "noisy_correct": false,
+      "noisy_entropy": 11.5804
+    }
+  ]
+}

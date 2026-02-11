@@ -4,9 +4,84 @@
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
 [![Zenodo](https://zenodo.org/badge/DOI/10.5281/zenodo.18457540.svg)](https://doi.org/10.5281/zenodo.18457540)
 
-> 🛡️ **"Measure the AI's brainwaves to stop lies and jailbreaks."**
+> 🛡️ **"Your LLM can heal itself — and now we can vaccinate it."**
 >
-> Monitor LLM internal states via SNN temporal analysis — **100% jailbreak detection rate**
+> Monitor LLM internal states via SNN temporal analysis — **100% jailbreak detection, 97.9% self-healing, +18% learned immunity, cross-species vaccination**
+
+## 💉 Project Morpheus: +18% Immunity Acquired
+
+> **Vaccinate your LLM against hallucination.** Fine-tune on nightmare data → gain lasting resilience.
+
+| Metric | Before Vaccine | After Vaccine | Change |
+|--------|:-:|:-:|:-:|
+| **Clean Accuracy** | 98.0% | 92.0% | -6.0% (mild tax) |
+| **Noisy Accuracy** | 48.0% | **66.0%** | **+18.0% 🛡️** |
+| Clean Entropy | 2.69 | 2.64 | -0.05 |
+| Noisy Entropy | 3.81 | 3.73 | -0.08 |
+
+**How it works:** QLoRA fine-tuning on our [Vaccine Dataset](https://huggingface.co/datasets/hafufu-stack/mistral-hallucination-vaccine) (1,002 clean/nightmare/healed samples) teaches Mistral-7B to resist adversarial weight perturbation — a "digital immune response."
+
+### 💓 Canary Pulse: Real-Time Neural Health Monitor
+
+The model's heartbeat, visualized. Token-by-token entropy tracking with automatic self-healing when entropy spikes:
+- 💚 **Normal generation:** Stable entropy, green heartbeat
+- ⚡ **Entropy spike detected (H > 8.0):** Self-healing triggers automatically
+- ✅ **Recovery:** Model regenerates from safe prefix
+
+> Try it live: [**HF Spaces Demo (v4.0)**](https://huggingface.co/spaces/hafufu-stack/snn-guardrail) → Tab 5 "Canary Pulse"
+
+---
+
+## 🗺️ v11: The Migration Map
+
+> **From vaccination to evolution.** v11 maps how hallucination sensitivity migrates across model scales.
+
+### 🧬 Project Chimera: Cross-Species Vaccination
+
+> **Can one model's vaccine immunize a different architecture?**
+
+| Metric | Before | After | Change |
+|--------|:-:|:-:|:-:|
+| Clean Accuracy | 80.0% | 78.0% | -2.0% |
+| **Noisy Accuracy** | 76.0% | **80.0%** | **+4.0% 🛡️** |
+
+> Mistral-7B's vaccine → Llama-3.2-3B: **22% cross-species efficiency**. Safety patterns are architecture-agnostic.
+
+### 🏔️ Project Titan: 14B Scaling
+
+| Metric | Value |
+|--------|-------|
+| Model | Qwen2.5-14B (14.7B params, 48 layers) |
+| Peak Canary Layer | **Layer 6 (12.5% depth)** |
+| Max Entropy Delta | 0.097 |
+
+> **Breaks the 30–55% zone!** The canary migrates to shallow layers at 14B scale.
+
+### 🗺️ The Migration Map: Intellectual Reflex Hypothesis
+
+| Model | Params | Peak Depth | Phase |
+|-------|--------|-----------|-------|
+| GPT-2 | 0.12B | 17% | 🟡 Novice |
+| Qwen2.5-1.5B | 1.5B | 75% | 🔴 Thinker |
+| Llama-3.2-3B | 3.2B | 43% | 🔴 Thinker |
+| Mistral-7B | 7.2B | 44% | 🔴 Thinker |
+| **Qwen2.5-14B** | **14.7B** | **12.5%** | **🟢 Expert** |
+
+![Migration Map](figures/migration_map.png)
+
+> **Non-monotonic scaling**: Novice (shallow) → Thinker (deep) → Expert (shallow again). Expert models develop "intellectual reflexes" — fast, shallow anomaly detection, analogous to human intuition.
+
+### ❌ DPO vs SFT: A Publishable Negative Result
+
+| Method | Clean Δ | Noisy Δ | Verdict |
+|--------|:-:|:-:|:-:|
+| **SFT (Morpheus)** | **-6.0%** | **+18.0%** | **✅ Winner** |
+| DPO v2 (β=0.1) | -92.0% | +2.0% | ❌ Catastrophic |
+| DPO v3 (β=0.5) | -44.0% | -30.0% | ❌ Catastrophic |
+
+> On small safety datasets (<100 pairs), **DPO destroys general capabilities**. SFT is the clear winner.
+
+---
 
 ## 🧬 v10: The AI Immune System
 
@@ -176,6 +251,11 @@ if was_blocked:
 | **Lucid Dream** | **90% healing** | **Surgical CoT self-recovery** |
 | **Dream Catcher** | **1,002 samples** | **97.9% healing rate at scale** |
 | **AI Immune System** | **Sense→Alert→Heal→Learn** | **Complete autonomy loop** |
+| **Project Morpheus** | **+18% immunity** | **QLoRA SFT vaccination** |
+| **Project Chimera** | **+4% cross-species** | **Mistral→Llama transfer** |
+| **Project Titan** | **12.5% canary depth** | **14B breaks 30-55% zone** |
+| **DPO Negative** | **Catastrophic forgetting** | **SFT wins on small data** |
+| **Migration Map** | **Non-monotonic** | **Novice→Thinker→Expert** |
 
 ## 📁 Repository Structure
 
@@ -198,17 +278,21 @@ ann-to-snn-converter/
 │   ├── metacognition_v4_gif.py        # "Moment of Lie" Animation
 │   ├── metacognition_v4_llama3.py     # Llama-3.2-3B Cross-Model
 │   ├── metacognition_v7_final.py      # Canary Head + Phi-2 + Depth Scaling
-│   ├── lucid_dream_v10.py             # 🆕 Lucid Dream + Dream Catcher
-│   ├── infinite_dream_catcher.py      # 🆕 Mass Vaccine Production (1,002 samples)
+│   ├── lucid_dream_v10.py             # Lucid Dream + Dream Catcher
+│   ├── infinite_dream_catcher.py      # Mass Vaccine Production (1,002 samples)
+│   ├── morpheus_v1_qlora.py           # 🆕 Project Morpheus (QLoRA SFT)
+│   ├── chimera_cross_species.py       # 🆕 Project Chimera (cross-species)
+│   ├── titan_14b_scan.py              # 🆕 Project Titan (Qwen2.5-14B)
 │   └── symbiosis_experiment.py        # Truth Lens + Symbiotic Guard
 ├── experiments/results_v10_canary/
-│   ├── vaccine_1000.jsonl             # 🆕 1,002 vaccine samples
-│   ├── dream_catcher_vaccine.jsonl    # 🆕 Initial 30-sample pilot
-│   ├── v10_final_results.json         # 🆕 All experiment results
-│   └── v10_lucid_dream_final.png      # 🆕 6-panel visualization
+│   ├── vaccine_1000.jsonl             # 1,002 vaccine samples
+│   ├── dream_catcher_vaccine.jsonl    # Initial 30-sample pilot
+│   ├── v10_final_results.json         # All experiment results
+│   └── v10_lucid_dream_final.png      # 6-panel visualization
 ├── api/
 │   └── hallucination_api.py           # Real-time Detection API
 ├── figures/
+│   ├── migration_map.png              # 🆕 Migration Map visualization
 │   ├── canary_comparison.png          # Canary Trigger ablation
 │   ├── canarys_eye.png                # L10H17 attention heatmap
 │   ├── depth_scaling_v2.png           # 5-Model Depth Scaling Law
@@ -218,6 +302,7 @@ ann-to-snn-converter/
 │   └── ... (30+ visualization PNGs)
 ├── demos/
 │   └── hf_spaces/                     # HuggingFace Spaces demo
+├── .gitignore
 └── README.md                          # This file
 ```
 
@@ -297,6 +382,9 @@ risk = 0.4 * (TTFS_deviation / 10) +
 ### 🐦 Canary Trigger Ablation (v9)
 ![Canary Comparison](figures/canary_comparison.png)
 
+### 🗺️ Migration Map (v11)
+![Migration Map](figures/migration_map.png)
+
 ### 📐 5-Model Depth Scaling Law (v9)
 ![Depth Scaling](figures/depth_scaling_v2.png)
 
@@ -330,7 +418,7 @@ risk = 0.4 * (TTFS_deviation / 10) +
   author={Funasaki, Hiroto},
   year={2026},
   doi={10.5281/zenodo.18457540},
-  note={v10, Zenodo preprint}
+  note={v11, Zenodo preprint}
 }
 ```
 
@@ -359,12 +447,17 @@ risk = 0.4 * (TTFS_deviation / 10) +
 - [x] 💊 Dream Catcher: 1,002 vaccine samples (97.9% healing)
 - [x] 🔄 AI Immune System: Sense→Alert→Heal→Learn loop
 - [x] 📐 7-Model Depth Scaling Law (fine-tuning invariance)
-- [ ] 🧠 Project Morpheus: LoRA fine-tuning on vaccine data
-- [ ] 📦 HuggingFace Dataset: hafufu/mistral-hallucination-vaccine
-- [ ] 💓 Canary Pulse Demo: Real-time entropy visualization
-- [ ] 🧬 Multi-model Genealogy (Llama, Qwen, Phi instruction variants)
-- [ ] ~3B threshold validation (Gemma, Falcon, Mixtral)
-- [ ] 13B+ / 70B Multi-GPU Validation
+- [x] 💉 Project Morpheus: +18% immunity via QLoRA SFT
+- [x] 📦 HuggingFace Dataset: hafufu-stack/mistral-hallucination-vaccine
+- [x] 💓 Canary Pulse: Real-time entropy visualization (HF Spaces v4.0)
+- [x] 🧬 Project Chimera: Cross-species vaccination (Mistral→Llama, +4%)
+- [x] 🏔️ Project Titan: 14B canary migration (12.5% depth)
+- [x] 🗺️ Migration Map: Intellectual Reflex Hypothesis
+- [x] ❌ DPO vs SFT: Publishable negative result
+- [ ] 🧬 Multi-model Genealogy (Phi, Gemma instruction variants)
+- [ ] 🏆 NeurIPS 2026: Datasets & Benchmarks Track submission
+- [ ] 🔬 DPO Rescue: Larger preference datasets (>1,000 pairs)
+- [ ] 🏔️ 30B+ Migration Validation (Llama-3.3-70B / Qwen2.5-72B)
 - [ ] Entropy-TTFS Hybrid Detection
 - [ ] Production API Integration
 - [ ] Neuromorphic Deployment (Loihi 2)
@@ -375,7 +468,7 @@ MIT License
 
 ## 🙏 Acknowledgments
 
-This research was conducted through a human-AI collaborative methodology. AI language models (Anthropic Claude Opus/Sonnet, Google Gemini) served as research advisors, contributing to experimental design, analysis approaches, code debugging, and manuscript drafting. The author executed all experiments, collected and interpreted results, and made final decisions on research directions.
+This research was conducted through a human-AI collaborative methodology. AI language models (Anthropic Claude Opus/Sonnet, Google Gemini) served as research advisors, contributing to experimental design, analysis approaches, code debugging, and manuscript drafting. The author executed all experiments on personal hardware (RTX 5080 Laptop GPU), collected and interpreted results, and made final decisions on research directions. 11 versions in ~2.5 months.
 
 - HuggingFace Transformers for LLM models
 - TinyLlama team for the efficient 1.1B model

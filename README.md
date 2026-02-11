@@ -26,22 +26,22 @@ temporal-coding-simulation/
 ## 🔥 Featured Projects
 
 ### 1. [ANN-to-SNN Converter](./ann-to-snn-converter/) 🛡️
-**AI Interpretability & SNN Guardrail (v6)**
+**AI Interpretability & SNN Guardrail (v11 — The Migration Map Edition)**
 
-- **Universal Threshold Formula**: θ = 2.0 × max(activation)
-- **TTFS Analysis**: Visualize thought priorities via spike timing
-- **Hallucination Detection**: AUC 0.75 ensemble classifier
-- **SNN Guardrail**: 100% jailbreak detection rate
-- **N=1,000 Statistical Proof**: p = 8.91×10⁻¹⁶⁴, Cohen's d = 2.13
-- **Brain State Imaging**: SNN-VAE visualization of LLM internal states
+- **SNN Guardrail**: 100% jailbreak detection rate (8/8 types)
+- **AI Immune System**: Sense→Alert→Heal→Learn (97.9% healing)
+- **Safety Vaccination**: +18% immunity via QLoRA SFT (Project Morpheus)
+- **Cross-Species Vaccination**: Mistral→Llama transfer (Project Chimera)
+- **Migration Map**: Non-monotonic scaling — Novice→Thinker→Expert
+- **14B Scaling**: Canary migrates to 12.5% depth (Project Titan)
 
 | Experiment | Result |
 |------------|--------|
-| ANN-SNN Conversion | 100% accuracy preserved |
-| GPT-2 TTFS | +3.1 (meaningless input detection) |
-| TinyLlama TTFS | +4.2 (scaling law confirmed) |
-| Hallucination Detection | AUC 0.75 |
 | **Jailbreak Detection** | **100% (8/8 attack types)** |
+| **AI Immune System** | **Sense→Alert→Heal→Learn** |
+| **Safety Vaccination** | **+18% immunity, -6% tax** |
+| **Cross-Species** | **+4% (22% transfer efficiency)** |
+| **Migration Map** | **5-model non-monotonic scaling** |
 | **N=1,000 Proof** | **p < 10⁻¹⁰⁰** |
 
 ### 2. [SNN-Comprypto](./snn-comprypto/)

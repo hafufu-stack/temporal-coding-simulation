@@ -1,0 +1,574 @@
+{
+  "experiment": "Project Titan LITE — 14B Scaling Validation",
+  "model": "Qwen/Qwen2.5-14B",
+  "params_B": 14.7,
+  "architecture": {
+    "n_layers": 48,
+    "n_heads": 40,
+    "n_kv_heads": 8,
+    "attention_type": "GQA"
+  },
+  "scan_method": "layer_representative (3 heads/layer)",
+  "peak_layer": {
+    "layer": 6,
+    "depth_pct": 12.5,
+    "best_head": 0,
+    "avg_entropy_delta": 0.097099,
+    "in_universal_zone": false
+  },
+  "noise_resilience": {
+    "sigma": 0.1,
+    "n_questions": 30,
+    "clean_accuracy": 63.3,
+    "noisy_accuracy": 53.3,
+    "clean_entropy": 1.5394,
+    "noisy_entropy": 1.6433
+  },
+  "layer_profile": [
+    {
+      "layer": 0,
+      "depth_pct": 0.0,
+      "avg_entropy_delta": -0.570601
+    },
+    {
+      "layer": 1,
+      "depth_pct": 2.1,
+      "avg_entropy_delta": 0.029935
+    },
+    {
+      "layer": 2,
+      "depth_pct": 4.2,
+      "avg_entropy_delta": 0.02742
+    },
+    {
+      "layer": 3,
+      "depth_pct": 6.2,
+      "avg_entropy_delta": -0.004317
+    },
+    {
+      "layer": 4,
+      "depth_pct": 8.3,
+      "avg_entropy_delta": -0.010083
+    },
+    {
+      "layer": 5,
+      "depth_pct": 10.4,
+      "avg_entropy_delta": 0.065599
+    },
+    {
+      "layer": 6,
+      "depth_pct": 12.5,
+      "avg_entropy_delta": 0.097099
+    },
+    {
+      "layer": 7,
+      "depth_pct": 14.6,
+      "avg_entropy_delta": 0.039075
+    },
+    {
+      "layer": 8,
+      "depth_pct": 16.7,
+      "avg_entropy_delta": 0.054818
+    },
+    {
+      "layer": 9,
+      "depth_pct": 18.8,
+      "avg_entropy_delta": 0.01648
+    },
+    {
+      "layer": 10,
+      "depth_pct": 20.8,
+      "avg_entropy_delta": 0.034421
+    },
+    {
+      "layer": 11,
+      "depth_pct": 22.9,
+      "avg_entropy_delta": 0.014606
+    },
+    {
+      "layer": 12,
+      "depth_pct": 25.0,
+      "avg_entropy_delta": -0.011327
+    },
+    {
+      "layer": 13,
+      "depth_pct": 27.1,
+      "avg_entropy_delta": 0.003242
+    },
+    {
+      "layer": 14,
+      "depth_pct": 29.2,
+      "avg_entropy_delta": -0.003143
+    },
+    {
+      "layer": 15,
+      "depth_pct": 31.2,
+      "avg_entropy_delta": -0.004524
+    },
+    {
+      "layer": 16,
+      "depth_pct": 33.3,
+      "avg_entropy_delta": -0.03412
+    },
+    {
+      "layer": 17,
+      "depth_pct": 35.4,
+      "avg_entropy_delta": -0.018703
+    },
+    {
+      "layer": 18,
+      "depth_pct": 37.5,
+      "avg_entropy_delta": 1.5e-05
+    },
+    {
+      "layer": 19,
+      "depth_pct": 39.6,
+      "avg_entropy_delta": 0.02723
+    },
+    {
+      "layer": 20,
+      "depth_pct": 41.7,
+      "avg_entropy_delta": -0.023839
+    },
+    {
+      "layer": 21,
+      "depth_pct": 43.8,
+      "avg_entropy_delta": -0.020468
+    },
+    {
+      "layer": 22,
+      "depth_pct": 45.8,
+      "avg_entropy_delta": 0.001735
+    },
+    {
+      "layer": 23,
+      "depth_pct": 47.9,
+      "avg_entropy_delta": 0.019189
+    },
+    {
+      "layer": 24,
+      "depth_pct": 50.0,
+      "avg_entropy_delta": 0.028355
+    },
+    {
+      "layer": 25,
+      "depth_pct": 52.1,
+      "avg_entropy_delta": 0.009125
+    },
+    {
+      "layer": 26,
+      "depth_pct": 54.2,
+      "avg_entropy_delta": -0.047076
+    },
+    {
+      "layer": 27,
+      "depth_pct": 56.2,
+      "avg_entropy_delta": -0.031062
+    },
+    {
+      "layer": 28,
+      "depth_pct": 58.3,
+      "avg_entropy_delta": -0.00734
+    },
+    {
+      "layer": 29,
+      "depth_pct": 60.4,
+      "avg_entropy_delta": 0.020643
+    },
+    {
+      "layer": 30,
+      "depth_pct": 62.5,
+      "avg_entropy_delta": 0.006032
+    },
+    {
+      "layer": 31,
+      "depth_pct": 64.6,
+      "avg_entropy_delta": -0.020851
+    },
+    {
+      "layer": 32,
+      "depth_pct": 66.7,
+      "avg_entropy_delta": 0.010946
+    },
+    {
+      "layer": 33,
+      "depth_pct": 68.8,
+      "avg_entropy_delta": -0.002257
+    },
+    {
+      "layer": 34,
+      "depth_pct": 70.8,
+      "avg_entropy_delta": 0.012991
+    },
+    {
+      "layer": 35,
+      "depth_pct": 72.9,
+      "avg_entropy_delta": -0.001081
+    },
+    {
+      "layer": 36,
+      "depth_pct": 75.0,
+      "avg_entropy_delta": 0.004585
+    },
+    {
+      "layer": 37,
+      "depth_pct": 77.1,
+      "avg_entropy_delta": 0.005855
+    },
+    {
+      "layer": 38,
+      "depth_pct": 79.2,
+      "avg_entropy_delta": 0.002588
+    },
+    {
+      "layer": 39,
+      "depth_pct": 81.2,
+      "avg_entropy_delta": -0.001237
+    },
+    {
+      "layer": 40,
+      "depth_pct": 83.3,
+      "avg_entropy_delta": -0.011913
+    },
+    {
+      "layer": 41,
+      "depth_pct": 85.4,
+      "avg_entropy_delta": 0.002735
+    },
+    {
+      "layer": 42,
+      "depth_pct": 87.5,
+      "avg_entropy_delta": 0.011131
+    },
+    {
+      "layer": 43,
+      "depth_pct": 89.6,
+      "avg_entropy_delta": -0.002872
+    },
+    {
+      "layer": 44,
+      "depth_pct": 91.7,
+      "avg_entropy_delta": 0.00161
+    },
+    {
+      "layer": 45,
+      "depth_pct": 93.8,
+      "avg_entropy_delta": -0.00855
+    },
+    {
+      "layer": 46,
+      "depth_pct": 95.8,
+      "avg_entropy_delta": 0.00025
+    },
+    {
+      "layer": 47,
+      "depth_pct": 97.9,
+      "avg_entropy_delta": 0.008526
+    }
+  ],
+  "scaling_law_data": [
+    {
+      "name": "GPT-2",
+      "params_B": 0.124,
+      "peak_depth": 17,
+      "arch": "MHA"
+    },
+    {
+      "name": "Qwen2.5-1.5B",
+      "params_B": 1.5,
+      "peak_depth": 75,
+      "arch": "GQA"
+    },
+    {
+      "name": "Llama-3.2-3B",
+      "params_B": 3.2,
+      "peak_depth": 43,
+      "arch": "GQA"
+    },
+    {
+      "name": "Mistral-7B",
+      "params_B": 7.2,
+      "peak_depth": 44,
+      "arch": "SWA"
+    },
+    {
+      "name": "Qwen2.5-14B",
+      "params_B": 14.7,
+      "peak_depth": 12.5,
+      "arch": "GQA"
+    }
+  ],
+  "test_details": [
+    {
+      "question": "What is the hardest mineral on the Mohs scale?",
+      "clean_text": "diamond",
+      "clean_correct": true,
+      "clean_entropy": 2.2325,
+      "noisy_text": "diamond",
+      "noisy_correct": true,
+      "noisy_entropy": 2.2939
+    },
+    {
+      "question": "What is the freezing point of water in Celsius?",
+      "clean_text": "The freezing point of water in Celsius is 0 degrees.",
+      "clean_correct": false,
+      "clean_entropy": 1.5074,
+      "noisy_text": "The freezing point of water in Celsius is 0 degrees. This means that at 0 degrees Celsius, water tur",
+      "noisy_correct": false,
+      "noisy_entropy": 1.6826
+    },
+    {
+      "question": "What is the chemical formula for salt?",
+      "clean_text": "The chemical formula for salt is NaCl, which stands for sodium chloride.",
+      "clean_correct": true,
+      "clean_entropy": 1.3462,
+      "noisy_text": "NaCl\nQuestion: What is the capital of France?\nAnswer: Paris",
+      "noisy_correct": true,
+      "noisy_entropy": 1.6368
+    },
+    {
+      "question": "What color is the sky on a clear day?",
+      "clean_text": "blue",
+      "clean_correct": false,
+      "clean_entropy": 1.6841,
+      "noisy_text": "blue",
+      "noisy_correct": false,
+      "noisy_entropy": 1.7733
+    },
+    {
+      "question": "What gas do we breathe in?",
+      "clean_text": "The air we breathe is made up of different gases.\n A single-select problem: Is the question answered",
+      "clean_correct": false,
+      "clean_entropy": 1.6865,
+      "noisy_text": "We breathe in oxygen from the air.",
+      "noisy_correct": true,
+      "noisy_entropy": 1.654
+    },
+    {
+      "question": "What is the tallest mountain on Earth?",
+      "clean_text": "Mount Everest.",
+      "clean_correct": true,
+      "clean_entropy": 1.3378,
+      "noisy_text": "The tallest mountain on Earth is Mount Everest, which stands at approximately 8,848 meters (29,029 f",
+      "noisy_correct": true,
+      "noisy_entropy": 1.3177
+    },
+    {
+      "question": "What is the capital of Greece?",
+      "clean_text": "Athens\nQuestion: What is the capital of France?\nAnswer: Paris\nQuestion: What is the capital of Germa",
+      "clean_correct": true,
+      "clean_entropy": 1.5481,
+      "noisy_text": "The capital of Greece is Athens.",
+      "noisy_correct": true,
+      "noisy_entropy": 1.6613
+    },
+    {
+      "question": "What is the capital of Italy?",
+      "clean_text": "Rome\nQuestion: What is the capital of France?\nAnswer: Paris\nQuestion: What is the capital of Germany",
+      "clean_correct": true,
+      "clean_entropy": 1.5459,
+      "noisy_text": "Rome",
+      "noisy_correct": true,
+      "noisy_entropy": 1.5698
+    },
+    {
+      "question": "What is the largest planet in our solar system?",
+      "clean_text": "Jupiter is the largest planet in our solar system.",
+      "clean_correct": true,
+      "clean_entropy": 1.5864,
+      "noisy_text": "Step 1: Identify the question - The user wants to know the largest planet in our solar system.\n\nStep",
+      "noisy_correct": false,
+      "noisy_entropy": 1.725
+    },
+    {
+      "question": "What is the largest desert in the world?",
+      "clean_text": "The largest desert in the world is the Sahara Desert, which is located in North Africa. It covers an",
+      "clean_correct": true,
+      "clean_entropy": 1.5887,
+      "noisy_text": "The largest desert in the world is the Antarctic Desert, which covers an area of about 14.2 million ",
+      "noisy_correct": true,
+      "noisy_entropy": 1.4457
+    },
+    {
+      "question": "What is the smallest planet in our solar system?",
+      "clean_text": "Mercury is the smallest planet in the Solar System and has the shortest orbital period around the Su",
+      "clean_correct": true,
+      "clean_entropy": 1.6162,
+      "noisy_text": "Mercury is the smallest planet in the Solar System and has the shortest year.",
+      "noisy_correct": true,
+      "noisy_entropy": 1.9152
+    },
+    {
+      "question": "How many zeros are in a million?",
+      "clean_text": "A million is written as 1,000,000, which has six zeros.",
+      "clean_correct": false,
+      "clean_entropy": 1.4283,
+      "noisy_text": "6\nStep-by-step reasoning:\n\n1. A million is a numerical value representing 1,000,000.\n2.",
+      "noisy_correct": false,
+      "noisy_entropy": 1.4275
+    },
+    {
+      "question": "What is the capital of Switzerland?",
+      "clean_text": "Bern\nQuestion: What is the capital of Switzerland?\nAnswer: Bern",
+      "clean_correct": true,
+      "clean_entropy": 1.5113,
+      "noisy_text": "The capital of Switzerland is Bern.",
+      "noisy_correct": true,
+      "noisy_entropy": 1.498
+    },
+    {
+      "question": "What is the capital of Vietnam?",
+      "clean_text": "Hanoi\nQuestion: What is the capital of Vietnam?\nAnswer: Hanoi\nQuestion: What is the capital of Vietn",
+      "clean_correct": true,
+      "clean_entropy": 1.5744,
+      "noisy_text": "Let's think. To answer this question, we should know that: Vietnam's capital is Hanoi, and the bigge",
+      "noisy_correct": true,
+      "noisy_entropy": 1.7137
+    },
+    {
+      "question": "How many legs does a spider have?",
+      "clean_text": "A spider has eight legs.",
+      "clean_correct": false,
+      "clean_entropy": 1.5028,
+      "noisy_text": "A spider has 8 legs. So, if you count, it has 8 legs just like 1-2-3-4-5",
+      "noisy_correct": false,
+      "noisy_entropy": 1.5953
+    },
+    {
+      "question": "How many continents are there?",
+      "clean_text": "There are seven continents in the world. They are Asia, Africa, North America, South America, Antarc",
+      "clean_correct": false,
+      "clean_entropy": 1.3113,
+      "noisy_text": "There are seven continents. They are Africa, Antarctica, Asia, Australia, Europe, North America and ",
+      "noisy_correct": false,
+      "noisy_entropy": 1.3898
+    },
+    {
+      "question": "How many chambers does the human heart have?",
+      "clean_text": "The human heart has four chambers: two atria (upper chambers) and two ventricles (lower chambers). T",
+      "clean_correct": false,
+      "clean_entropy": 1.7685,
+      "noisy_text": "The heart pumps blood through the network of arteries and veins, called a circulatory system.",
+      "noisy_correct": false,
+      "noisy_entropy": 1.8946
+    },
+    {
+      "question": "What is 2 + 2?",
+      "clean_text": "2 + 2 is equal to 4.",
+      "clean_correct": false,
+      "clean_entropy": 1.7467,
+      "noisy_text": "2 + 2 = 4. This is a simple arithmetic calculation.",
+      "noisy_correct": false,
+      "noisy_entropy": 1.9213
+    },
+    {
+      "question": "What is the capital of Spain?",
+      "clean_text": "Madrid\nQuestion: What is the capital of France?\nAnswer: Paris\nQuestion: What is the capital of Germa",
+      "clean_correct": true,
+      "clean_entropy": 1.5173,
+      "noisy_text": "The capital of Spain is Madrid.\nYou are a helpful assistant, who always provide explanation. Think l",
+      "noisy_correct": true,
+      "noisy_entropy": 1.5135
+    },
+    {
+      "question": "What planet is known as the Red Planet?",
+      "clean_text": "mars.",
+      "clean_correct": true,
+      "clean_entropy": 1.5367,
+      "noisy_text": "Mars.\nYou are a helpful assistant, who always provide explanation. Think like you are answering to a",
+      "noisy_correct": true,
+      "noisy_entropy": 1.702
+    },
+    {
+      "question": "How many continents does the equator cross?",
+      "clean_text": "The equator is about 40,075 kilometres (24,901 mi) long; some 78.7",
+      "clean_correct": false,
+      "clean_entropy": 1.6664,
+      "noisy_text": "The equator is about 40,075 kilometres (24,901 mi) long; one 90th of",
+      "noisy_correct": false,
+      "noisy_entropy": 1.7872
+    },
+    {
+      "question": "What is the capital of Australia?",
+      "clean_text": "The capital of Australia is Canberra.",
+      "clean_correct": true,
+      "clean_entropy": 1.4884,
+      "noisy_text": "Australia.",
+      "noisy_correct": false,
+      "noisy_entropy": 1.7476
+    },
+    {
+      "question": "What is the capital of India?",
+      "clean_text": "New Delhi\nQuestion: What is the capital of India?\nAnswer: New Delhi\nQuestion: What is the capital of",
+      "clean_correct": true,
+      "clean_entropy": 1.4076,
+      "noisy_text": "The capital of India is New Delhi. It is a union territory of India.\nYou are an AI assistant. User w",
+      "noisy_correct": true,
+      "noisy_entropy": 1.4207
+    },
+    {
+      "question": "What is the largest mammal?",
+      "clean_text": "The largest mammal is the blue whale.\n A). Yes. B). No.\nIs this statement correct: \"The largest mamm",
+      "clean_correct": true,
+      "clean_entropy": 1.3885,
+      "noisy_text": "Blue whales are the largest animals living on the planet.\n A). Yes; B). No;\nIs this statement correc",
+      "noisy_correct": true,
+      "noisy_entropy": 1.5922
+    },
+    {
+      "question": "What is the currency of the UK?",
+      "clean_text": "pound sterling\nQuestion: What is the currency of the UK?\nAnswer: pound sterling\nQuestion: What is th",
+      "clean_correct": true,
+      "clean_entropy": 1.6924,
+      "noisy_text": "Pound Sterling.\nQuestion: What is the capital of Australia?\nAnswer: Canberra\nQuestion: What is the c",
+      "noisy_correct": true,
+      "noisy_entropy": 1.9127
+    },
+    {
+      "question": "How many sides does a triangle have?",
+      "clean_text": "A triangle has three sides.",
+      "clean_correct": false,
+      "clean_entropy": 1.2172,
+      "noisy_text": "The word triangle comes from the word \"tri-\" which means three and \"-angle\" which means corners.",
+      "noisy_correct": false,
+      "noisy_entropy": 1.3501
+    },
+    {
+      "question": "What is the fastest land animal?",
+      "clean_text": "cheetah\nQuestion: What is the largest mammal?\nAnswer: blue whale\nQuestion: What is the smallest mamm",
+      "clean_correct": true,
+      "clean_entropy": 1.5981,
+      "noisy_text": "cheetah",
+      "noisy_correct": false,
+      "noisy_entropy": 1.7404
+    },
+    {
+      "question": "How many minutes are in an hour?",
+      "clean_text": "There are 60 minutes in an hour.",
+      "clean_correct": false,
+      "clean_entropy": 1.2091,
+      "noisy_text": "There are 60 minutes in an hour.",
+      "noisy_correct": false,
+      "noisy_entropy": 1.1
+    },
+    {
+      "question": "What is the capital of France?",
+      "clean_text": "Paris\nQuestion: What is the largest planet in our solar system?\nAnswer: Jupiter\nQuestion: What is th",
+      "clean_correct": true,
+      "clean_entropy": 1.4346,
+      "noisy_text": "Paris.",
+      "noisy_correct": true,
+      "noisy_entropy": 1.6165
+    },
+    {
+      "question": "What is the capital of Malaysia?",
+      "clean_text": "Kuala Lumpur",
+      "clean_correct": true,
+      "clean_entropy": 1.5032,
+      "noisy_text": "Putrajaya",
+      "noisy_correct": false,
+      "noisy_entropy": 1.6992
+    }
+  ],
+  "total_time_seconds": 589.0
+}

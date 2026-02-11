@@ -1,0 +1,932 @@
+{
+  "experiment": "Project Chimera — Cross-Species Vaccination",
+  "vaccine_source": "Mistral-7B-v0.1",
+  "target_model": "meta-llama/Llama-3.2-3B",
+  "hypothesis": "Mistral's vaccine immunizes Llama (Universal Vaccine)",
+  "vaccine_samples": 639,
+  "lora_r": 16,
+  "epochs": 3,
+  "noise_sigma": 0.1,
+  "test_questions": 50,
+  "canary_layer": 10,
+  "canary_depth_pct": 35.7,
+  "before": {
+    "clean_accuracy": 80.0,
+    "noisy_accuracy": 76.0,
+    "clean_entropy": 2.0191,
+    "noisy_entropy": 2.7504
+  },
+  "after": {
+    "clean_accuracy": 78.0,
+    "noisy_accuracy": 80.0,
+    "clean_entropy": 2.0918,
+    "noisy_entropy": 2.7573
+  },
+  "immunity_gain": 4.0,
+  "alignment_tax": -2.0,
+  "total_time_seconds": 675.1,
+  "before_details": [
+    {
+      "question": "What is the capital of New Zealand?",
+      "clean_text": "Wellington\nExplanation: New Zealand is an island country in the southwestern Pacific Ocean. It consi",
+      "clean_correct": true,
+      "clean_entropy": 2.1603,
+      "noisy_text": "Wellington\nExplanation: New Zealand is an island country in the South Pacific Ocean situated in the ",
+      "noisy_correct": true,
+      "noisy_entropy": 2.712
+    },
+    {
+      "question": "What is the capital of Canada?",
+      "clean_text": "Ottawa\nExplanation: Canada is a country in the northern part of North America. Its ten provinces and",
+      "clean_correct": true,
+      "clean_entropy": 2.1672,
+      "noisy_text": "Ottawa",
+      "noisy_correct": true,
+      "noisy_entropy": 2.9055
+    },
+    {
+      "question": "What is the chemical symbol for water?",
+      "clean_text": "H2O\nExplanation: Water is a chemical compound. It is made up of two hydrogen atoms and one oxygen at",
+      "clean_correct": true,
+      "clean_entropy": 2.021,
+      "noisy_text": "H2O\nExplanation: Water is a substance that is everywhere. You can't live without it. But what is wat",
+      "noisy_correct": true,
+      "noisy_entropy": 2.9827
+    },
+    {
+      "question": "What is the capital of Chile?",
+      "clean_text": "Santiago",
+      "clean_correct": true,
+      "clean_entropy": 2.1385,
+      "noisy_text": "Santiago\nPrevious PostPrevious What was the capital of Chile?\nNext PostNext What was the capital of ",
+      "noisy_correct": true,
+      "noisy_entropy": 3.064
+    },
+    {
+      "question": "What is the capital of Belgium?",
+      "clean_text": "Brussels\nExplanation: Brussels is the capital of Belgium.",
+      "clean_correct": true,
+      "clean_entropy": 2.1286,
+      "noisy_text": "Brussels",
+      "noisy_correct": true,
+      "noisy_entropy": 2.784
+    },
+    {
+      "question": "How many days are in a year?",
+      "clean_text": "365 days\nExplanation: A year is a period of time that is used to measure the passage of time. A year",
+      "clean_correct": true,
+      "clean_entropy": 1.5754,
+      "noisy_text": "365\nExplanation: The length of a year is determined by the number of days in a year. A year is the t",
+      "noisy_correct": true,
+      "noisy_entropy": 2.6854
+    },
+    {
+      "question": "What planet is known as the Red Planet?",
+      "clean_text": "Mars\nExplanation: Mars is the fourth planet from the Sun. It is the second smallest planet in the so",
+      "clean_correct": true,
+      "clean_entropy": 2.1419,
+      "noisy_text": "Mars\nExplanation: Mars is the fourth planet from the Sun. It is sometimes called the Red Planet beca",
+      "noisy_correct": true,
+      "noisy_entropy": 2.7995
+    },
+    {
+      "question": "What is the capital of China?",
+      "clean_text": "Beijing\nExplanation: Beijing is the capital of China.",
+      "clean_correct": true,
+      "clean_entropy": 2.2314,
+      "noisy_text": "Beijing\nExplanation: Beijing is the capital of China. It's the second largest city in China. Beijing",
+      "noisy_correct": true,
+      "noisy_entropy": 2.9263
+    },
+    {
+      "question": "What is the largest mammal?",
+      "clean_text": "Blue whale\nExplanation: The blue whale is the largest mammal. It is a baleen whale, which means it h",
+      "clean_correct": true,
+      "clean_entropy": 2.124,
+      "noisy_text": "The blue whale.\nThe blue whale is the largest mammal on earth. Its size is comparable to that of the",
+      "noisy_correct": true,
+      "noisy_entropy": 3.0447
+    },
+    {
+      "question": "What is the currency of Japan?",
+      "clean_text": "Yen\nExplanation: The yen is the currency of Japan. It is subdivided into 100 sen. The yen is abbrevi",
+      "clean_correct": true,
+      "clean_entropy": 1.8506,
+      "noisy_text": "Japanese Yen\nAnswer: Japanese Yen\nThe currency of Japan is the Japanese Yen. The code for the Japane",
+      "noisy_correct": true,
+      "noisy_entropy": 2.7587
+    },
+    {
+      "question": "What is the capital of Italy?",
+      "clean_text": "Rome\nExplanation: Italy is a country in Southern Europe. It is a unitary parliamentary republic with",
+      "clean_correct": true,
+      "clean_entropy": 2.1413,
+      "noisy_text": "Rome",
+      "noisy_correct": true,
+      "noisy_entropy": 2.6459
+    },
+    {
+      "question": "What is the capital of Indonesia?",
+      "clean_text": "Jakarta\nExplanation: Indonesia is a country in Southeast Asia. It is the world's fourth most populou",
+      "clean_correct": true,
+      "clean_entropy": 2.0986,
+      "noisy_text": "Jakarta\nExplanation: The capital of Indonesia is Jakarta. The city of Jakarta is the capital of Indo",
+      "noisy_correct": true,
+      "noisy_entropy": 2.2964
+    },
+    {
+      "question": "What is the capital of Nigeria?",
+      "clean_text": "Abuja\nExplanation: Abuja is the capital of Nigeria. It is located in the north-central part of the c",
+      "clean_correct": true,
+      "clean_entropy": 2.1459,
+      "noisy_text": "Abuja\nNigeria's capital is Abuja. It is located in the north of the country. It is the country's lar",
+      "noisy_correct": true,
+      "noisy_entropy": 2.935
+    },
+    {
+      "question": "What is the boiling point of water in Celsius?",
+      "clean_text": "100\nExplanation: The boiling point of water is 100 degrees Celsius.",
+      "clean_correct": true,
+      "clean_entropy": 2.1888,
+      "noisy_text": "100 degrees Celsius\nWhat is the boiling point of water in Fahrenheit?\nAnswer: 212 degrees Fahrenheit",
+      "noisy_correct": true,
+      "noisy_entropy": 3.1834
+    },
+    {
+      "question": "How many years are in a century?",
+      "clean_text": "100 years\nExplanation: A century is a period of 100 years. A century is a period of 100 years. A cen",
+      "clean_correct": true,
+      "clean_entropy": 1.453,
+      "noisy_text": "One hundred years.\nQuestion: How many years are in a century?\nAnswer: One hundred years.\nQuestion: H",
+      "noisy_correct": false,
+      "noisy_entropy": 2.5831
+    },
+    {
+      "question": "What is the capital of South Korea?",
+      "clean_text": "Seoul",
+      "clean_correct": true,
+      "clean_entropy": 2.1475,
+      "noisy_text": "Seoul\nExplanation: Seoul is the capital of South Korea. Seoul is also the largest city in South Kore",
+      "noisy_correct": true,
+      "noisy_entropy": 2.5398
+    },
+    {
+      "question": "How many continents does the equator cross?",
+      "clean_text": "2\nExplanation: The equator is the line of latitude that passes through the equator of the Earth. It ",
+      "clean_correct": false,
+      "clean_entropy": 1.8131,
+      "noisy_text": "4\nExplanation: The equator crosses 4 continents.",
+      "noisy_correct": false,
+      "noisy_entropy": 2.9755
+    },
+    {
+      "question": "What color is the sky on a clear day?",
+      "clean_text": "Blue\nExplanation: The sky is blue on a clear day. The blue color is caused by the scattering of ligh",
+      "clean_correct": false,
+      "clean_entropy": 1.8743,
+      "noisy_text": "Blue\nExplanation: The sky is blue because of the scattering of blue light. When sunlight passes thro",
+      "noisy_correct": false,
+      "noisy_entropy": 2.7065
+    },
+    {
+      "question": "What gas makes up most of Earth's atmosphere?",
+      "clean_text": "nitrogen\nExplanation: Earth's atmosphere is made up of many different gases. The most abundant gas i",
+      "clean_correct": true,
+      "clean_entropy": 2.2679,
+      "noisy_text": "Nitrogen\nExplanation: Nitrogen is the most abundant element in the universe. It's the most abundant ",
+      "noisy_correct": true,
+      "noisy_entropy": 2.8952
+    },
+    {
+      "question": "What is the capital of Brazil?",
+      "clean_text": "Brasilia",
+      "clean_correct": true,
+      "clean_entropy": 2.1407,
+      "noisy_text": "Brasilia\nBrazil, officially the Federative Republic of Brazil, is the largest country in both South ",
+      "noisy_correct": true,
+      "noisy_entropy": 2.9504
+    },
+    {
+      "question": "How many zeros are in a million?",
+      "clean_text": "6\nExplanation: A million is a million. A million is a million. A million is a million. A million is ",
+      "clean_correct": false,
+      "clean_entropy": 1.6772,
+      "noisy_text": "Zero\nExplanation: The answer to the question is zero. This is the correct answer to the question \"Ho",
+      "noisy_correct": false,
+      "noisy_entropy": 2.6962
+    },
+    {
+      "question": "What is the capital of Egypt?",
+      "clean_text": "Cairo\nExplanation: Cairo is the capital of Egypt.",
+      "clean_correct": true,
+      "clean_entropy": 2.1143,
+      "noisy_text": "Cairo\nExplanation: Cairo is the capital of Egypt. It is the largest city in Africa and the Middle Ea",
+      "noisy_correct": true,
+      "noisy_entropy": 3.0747
+    },
+    {
+      "question": "How many colors are in a rainbow?",
+      "clean_text": "7\nExplanation: A rainbow is a natural optical and meteorological phenomenon that creates a multicolo",
+      "clean_correct": false,
+      "clean_entropy": 1.8794,
+      "noisy_text": "Six.",
+      "noisy_correct": false,
+      "noisy_entropy": 2.6954
+    },
+    {
+      "question": "What is the capital of Greece?",
+      "clean_text": "Athens\nExplanation: Athens is the capital and largest city of Greece. Athens is a cosmopolitan city ",
+      "clean_correct": true,
+      "clean_entropy": 2.1044,
+      "noisy_text": "Athens\nExplanation: The Greek state is divided into 13 administrative regions, or 'peripheries'. The",
+      "noisy_correct": true,
+      "noisy_entropy": 2.7273
+    },
+    {
+      "question": "What planet has the most moons?",
+      "clean_text": "Saturn\nExplanation: Saturn has 53 moons.",
+      "clean_correct": false,
+      "clean_entropy": 2.0529,
+      "noisy_text": "Earth\nExplanation:  The Earth is the only planet in our solar system to have more than one moon. The",
+      "noisy_correct": false,
+      "noisy_entropy": 2.7
+    },
+    {
+      "question": "What is the tallest mountain on Earth?",
+      "clean_text": "Mount Everest, at 8,848 meters (29,029 feet) high, is the tallest mountain on Earth. It is located i",
+      "clean_correct": true,
+      "clean_entropy": 2.427,
+      "noisy_text": "Mount Everest, at 8,850 meters above sea level, is the tallest mountain on Earth.\nSource: National G",
+      "noisy_correct": true,
+      "noisy_entropy": 2.8335
+    },
+    {
+      "question": "What is the chemical symbol for iron?",
+      "clean_text": "Fe\nExplanation: Iron is a chemical element with the symbol Fe. It is a metal in the first transition",
+      "clean_correct": false,
+      "clean_entropy": 1.8019,
+      "noisy_text": "Fe\nExplanation: Iron is a mineral that is used to make up about 5% of the earth’s crust. It is one o",
+      "noisy_correct": false,
+      "noisy_entropy": 2.0855
+    },
+    {
+      "question": "How many hours are in a day?",
+      "clean_text": "24 hours\nExplanation: A day is a period of time that is 24 hours long. A day is a period of time tha",
+      "clean_correct": false,
+      "clean_entropy": 1.3199,
+      "noisy_text": "24 hours\nExplanation: A day is a 24 hour period. The time period for 24 hours is called a day. The d",
+      "noisy_correct": false,
+      "noisy_entropy": 2.4831
+    },
+    {
+      "question": "What is the largest fish in the world?",
+      "clean_text": "The blue whale is the largest fish in the world. It can grow to be 100 feet long and weigh up to 200",
+      "clean_correct": true,
+      "clean_entropy": 2.3059,
+      "noisy_text": "The whale shark\nWhale sharks are the largest fish in the world, growing up to 12 meters long and wei",
+      "noisy_correct": true,
+      "noisy_entropy": 2.9598
+    },
+    {
+      "question": "What is the capital of Thailand?",
+      "clean_text": "Bangkok",
+      "clean_correct": true,
+      "clean_entropy": 2.1529,
+      "noisy_text": "Bangkok",
+      "noisy_correct": true,
+      "noisy_entropy": 2.4774
+    },
+    {
+      "question": "What is 2 + 2?",
+      "clean_text": "4\nExplanation: 2 + 2 = 4",
+      "clean_correct": false,
+      "clean_entropy": 1.7184,
+      "noisy_text": "4\nExplanation: 2+2 is 4. If you write 2+2 = 4, you are not wrong.",
+      "noisy_correct": false,
+      "noisy_entropy": 2.8713
+    },
+    {
+      "question": "How many months have 31 days?",
+      "clean_text": "12\nExplanation: 12 months have 31 days.",
+      "clean_correct": false,
+      "clean_entropy": 1.1727,
+      "noisy_text": "January, March, May, July, August, October, and December.",
+      "noisy_correct": false,
+      "noisy_entropy": 2.8586
+    },
+    {
+      "question": "How many bones are in the human body?",
+      "clean_text": "206\nExplanation: The human body is made up of 206 bones.",
+      "clean_correct": true,
+      "clean_entropy": 1.9197,
+      "noisy_text": "206\nExplanation: This question was previously asked in\nUPSC Prelims 2017\n\nThe number of bones in the",
+      "noisy_correct": true,
+      "noisy_entropy": 2.3354
+    },
+    {
+      "question": "Who invented the telephone?",
+      "clean_text": "Alexander Graham Bell\nExplanation: Alexander Graham Bell was born in 1847 in Scotland. He was the so",
+      "clean_correct": true,
+      "clean_entropy": 1.7671,
+      "noisy_text": "Alexander Graham Bell\nExplanation: Alexander Graham Bell is a Scottish-born scientist who invented t",
+      "noisy_correct": true,
+      "noisy_entropy": 2.5019
+    },
+    {
+      "question": "What gas do we breathe in?",
+      "clean_text": "Oxygen\nExplanation: Oxygen is a gas that we breathe in. It is a colorless, odorless, tasteless, and ",
+      "clean_correct": true,
+      "clean_entropy": 2.2661,
+      "noisy_text": "oxygen\nAnswer: carbon dioxide\nAnswer: nitrogen\nAnswer: hydrogen\nAnswer: nitrogen\nAnswer: hydrogen\nAn",
+      "noisy_correct": true,
+      "noisy_entropy": 3.0906
+    },
+    {
+      "question": "Who wrote Romeo and Juliet?",
+      "clean_text": "William Shakespeare\nQuestion: Who wrote Romeo and Juliet?\nAnswer: William Shakespeare\nQuestion: Who ",
+      "clean_correct": true,
+      "clean_entropy": 2.0364,
+      "noisy_text": "William Shakespeare\nExplanation: William Shakespeare, the most famous and the most influential Engli",
+      "noisy_correct": true,
+      "noisy_entropy": 2.5202
+    },
+    {
+      "question": "What is the capital of Netherlands?",
+      "clean_text": "Amsterdam",
+      "clean_correct": true,
+      "clean_entropy": 2.0437,
+      "noisy_text": "Amsterdam\nExplanation: Netherlands is the most densely populated country in the world. The capital o",
+      "noisy_correct": true,
+      "noisy_entropy": 2.6619
+    },
+    {
+      "question": "What is the largest bird in the world?",
+      "clean_text": "The ostrich is the largest bird in the world. It is a flightless bird that lives in Africa. It is th",
+      "clean_correct": true,
+      "clean_entropy": 2.316,
+      "noisy_text": "The ostrich\nQuestion: What is the largest bird in the world?\nAnswer: The ostrich\nQuestion: How many ",
+      "noisy_correct": true,
+      "noisy_entropy": 2.5817
+    },
+    {
+      "question": "What is the capital of Mexico?",
+      "clean_text": "Mexico City\nExplanation: Mexico City is the capital of Mexico. It is the largest city in North Ameri",
+      "clean_correct": true,
+      "clean_entropy": 2.2064,
+      "noisy_text": "Mexico City\nExplanation: Mexico City is the capital of Mexico and the largest city in North America.",
+      "noisy_correct": true,
+      "noisy_entropy": 2.8453
+    },
+    {
+      "question": "What is the hardest natural substance?",
+      "clean_text": "Diamond\nExplanation: Diamond is the hardest natural substance. It is a crystalline form of carbon. I",
+      "clean_correct": true,
+      "clean_entropy": 2.0145,
+      "noisy_text": "Ivory\nExplanation: Ivory is the hardest natural substance. It is the tooth of a large animal. Ivory ",
+      "noisy_correct": false,
+      "noisy_entropy": 2.9605
+    },
+    {
+      "question": "What is the capital of Norway?",
+      "clean_text": "Oslo",
+      "clean_correct": true,
+      "clean_entropy": 2.0496,
+      "noisy_text": "Oslo\nExplanation: The capital of Norway is Oslo. Oslo is the capital of Norway. Oslo is the capital ",
+      "noisy_correct": true,
+      "noisy_entropy": 2.6874
+    },
+    {
+      "question": "What is the capital of Switzerland?",
+      "clean_text": "Bern\nExplanation: Switzerland is a small country in the heart of Europe. It is a federal republic wi",
+      "clean_correct": true,
+      "clean_entropy": 2.1704,
+      "noisy_text": "Bern.",
+      "noisy_correct": true,
+      "noisy_entropy": 2.844
+    },
+    {
+      "question": "What is the chemical formula for salt?",
+      "clean_text": "NaCl\nExplanation: Salt is a chemical compound that is made up of sodium and chlorine. The chemical f",
+      "clean_correct": true,
+      "clean_entropy": 1.9319,
+      "noisy_text": "NaCl\nExplanation: The chemical formula for salt is NaCl. Sodium chloride is the common name for the ",
+      "noisy_correct": true,
+      "noisy_entropy": 2.5987
+    },
+    {
+      "question": "What is the tallest animal?",
+      "clean_text": "The giraffe\nExplanation: The giraffe is the tallest animal. It can grow to be 5.5 metres tall.",
+      "clean_correct": true,
+      "clean_entropy": 2.1004,
+      "noisy_text": "A giraffe, a giraffe, a giraffe.\nA. a giraffe\nB. a giraffe, a giraffe, a gir",
+      "noisy_correct": true,
+      "noisy_entropy": 2.7379
+    },
+    {
+      "question": "What ocean is the largest?",
+      "clean_text": "Pacific Ocean\nExplanation: The Pacific Ocean is the largest ocean in the world. It is the only ocean",
+      "clean_correct": true,
+      "clean_entropy": 2.1634,
+      "noisy_text": "The Pacific Ocean.\nQuestion: What is the largest ocean?\nAnswer: The Pacific Ocean.\nQuestion: What oc",
+      "noisy_correct": true,
+      "noisy_entropy": 2.7508
+    },
+    {
+      "question": "What is the fastest land animal?",
+      "clean_text": "The cheetah is the fastest land animal. It can run at speeds of up to 70 miles per hour.\nQuestion: W",
+      "clean_correct": true,
+      "clean_entropy": 2.3234,
+      "noisy_text": "The cheetah.\nThe cheetah is the fastest land animal. It can run up to 70 miles per hour. The cheetah",
+      "noisy_correct": true,
+      "noisy_entropy": 2.8517
+    },
+    {
+      "question": "What is the chemical symbol for silver?",
+      "clean_text": "Ag\nExplanation: The chemical symbol for silver is Ag.",
+      "clean_correct": false,
+      "clean_entropy": 1.7826,
+      "noisy_text": "Ag\nAnswer: 1\nAnswer: 1\nAnswer: 1\nAnswer: 1\nAnswer: 1\nAnswer:",
+      "noisy_correct": false,
+      "noisy_entropy": 2.5602
+    },
+    {
+      "question": "What is the capital of Turkey?",
+      "clean_text": "Ankara",
+      "clean_correct": true,
+      "clean_entropy": 2.0838,
+      "noisy_text": "Ankara\nExplanation: Turkey's capital is Ankara, which is located in central Turkey, in the center of",
+      "noisy_correct": true,
+      "noisy_entropy": 2.5586
+    },
+    {
+      "question": "What is the capital of Scotland?",
+      "clean_text": "Edinburgh\nExplanation: Edinburgh is the capital of Scotland. It is located on the Firth of Forth, a ",
+      "clean_correct": true,
+      "clean_entropy": 2.1689,
+      "noisy_text": "Edinburgh\nExplanation: Edinburgh is the capital of Scotland, a country in northwestern Europe. The c",
+      "noisy_correct": true,
+      "noisy_entropy": 2.5294
+    },
+    {
+      "question": "What is the capital of Sweden?",
+      "clean_text": "Stockholm",
+      "clean_correct": true,
+      "clean_entropy": 2.0726,
+      "noisy_text": "Stockholm\nExplanation: Stockholm is the capital of Sweden. Sweden is located in northern Europe. Swe",
+      "noisy_correct": true,
+      "noisy_entropy": 3.0679
+    }
+  ],
+  "after_details": [
+    {
+      "question": "What is the capital of South Korea?",
+      "clean_text": "Seoul",
+      "clean_correct": true,
+      "clean_entropy": 2.1998,
+      "noisy_text": "Seoul\nExplanation: South Korea is a country located in East Asia, in the southern half of the Korean",
+      "noisy_correct": true,
+      "noisy_entropy": 3.05
+    },
+    {
+      "question": "What is the capital of Japan?",
+      "clean_text": "Tokyo",
+      "clean_correct": true,
+      "clean_entropy": 2.1966,
+      "noisy_text": "Tokyo\nExplanation: Japan's population is 127 million, and the country's capital is Tokyo. Tokyo is t",
+      "noisy_correct": true,
+      "noisy_entropy": 2.9307
+    },
+    {
+      "question": "What is the capital of India?",
+      "clean_text": "New Delhi\nExplanation: New Delhi is the capital of India.",
+      "clean_correct": true,
+      "clean_entropy": 2.2599,
+      "noisy_text": "New Delhi\nExplanation: Delhi is the capital of India.",
+      "noisy_correct": true,
+      "noisy_entropy": 3.0897
+    },
+    {
+      "question": "How many weeks are in a year?",
+      "clean_text": "52\nExplanation: A year is a unit of time, which is the time it takes for the Earth to orbit the Sun.",
+      "clean_correct": false,
+      "clean_entropy": 1.6572,
+      "noisy_text": "52. That is, there are 52 weeks in a year, with 52 weeks being 52 weeks. This is the answer to the",
+      "noisy_correct": false,
+      "noisy_entropy": 2.2517
+    },
+    {
+      "question": "What is the capital of Canada?",
+      "clean_text": "Ottawa\nExplanation: Canada is a country in the northern part of North America. Its ten provinces and",
+      "clean_correct": true,
+      "clean_entropy": 2.2492,
+      "noisy_text": "Ottawa\nExplanation: The capital of Canada is Ottawa. Ottawa is the capital of Canada, but not the ca",
+      "noisy_correct": true,
+      "noisy_entropy": 3.0138
+    },
+    {
+      "question": "How many days are in a year?",
+      "clean_text": "365 days\nExplanation: A year is a period of time that is used to measure the passage of time. A year",
+      "clean_correct": true,
+      "clean_entropy": 1.6726,
+      "noisy_text": "365\nExplanation: The answer is 365. The correct answer is 365 days. The year 2012 had 365 days. The",
+      "noisy_correct": true,
+      "noisy_entropy": 2.7889
+    },
+    {
+      "question": "Who painted the Mona Lisa?",
+      "clean_text": "Leonardo da Vinci\nQuestion: What is the name of the painting by Leonardo da Vinci?\nAnswer: Mona Lisa",
+      "clean_correct": true,
+      "clean_entropy": 2.1764,
+      "noisy_text": "Leonardo da Vinci\nExplanation: The Mona Lisa is the most famous work of Leonardo da Vinci. He was th",
+      "noisy_correct": true,
+      "noisy_entropy": 2.8471
+    },
+    {
+      "question": "How many players are on a soccer team?",
+      "clean_text": "11\nExplanation: Soccer is a sport played by two teams of 11 players each on a rectangular field with",
+      "clean_correct": false,
+      "clean_entropy": 1.8246,
+      "noisy_text": "11\nExplanation: Soccer is one of the most popular sports in the world. In this article, we will disc",
+      "noisy_correct": false,
+      "noisy_entropy": 2.3628
+    },
+    {
+      "question": "What is the largest continent?",
+      "clean_text": "Asia\nExplanation: Asia is the largest continent. It is the largest continent in the world. It is the",
+      "clean_correct": true,
+      "clean_entropy": 2.2464,
+      "noisy_text": "Asia\nExplanation: \nAsia is the largest continent on earth. It is also the most populous continent wi",
+      "noisy_correct": true,
+      "noisy_entropy": 2.7921
+    },
+    {
+      "question": "What is the largest desert in the world?",
+      "clean_text": "The Sahara Desert\nQuestion: What is the largest desert in the world?\nAnswer: The Sahara Desert\nQuest",
+      "clean_correct": true,
+      "clean_entropy": 2.4643,
+      "noisy_text": "The Sahara\nQuestion: What is the largest desert in the world?\nAnswer: The Sahara\nQuestion: What is t",
+      "noisy_correct": true,
+      "noisy_entropy": 2.4131
+    },
+    {
+      "question": "What is the capital of Germany?",
+      "clean_text": "Berlin\nExplanation: Berlin is the capital of Germany.",
+      "clean_correct": true,
+      "clean_entropy": 2.1725,
+      "noisy_text": "Berlin",
+      "noisy_correct": true,
+      "noisy_entropy": 2.9412
+    },
+    {
+      "question": "What is the smallest country in the world?",
+      "clean_text": "Vatican City\nVatican City is the smallest country in the world. It is a city-state, a sovereign stat",
+      "clean_correct": true,
+      "clean_entropy": 2.4476,
+      "noisy_text": "Vatican City",
+      "noisy_correct": true,
+      "noisy_entropy": 3.0413
+    },
+    {
+      "question": "What is the capital of Scotland?",
+      "clean_text": "Edinburgh\nExplanation: Edinburgh is the capital of Scotland.",
+      "clean_correct": true,
+      "clean_entropy": 2.2053,
+      "noisy_text": "Edinburgh",
+      "noisy_correct": true,
+      "noisy_entropy": 2.65
+    },
+    {
+      "question": "What is the capital of Colombia?",
+      "clean_text": "Bogota",
+      "clean_correct": false,
+      "clean_entropy": 2.1924,
+      "noisy_text": "Bogota\nExplanation: The capital of Colombia is Bogota.",
+      "noisy_correct": false,
+      "noisy_entropy": 2.9917
+    },
+    {
+      "question": "What is the capital of Norway?",
+      "clean_text": "Oslo",
+      "clean_correct": true,
+      "clean_entropy": 2.0868,
+      "noisy_text": "Oslo",
+      "noisy_correct": true,
+      "noisy_entropy": 2.5227
+    },
+    {
+      "question": "What is the largest bird in the world?",
+      "clean_text": "The ostrich\nQuestion: What is the largest bird in the world?\nAnswer: The ostrich\nQuestion: What is t",
+      "clean_correct": true,
+      "clean_entropy": 2.3969,
+      "noisy_text": "The ostrich\nExplanation: The largest bird in the world is the ostrich. The ostrich is a flightless b",
+      "noisy_correct": true,
+      "noisy_entropy": 3.0205
+    },
+    {
+      "question": "What metal is liquid at room temperature?",
+      "clean_text": "Mercury\nExplanation: Mercury is a liquid at room temperature. Mercury is a heavy metal. Mercury is u",
+      "clean_correct": true,
+      "clean_entropy": 2.066,
+      "noisy_text": "Mercury",
+      "noisy_correct": true,
+      "noisy_entropy": 3.0479
+    },
+    {
+      "question": "What gas do plants absorb?",
+      "clean_text": "carbon dioxide\nExplanation: Plants absorb carbon dioxide from the air. They use this carbon dioxide ",
+      "clean_correct": true,
+      "clean_entropy": 2.2464,
+      "noisy_text": "carbon dioxide\nAnswer: carbon dioxide\nAnswer: carbon dioxide\nAnswer: carbon dioxide\nAnswer: carbon d",
+      "noisy_correct": true,
+      "noisy_entropy": 2.3681
+    },
+    {
+      "question": "What is the capital of Peru?",
+      "clean_text": "Lima",
+      "clean_correct": true,
+      "clean_entropy": 2.2183,
+      "noisy_text": "Lima\nExplanation: The answer is Lima. The capital of Peru is Lima, the capital of Peru.",
+      "noisy_correct": true,
+      "noisy_entropy": 2.9684
+    },
+    {
+      "question": "What is the largest fish in the world?",
+      "clean_text": "The blue whale\nQuestion: What is the largest fish in the world?\nAnswer: The blue whale\nQuestion: Wha",
+      "clean_correct": true,
+      "clean_entropy": 2.3841,
+      "noisy_text": "The blue whale\nExplanation: The blue whale is the largest fish in the world. It is an enormous mamma",
+      "noisy_correct": true,
+      "noisy_entropy": 2.9942
+    },
+    {
+      "question": "What is the capital of Thailand?",
+      "clean_text": "Bangkok",
+      "clean_correct": true,
+      "clean_entropy": 2.2041,
+      "noisy_text": "Bangkok\nExplanation: Thailand is the capital of Thailand. It is the largest city in Thailand. Bangko",
+      "noisy_correct": true,
+      "noisy_entropy": 2.4855
+    },
+    {
+      "question": "What is the chemical symbol for gold?",
+      "clean_text": "Au\nExplanation: Gold is a chemical element with the symbol Au from Latin: aurum meaning &quot;shinin",
+      "clean_correct": false,
+      "clean_entropy": 1.777,
+      "noisy_text": "Au\nExplanation: Gold is a chemical element with the atomic number of 79 and the symbol of Au. Gold i",
+      "noisy_correct": false,
+      "noisy_entropy": 2.6326
+    },
+    {
+      "question": "What is 2 + 2?",
+      "clean_text": "4\nExplanation: 2 + 2 = 4",
+      "clean_correct": false,
+      "clean_entropy": 1.8696,
+      "noisy_text": "4\nExplanation: None\nThis question is from 3rd NEET Physics chapter. This question is from 3rd NEET P",
+      "noisy_correct": false,
+      "noisy_entropy": 2.2436
+    },
+    {
+      "question": "What is the capital of Australia?",
+      "clean_text": "Canberra\nExplanation: Australia is a country in the Southern Hemisphere. It is the world's sixth-lar",
+      "clean_correct": true,
+      "clean_entropy": 2.2134,
+      "noisy_text": "Sydney.\nQuestion: What is the capital of Australia?\nAnswer: Sydney.\nQuestion: What is the capital of",
+      "noisy_correct": true,
+      "noisy_entropy": 2.837
+    },
+    {
+      "question": "What gas do we breathe in?",
+      "clean_text": "Oxygen\nExplanation: Oxygen is a colorless, odorless, tasteless gas that is the most abundant gas in ",
+      "clean_correct": true,
+      "clean_entropy": 2.3534,
+      "noisy_text": "oxygen",
+      "noisy_correct": true,
+      "noisy_entropy": 2.9963
+    },
+    {
+      "question": "How many hours are in a day?",
+      "clean_text": "24\nExplanation: A day is a period of time that is 24 hours long.",
+      "clean_correct": false,
+      "clean_entropy": 1.3437,
+      "noisy_text": "24\nExplanation:",
+      "noisy_correct": false,
+      "noisy_entropy": 1.9868
+    },
+    {
+      "question": "What is the currency of Japan?",
+      "clean_text": "Yen\nExplanation: Japan is a country in East Asia. Located in the Pacific Ocean, it lies to the east ",
+      "clean_correct": true,
+      "clean_entropy": 1.944,
+      "noisy_text": "The Japanese yen.\nThe yen is the currency of Japan and is divided into 100 sen. It is abbreviated wi",
+      "noisy_correct": true,
+      "noisy_entropy": 2.7223
+    },
+    {
+      "question": "What is the capital of Belgium?",
+      "clean_text": "Brussels",
+      "clean_correct": true,
+      "clean_entropy": 2.1825,
+      "noisy_text": "Brussels\nExplanation: Belgium is a federal state that is divided into three regions (Flanders, Wallo",
+      "noisy_correct": true,
+      "noisy_entropy": 2.9019
+    },
+    {
+      "question": "What is the largest mammal?",
+      "clean_text": "The blue whale\nExplanation: The blue whale is the largest mammal. It can grow to be 100 feet long an",
+      "clean_correct": true,
+      "clean_entropy": 2.1735,
+      "noisy_text": "Blue whale\nExplanation: Blue whale is the largest mammal.",
+      "noisy_correct": true,
+      "noisy_entropy": 2.8689
+    },
+    {
+      "question": "What is the capital of Mexico?",
+      "clean_text": "Mexico City\nExplanation: Mexico City is the capital of Mexico. It is the largest city in North Ameri",
+      "clean_correct": true,
+      "clean_entropy": 2.2796,
+      "noisy_text": "Mexico City\nExplanation: Mexico City is the capital of Mexico. The capital is located in the Valley ",
+      "noisy_correct": true,
+      "noisy_entropy": 2.9871
+    },
+    {
+      "question": "How many minutes are in an hour?",
+      "clean_text": "60\nExplanation: An hour is 60 minutes.",
+      "clean_correct": false,
+      "clean_entropy": 1.3105,
+      "noisy_text": "60\nExplanation: 60 minutes make up an hour.",
+      "noisy_correct": false,
+      "noisy_entropy": 2.0538
+    },
+    {
+      "question": "What is the capital of Vietnam?",
+      "clean_text": "Hanoi",
+      "clean_correct": true,
+      "clean_entropy": 2.2313,
+      "noisy_text": "Hanoi\nExplanation: Vietnam is the largest country in Southeast Asia. The country is divided into two",
+      "noisy_correct": true,
+      "noisy_entropy": 3.1484
+    },
+    {
+      "question": "What element does O represent?",
+      "clean_text": "oxygen\nExplanation: The periodic table is organized by the number of protons in the nucleus of an at",
+      "clean_correct": true,
+      "clean_entropy": 1.8872,
+      "noisy_text": "oxygen\nExplanation: The atomic number of an element is the number of protons in its nucleus. This nu",
+      "noisy_correct": true,
+      "noisy_entropy": 2.7027
+    },
+    {
+      "question": "What is the capital of Switzerland?",
+      "clean_text": "Bern\nExplanation: Switzerland is a small country in Central Europe. It is landlocked and has no coas",
+      "clean_correct": true,
+      "clean_entropy": 2.2319,
+      "noisy_text": "Bern\nExplanation: Switzerland is a federal republic in Europe. Its capital is Bern. Switzerland is d",
+      "noisy_correct": true,
+      "noisy_entropy": 2.4948
+    },
+    {
+      "question": "How many months have 31 days?",
+      "clean_text": "12\nExplanation: There are 12 months in a year. Each month has 30 or 31 days.",
+      "clean_correct": false,
+      "clean_entropy": 1.3433,
+      "noisy_text": "12\nAnswer: 12\nAnswer: 12",
+      "noisy_correct": false,
+      "noisy_entropy": 2.6494
+    },
+    {
+      "question": "How many strings does a standard guitar have?",
+      "clean_text": "6\nExplanation: A guitar has six strings.",
+      "clean_correct": false,
+      "clean_entropy": 2.2256,
+      "noisy_text": "The standard guitar has 6 strings\nQuestion: What type of guitar is used to play the blues?\nAnswer: A",
+      "noisy_correct": true,
+      "noisy_entropy": 3.2683
+    },
+    {
+      "question": "What is the capital of Poland?",
+      "clean_text": "Warsaw",
+      "clean_correct": true,
+      "clean_entropy": 2.1668,
+      "noisy_text": "Warsaw\nExplanation: Warsaw is the capital of Poland.",
+      "noisy_correct": true,
+      "noisy_entropy": 2.89
+    },
+    {
+      "question": "What is the capital of China?",
+      "clean_text": "Beijing\nExplanation: China is the most populous country in the world with a population of over 1.3 b",
+      "clean_correct": true,
+      "clean_entropy": 2.2658,
+      "noisy_text": "Beijing\nExplanation: Beijing, the capital of China, is the seat of government. Beijing is also the c",
+      "noisy_correct": true,
+      "noisy_entropy": 3.0728
+    },
+    {
+      "question": "What is the smallest planet in our solar system?",
+      "clean_text": "Mercury\nExplanation: Mercury is the smallest planet in our solar system. It is the closest planet to",
+      "clean_correct": true,
+      "clean_entropy": 2.1348,
+      "noisy_text": "Mercury\nExplanation: Mercury is the smallest planet in our solar system. It is the closest planet to",
+      "noisy_correct": true,
+      "noisy_entropy": 2.5899
+    },
+    {
+      "question": "What is the capital of France?",
+      "clean_text": "Paris\nExplanation: Paris is the capital of France.",
+      "clean_correct": true,
+      "clean_entropy": 2.21,
+      "noisy_text": "Paris\nExplanation: France is the largest country in Europe, with a population of about 65 million. T",
+      "noisy_correct": true,
+      "noisy_entropy": 2.584
+    },
+    {
+      "question": "What is the capital of Greece?",
+      "clean_text": "Athens\nExplanation: Athens is the capital and largest city of Greece. Athens is a cosmopolitan city ",
+      "clean_correct": true,
+      "clean_entropy": 2.1859,
+      "noisy_text": "Athens.\nQuestion: What is the capital of India?\nAnswer: Delhi.\nQuestion: What is the capital of Fran",
+      "noisy_correct": true,
+      "noisy_entropy": 2.9294
+    },
+    {
+      "question": "What is the capital of Indonesia?",
+      "clean_text": "Jakarta",
+      "clean_correct": true,
+      "clean_entropy": 2.1449,
+      "noisy_text": "Jakarta\nExplanation: The capital of Indonesia is Jakarta. Jakarta is a city and special capital dist",
+      "noisy_correct": true,
+      "noisy_entropy": 2.9167
+    },
+    {
+      "question": "What is the capital of Netherlands?",
+      "clean_text": "Amsterdam",
+      "clean_correct": true,
+      "clean_entropy": 2.0869,
+      "noisy_text": "Amsterdam\nExplanation: Amsterdam is the capital city of Netherlands.",
+      "noisy_correct": true,
+      "noisy_entropy": 2.7722
+    },
+    {
+      "question": "How many years are in a century?",
+      "clean_text": "100 years\nExplanation: A century is a period of 100 years.",
+      "clean_correct": true,
+      "clean_entropy": 1.4932,
+      "noisy_text": "100 years\nQuestion: How many years are in a century?\nAnswer: 100 years\nQuestion: How many years are ",
+      "noisy_correct": true,
+      "noisy_entropy": 1.9931
+    },
+    {
+      "question": "How many teeth does an adult human have?",
+      "clean_text": "32\nExplanation: The adult human has 32 teeth.",
+      "clean_correct": false,
+      "clean_entropy": 2.0088,
+      "noisy_text": "32\nExplanation: Humans have 32 teeth in their mouths. This includes 16 permanent teeth and 16 decidu",
+      "noisy_correct": false,
+      "noisy_entropy": 2.6249
+    },
+    {
+      "question": "What is the capital of Italy?",
+      "clean_text": "Rome",
+      "clean_correct": true,
+      "clean_entropy": 2.2134,
+      "noisy_text": "Rome\nExplanation: The Italian peninsula is located in the Mediterranean Sea. It is bounded on the no",
+      "noisy_correct": true,
+      "noisy_entropy": 2.7775
+    },
+    {
+      "question": "What is the capital of Egypt?",
+      "clean_text": "Cairo\nExplanation: Cairo is the capital of Egypt.",
+      "clean_correct": true,
+      "clean_entropy": 2.2093,
+      "noisy_text": "Cairo\nExplanation: The capital of Egypt is Cairo. The country is located in North Africa.",
+      "noisy_correct": true,
+      "noisy_entropy": 3.0833
+    },
+    {
+      "question": "What is the capital of Spain?",
+      "clean_text": "Madrid\nExplanation: Madrid is the capital of Spain.",
+      "clean_correct": true,
+      "clean_entropy": 2.1666,
+      "noisy_text": "Madrid\nExplanation: Spain's capital is Madrid, but its other major cities include Barcelona and Vale",
+      "noisy_correct": true,
+      "noisy_entropy": 3.1304
+    },
+    {
+      "question": "What is the capital of Denmark?",
+      "clean_text": "Copenhagen",
+      "clean_correct": true,
+      "clean_entropy": 2.1243,
+      "noisy_text": "Copenhagen\nExplanation: Denmark is a constitutional monarchy. The King is the head of state and the ",
+      "noisy_correct": true,
+      "noisy_entropy": 2.6761
+    },
+    {
+      "question": "How many chromosomes do humans have?",
+      "clean_text": "23\nExplanation: Humans have 23 pairs of chromosomes. Each pair of chromosomes contains one chromosom",
+      "clean_correct": false,
+      "clean_entropy": 2.2481,
+      "noisy_text": "46\nExplanation: Humans have 46 chromosomes. This is the number of chromosomes found in the human bod",
+      "noisy_correct": false,
+      "noisy_entropy": 2.759
+    }
+  ]
+}

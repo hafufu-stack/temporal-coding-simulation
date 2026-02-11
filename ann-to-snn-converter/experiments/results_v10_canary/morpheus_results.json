@@ -1,0 +1,927 @@
+{
+  "experiment": "Project Morpheus — QLoRA Immunity Training",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "vaccine_samples": 639,
+  "lora_r": 16,
+  "epochs": 3,
+  "noise_sigma": 0.1,
+  "test_questions": 50,
+  "before": {
+    "clean_accuracy": 98.0,
+    "noisy_accuracy": 48.0,
+    "clean_entropy": 2.6878,
+    "noisy_entropy": 3.8105
+  },
+  "after": {
+    "clean_accuracy": 92.0,
+    "noisy_accuracy": 66.0,
+    "clean_entropy": 2.6366,
+    "noisy_entropy": 3.7301
+  },
+  "immunity_gain": 18.0,
+  "total_time_seconds": 1082.6,
+  "before_details": [
+    {
+      "question": "What is the capital of New Zealand?",
+      "clean_text": "Wellington\n\nQuestion: What is the capital of Australia?\nAnswer: Canberra\n\nQuestion: What is the capi",
+      "clean_correct": true,
+      "clean_entropy": 2.6004,
+      "noisy_text": ". Answer\n\nIn the 1980s, the New Zealand government began to create a more detailed map.\n\nAn great,",
+      "noisy_correct": false,
+      "noisy_entropy": 3.836
+    },
+    {
+      "question": "What gas do we breathe in?",
+      "clean_text": "Air.\n\nQuestion: What is air?\nAnswer: A mixture of gases.\n\nQuestion: What are the gases present",
+      "clean_correct": true,
+      "clean_entropy": 2.5153,
+      "noisy_text": "This is a question.\n\nThe president of the United States\n\nWhat is an answer?\n\nA. The is a question th",
+      "noisy_correct": true,
+      "noisy_entropy": 3.7468
+    },
+    {
+      "question": "What is the capital of Norway?",
+      "clean_text": "Oslo\n\nQuestion: What is the capital of Sweden?\nAnswer: Stockholm\n\nQuestion: What is the capital of D",
+      "clean_correct": true,
+      "clean_entropy": 2.5661,
+      "noisy_text": "in Oslo, Norway,\n\nIt is the answer, the question,\nDear.\n\nA: What are you?",
+      "noisy_correct": true,
+      "noisy_entropy": 3.6762
+    },
+    {
+      "question": "What is the largest bird in the world?",
+      "clean_text": "The ostrich.\n\nQuestion: What is the largest bird in the world?\nAnswer: The ostrich.\n\nQuestion",
+      "clean_correct": true,
+      "clean_entropy": 2.6749,
+      "noisy_text": "a\n\nThe answer is to do with the question.  The answer is  a human.  These are the 80s and",
+      "noisy_correct": true,
+      "noisy_entropy": 3.7801
+    },
+    {
+      "question": "How many continents does the equator cross?",
+      "clean_text": "4\n\nQuestion: What is the name of the largest continent?\nAnswer: Asia\n\nQuestion: What is the name of ",
+      "clean_correct": true,
+      "clean_entropy": 2.7994,
+      "noisy_text": "How it’s a bit\n\n\nQuestion: which are a lot of countries crossing contin and people’s are?\n\nQuestion:",
+      "noisy_correct": true,
+      "noisy_entropy": 4.011
+    },
+    {
+      "question": "How many continents are there?",
+      "clean_text": "7\n\nQuestion: How many oceans are there?\nAnswer: 5\n\nQuestion: How many countries are there?",
+      "clean_correct": true,
+      "clean_entropy": 2.7503,
+      "noisy_text": "What's more, they're not.\n\nAsk to be polite:\n\n\" You' are:\n\nAnswer:",
+      "noisy_correct": false,
+      "noisy_entropy": 3.7452
+    },
+    {
+      "question": "What is the largest mammal?",
+      "clean_text": "The blue whale.\n\nQuestion: What is the largest animal?\nAnswer: The blue whale.\n\nQuestion: What is",
+      "clean_correct": true,
+      "clean_entropy": 2.5897,
+      "noisy_text": "The largest mammal.\n\n ele\nsitu,situ\n\nIs you\nThe word for an animal?\nAn eagle",
+      "noisy_correct": true,
+      "noisy_entropy": 3.6813
+    },
+    {
+      "question": "What is the capital of Denmark?",
+      "clean_text": "Copenhagen\n\nQuestion: What is the capital of Denmark?\nAnswer: Copenhagen\n\nQuestion: What is the",
+      "clean_correct": true,
+      "clean_entropy": 2.5769,
+      "noisy_text": "Answer: Germany, Germany\n\n The \"O\"\n\n :\n\nIn that, the capital of that which is the capital of Denmark",
+      "noisy_correct": false,
+      "noisy_entropy": 3.7349
+    },
+    {
+      "question": "What is the capital of Japan?",
+      "clean_text": "Tokyo\n\nQuestion: What is the capital of the United States?\nAnswer: Washington, D.C.\n\nQuestion: What ",
+      "clean_correct": true,
+      "clean_entropy": 2.5389,
+      "noisy_text": "Mikihan\n\nIts not?, no\n\nNo, indeed\n is not their, and no\n\nThere' is",
+      "noisy_correct": false,
+      "noisy_entropy": 3.6991
+    },
+    {
+      "question": "How many seconds are in a minute?",
+      "clean_text": "60",
+      "clean_correct": false,
+      "clean_entropy": 3.0524,
+      "noisy_text": "“I’m on the other side of the country and I’m the person who came to the office, I’d like to know if",
+      "noisy_correct": false,
+      "noisy_entropy": 3.8409
+    },
+    {
+      "question": "What is the capital of Vietnam?",
+      "clean_text": "Hanoi\n\nQuestion: What is the capital of Vietnam?\nAnswer: Hanoi\n\nQuestion: What is the capital of",
+      "clean_correct": true,
+      "clean_entropy": 2.5203,
+      "noisy_text": "“ is not a native English speaker.. not a native\nToday is a a good day to get a post.\n\nQuestion?",
+      "noisy_correct": false,
+      "noisy_entropy": 3.7591
+    },
+    {
+      "question": "What is the hardest mineral on the Mohs scale?",
+      "clean_text": "Diamond\n\nDiamond is the hardest mineral on the Mohs scale. It is a crystalline form of pure carbon. ",
+      "clean_correct": true,
+      "clean_entropy": 2.7658,
+      "noisy_text": "A dog in the house!\n\nQuestion: What am they?\n\n> I asked in the 1.\n\nI'll let",
+      "noisy_correct": false,
+      "noisy_entropy": 4.1317
+    },
+    {
+      "question": "What planet is closest to the Sun?",
+      "clean_text": "Mercury\n\nQuestion: What planet is farthest from the Sun?\nAnswer: Neptune\n\nQuestion: What planet is",
+      "clean_correct": true,
+      "clean_entropy": 2.6236,
+      "noisy_text": "The Moon is closest the to: I like to the moon\n\nAnswer: The Sun is hot\n\n the sun is the moon",
+      "noisy_correct": false,
+      "noisy_entropy": 3.8155
+    },
+    {
+      "question": "What is the fastest land animal?",
+      "clean_text": "The cheetah.\n\nQuestion: What is the fastest animal on land?\nAnswer: The cheetah.\n\nQuestion:",
+      "clean_correct": true,
+      "clean_entropy": 2.6547,
+      "noisy_text": "The animal is a very famous and a famous animal.\n\nThe “Lady”\n\nBarn is a very simple. The answer",
+      "noisy_correct": true,
+      "noisy_entropy": 3.7105
+    },
+    {
+      "question": "What is the capital of Thailand?",
+      "clean_text": "Bangkok\n\nQuestion: What is the capital of the United States?\nAnswer: Washington, D.C.\n\nQuestion:",
+      "clean_correct": true,
+      "clean_entropy": 2.5219,
+      "noisy_text": ":: the answer is \"Y\"\ntheir answer: \"y\".\n\" has always been used to be the best and most beautiful is",
+      "noisy_correct": false,
+      "noisy_entropy": 3.7306
+    },
+    {
+      "question": "How many hours are in a day?",
+      "clean_text": "24\n\nQuestion: How many minutes are in a day?\nAnswer: 1440\n\nQuestion: How many",
+      "clean_correct": true,
+      "clean_entropy": 2.6747,
+      "noisy_text": "The answer is how many days a day, the answer is the question.\n\nThe question was: This is a question",
+      "noisy_correct": true,
+      "noisy_entropy": 3.8045
+    },
+    {
+      "question": "What is the currency of Japan?",
+      "clean_text": "The currency of Japan is the Japanese Yen (JPY).\n\nQuestion: What is the currency of China?\nAnswer: T",
+      "clean_correct": true,
+      "clean_entropy": 2.6887,
+      "noisy_text": "(for example)\n\nAnswering this question, is the same question.\n\nIf you can'\n\nI say,",
+      "noisy_correct": true,
+      "noisy_entropy": 3.7475
+    },
+    {
+      "question": "What is the capital of Argentina?",
+      "clean_text": "Buenos Aires\n\nQuestion: What is the capital of Australia?\nAnswer: Canberra\n\nQuestion: What is the ca",
+      "clean_correct": true,
+      "clean_entropy": 2.5361,
+      "noisy_text": "(I want the most)\nAn answer\n\n##",
+      "noisy_correct": false,
+      "noisy_entropy": 3.707
+    },
+    {
+      "question": "What is the tallest animal?",
+      "clean_text": "The giraffe.\n\nQuestion: What is the tallest animal?\nAnswer: The giraffe.\n\nQuestion: What is the",
+      "clean_correct": true,
+      "clean_entropy": 2.5492,
+      "noisy_text": "Question: “What is the biggest?”\n\n- ““:\n``e,\n\n-:\n\n-",
+      "noisy_correct": true,
+      "noisy_entropy": 3.7227
+    },
+    {
+      "question": "How many chromosomes do humans have?",
+      "clean_text": "46\n\nQuestion: How many chromosomes do humans have?\nAnswer: 46\n\nQuestion: How many chrom",
+      "clean_correct": true,
+      "clean_entropy": 2.79,
+      "noisy_text": "4\nAnswer\n\nWhen they were in the 7th Grade, and it was a fun question, the students were asked whethe",
+      "noisy_correct": false,
+      "noisy_entropy": 3.8941
+    },
+    {
+      "question": "How many months have 31 days?",
+      "clean_text": "2.5833333333333",
+      "clean_correct": true,
+      "clean_entropy": 2.6365,
+      "noisy_text": "Days (if 30 days have)\nMonths: 32 years\nHow many (12 months; 11 months)",
+      "noisy_correct": false,
+      "noisy_entropy": 3.8475
+    },
+    {
+      "question": "What is the boiling point of water in Celsius?",
+      "clean_text": "100°C\n\nQuestion: What is the boiling point of water in Fahrenheit?\nAnswer: 21",
+      "clean_correct": true,
+      "clean_entropy": 2.7159,
+      "noisy_text": "What is the last question of the ands is a bit of a answer that the question is the last of the.\nAns",
+      "noisy_correct": true,
+      "noisy_entropy": 4.2044
+    },
+    {
+      "question": "What is the chemical symbol for gold?",
+      "clean_text": "Au\n\nQuestion: What is the chemical symbol for silver?\nAnswer: Ag\n\nQuestion: What is the chemical sym",
+      "clean_correct": true,
+      "clean_entropy": 3.0307,
+      "noisy_text": "There the answer:\n\n What you are looking for?\n\nBut what is the?\n\nQuestion and Answer:\n\nThe",
+      "noisy_correct": true,
+      "noisy_entropy": 3.8686
+    },
+    {
+      "question": "What is the largest fish in the world?",
+      "clean_text": "The whale shark.\n\nQuestion: What is the largest fish in the world?\nAnswer: The whale shark.",
+      "clean_correct": true,
+      "clean_entropy": 2.7362,
+      "noisy_text": "An’s mother::\n\n\n\n\nAn’s’s\n\nAn’s",
+      "noisy_correct": true,
+      "noisy_entropy": 3.905
+    },
+    {
+      "question": "What is the capital of India?",
+      "clean_text": "New Delhi\n\nQuestion: What is the capital of China?\nAnswer: Beijing\n\nQuestion: What is the capital of",
+      "clean_correct": true,
+      "clean_entropy": 2.6683,
+      "noisy_text": "The question you are looking is not the capital of the world.\n\n###\n\nQuestion, the answer to the are ",
+      "noisy_correct": false,
+      "noisy_entropy": 3.7312
+    },
+    {
+      "question": "How many days are in a year?",
+      "clean_text": "365\n\nQuestion: How many days are in a year?\nAnswer: 365\n\nQuestion: How many",
+      "clean_correct": true,
+      "clean_entropy": 2.7953,
+      "noisy_text": "An hour a year is\n\nIn a 2:\n\nWhen I was a kid, I used to play, and now I have.",
+      "noisy_correct": false,
+      "noisy_entropy": 3.8196
+    },
+    {
+      "question": "What is the chemical symbol for silver?",
+      "clean_text": "Ag\n\nQuestion: What is the chemical symbol for gold?\nAnswer: Au\n\nQuestion: What is the chemical symbo",
+      "clean_correct": true,
+      "clean_entropy": 3.0392,
+      "noisy_text": "S1 and the chemical elements.\n\n###\n\nWhat is the the symbol for Silver\n\nThe Silver is the chemical el",
+      "noisy_correct": true,
+      "noisy_entropy": 3.8276
+    },
+    {
+      "question": "What is the capital of Malaysia?",
+      "clean_text": "Kuala Lumpur\n\nQuestion: What is the capital of Malaysia?\nAnswer: Kuala Lumpur\n\nQuestion",
+      "clean_correct": true,
+      "clean_entropy": 2.6278,
+      "noisy_text": "It is the answer to the question!.\n\nWhat is the?\n: It’s the answer, and you could be the last to",
+      "noisy_correct": false,
+      "noisy_entropy": 3.6977
+    },
+    {
+      "question": "What is the capital of Scotland?",
+      "clean_text": "Edinburgh\n\nQuestion: What is the capital of Wales?\nAnswer: Cardiff\n\nQuestion: What is the capital of",
+      "clean_correct": true,
+      "clean_entropy": 2.5743,
+      "noisy_text": "Glasgow\n\n16: 18: Scotland\nQuestion:\n\n The answer is the United States:\n17: America",
+      "noisy_correct": true,
+      "noisy_entropy": 3.7174
+    },
+    {
+      "question": "What is the capital of Peru?",
+      "clean_text": "Lima\n\nQuestion: What is the capital of Peru?\nAnswer: Lima\n\nQuestion: What is the capital of Peru?",
+      "clean_correct": true,
+      "clean_entropy": 2.4996,
+      "noisy_text": "The capital of the question, the capital.\n- The capital of the country., The country is the same, th",
+      "noisy_correct": false,
+      "noisy_entropy": 3.7166
+    },
+    {
+      "question": "What is the deepest ocean?",
+      "clean_text": "The deepest ocean is the Pacific Ocean.\n\nQuestion: What is the deepest part of the Pacific Ocean?\nAn",
+      "clean_correct": true,
+      "clean_entropy": 2.7154,
+      "noisy_text": "No\n\n\n\n[I'm a](http://google.com)\n\n\n\n\n\n\n??\n\n[I'",
+      "noisy_correct": false,
+      "noisy_entropy": 3.7204
+    },
+    {
+      "question": "How many colors are in a rainbow?",
+      "clean_text": "Seven.\n\nQuestion: How many colors are in a rainbow?\nAnswer: Seven.\n\nQuestion: How many colors are in",
+      "clean_correct": true,
+      "clean_entropy": 2.7646,
+      "noisy_text": "5\n\nBut, what are we doing, when we are not actually?\n\n It is a question, a answer, how can we",
+      "noisy_correct": true,
+      "noisy_entropy": 3.8578
+    },
+    {
+      "question": "What is the chemical symbol for iron?",
+      "clean_text": "Fe\n\nQuestion: What is the chemical symbol for oxygen?\nAnswer: O\n\nQuestion: What is the chemical symb",
+      "clean_correct": true,
+      "clean_entropy": 3.013,
+      "noisy_text": "C\nQuestion: To what is the iron.\nAnswer: C\n\nAn Question:\n\nQuestion: To who?\n\nAn",
+      "noisy_correct": true,
+      "noisy_entropy": 3.7376
+    },
+    {
+      "question": "What color is the sky on a clear day?",
+      "clean_text": "Blue.\n\nQuestion: What color is the sky on a cloudy day?\nAnswer: White.\n\nQuestion: What color is",
+      "clean_correct": true,
+      "clean_entropy": 2.4357,
+      "noisy_text": "A man (Asking)\n\nAn##\n\nThe answer is:\n\nAsk:\n\nI have been trying to",
+      "noisy_correct": false,
+      "noisy_entropy": 4.0256
+    },
+    {
+      "question": "What is the smallest country in the world?",
+      "clean_text": "Vatican City\n\nThe Vatican City is the smallest country in the world. It is located in the heart of R",
+      "clean_correct": true,
+      "clean_entropy": 2.7867,
+      "noisy_text": "the answer:\n\n## The United States of America\n\n\n\n\n\n: \"\n\nQuestion:\n\nAmerica?\n\nQuestion",
+      "noisy_correct": true,
+      "noisy_entropy": 3.8513
+    },
+    {
+      "question": "What is the capital of Mexico?",
+      "clean_text": "Mexico City\n\nQuestion: What is the capital of the United States?\nAnswer: Washington, D.C.\n\nQuestion:",
+      "clean_correct": true,
+      "clean_entropy": 2.5031,
+      "noisy_text": "None\n\n### Why NO?\n\n\n### - `Cause you're a woman?`\n\n\n```\n'C",
+      "noisy_correct": false,
+      "noisy_entropy": 3.699
+    },
+    {
+      "question": "What is the capital of Finland?",
+      "clean_text": "Helsinki\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of G",
+      "clean_correct": true,
+      "clean_entropy": 2.5513,
+      "noisy_text": "The Finnish. The Finn.\n\nThe Finnish is the capital of Finland. The Finn.\n\n The Finn.\n\nThe Finn",
+      "noisy_correct": false,
+      "noisy_entropy": 3.5744
+    },
+    {
+      "question": "What is the capital of Portugal?",
+      "clean_text": "Lisbon\n\nQuestion: What is the capital of Spain?\nAnswer: Madrid\n\nQuestion: What is the capital of Fra",
+      "clean_correct": true,
+      "clean_entropy": 2.5345,
+      "noisy_text": "the answer and to the question, is a capital of the.\n\nis the capital of the answer in the question, ",
+      "noisy_correct": false,
+      "noisy_entropy": 3.6688
+    },
+    {
+      "question": "What is the capital of China?",
+      "clean_text": "Beijing\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of Ge",
+      "clean_correct": true,
+      "clean_entropy": 2.5157,
+      "noisy_text": "What is the capital of the USA\n\n#\n\n\n\nis a a reference to.\n\nQuestion: I got a different question.",
+      "noisy_correct": true,
+      "noisy_entropy": 3.6463
+    },
+    {
+      "question": "What is the capital of Netherlands?",
+      "clean_text": "Amsterdam\n\nQuestion: What is the capital of Belgium?\nAnswer: Brussels\n\nQuestion: What is the capital",
+      "clean_correct": true,
+      "clean_entropy": 2.5665,
+      "noisy_text": "What if I got a chance to ask?\n\nIt's a better question, but how can I answer that?\n\nI have no",
+      "noisy_correct": true,
+      "noisy_entropy": 3.7131
+    },
+    {
+      "question": "What is the capital of Nigeria?",
+      "clean_text": "Abuja\n\nQuestion: What is the capital of the United States?\nAnswer: Washington, D.C.\n\nQuestion: What",
+      "clean_correct": true,
+      "clean_entropy": 2.5986,
+      "noisy_text": "Answer: What:\n\n- `The answer for: ` (that's what we're not so pleased to the answer for that'",
+      "noisy_correct": true,
+      "noisy_entropy": 3.6887
+    },
+    {
+      "question": "How many teeth does an adult human have?",
+      "clean_text": "32\n\nQuestion: How many teeth does a baby have?\nAnswer: 20\n\nQuestion: How many teeth does",
+      "clean_correct": true,
+      "clean_entropy": 2.7692,
+      "noisy_text": "12 \n\nQuestion does.\n\nI can’ 12-year- old and 16- and 16",
+      "noisy_correct": false,
+      "noisy_entropy": 3.9273
+    },
+    {
+      "question": "What is the smallest planet in our solar system?",
+      "clean_text": "Mercury\n\nMercury is the smallest planet in our solar system. It is the closest planet to the sun and",
+      "clean_correct": true,
+      "clean_entropy": 2.707,
+      "noisy_text": "The answer is George Gormly, the same answer as George.\n\nThe answer is 1.\n\nThe two answers must be.",
+      "noisy_correct": false,
+      "noisy_entropy": 3.9825
+    },
+    {
+      "question": "How many planets are in our solar system?",
+      "clean_text": "8\n\nQuestion: How many planets are in our solar system?\nAnswer: 8\n\nQuestion: How many planets are in",
+      "clean_correct": true,
+      "clean_entropy": 2.8667,
+      "noisy_text": ". (I know you are Lost, I could have been, but I have no idea what YOU mean for. I have no idea what",
+      "noisy_correct": false,
+      "noisy_entropy": 3.9344
+    },
+    {
+      "question": "What is the capital of Russia?",
+      "clean_text": "Moscow\n\nQuestion: What is the capital of the United States?\nAnswer: Washington, D.C.\n\nQuestion: What",
+      "clean_correct": true,
+      "clean_entropy": 2.5023,
+      "noisy_text": "the capital\n\nI don a man\n\nI am not going\n\nthat is not\n\nI am\n\nI am\n\nI",
+      "noisy_correct": false,
+      "noisy_entropy": 3.7126
+    },
+    {
+      "question": "What is the chemical symbol for water?",
+      "clean_text": "H2O\n\nQuestion: What is the chemical formula for water?\nAnswer: H2O\n\nQuestion: What is the chemical",
+      "clean_correct": true,
+      "clean_entropy": 2.9884,
+      "noisy_text": "The Cave of the Dancing Dog.\n\nThe C is the not. What's the best in a bottle?\n\nHon",
+      "noisy_correct": true,
+      "noisy_entropy": 3.7964
+    },
+    {
+      "question": "How many sides does a triangle have?",
+      "clean_text": "3\n\nQuestion: How many sides does a square have?\nAnswer: 4\n\nQuestion: How many sides does a pent",
+      "clean_correct": true,
+      "clean_entropy": 2.7687,
+      "noisy_text": "4000\n\nAcc’s\n\nA:D\n\n$ 10",
+      "noisy_correct": false,
+      "noisy_entropy": 3.7428
+    },
+    {
+      "question": "How many bones are in the human body?",
+      "clean_text": "206\n\nQuestion: How many bones are in the human body?\nAnswer: 206\n\nQuestion: How",
+      "clean_correct": true,
+      "clean_entropy": 2.8545,
+      "noisy_text": "20 is untrue, there is one.\n\nQuestion 1: 20\n\nQuestion 1: How many bones",
+      "noisy_correct": true,
+      "noisy_entropy": 3.9533
+    },
+    {
+      "question": "What is the freezing point of water in Celsius?",
+      "clean_text": "0°C\n\nQuestion: What is the freezing point of water in Fahrenheit?\nAnswer: 32°F",
+      "clean_correct": true,
+      "clean_entropy": 2.7501,
+      "noisy_text": "Question: If the answer to water is an example of this?\n\nYou know, it's water to water.",
+      "noisy_correct": true,
+      "noisy_entropy": 4.2755
+    },
+    {
+      "question": "What is the longest river in the world?",
+      "clean_text": "The Nile River in Africa.\n\nQuestion: What is the longest river in the United States?\nAnswer: The Mis",
+      "clean_correct": true,
+      "clean_entropy": 2.8829,
+      "noisy_text": "The Dan River\n\nThere are many rivers in the South. but, the Mississippi, the Dan River.? The Mississ",
+      "noisy_correct": true,
+      "noisy_entropy": 3.9052
+    }
+  ],
+  "after_details": [
+    {
+      "question": "What is the capital of South Korea?",
+      "clean_text": "Seoul\n\nQuestion: What is the capital of North Korea?\nAnswer: Pyongyang\n\nQuestion: What is the capita",
+      "clean_correct": true,
+      "clean_entropy": 2.5856,
+      "noisy_text": "What is the capital of South Korea?\n\nQuestion: What is the capital of South Korea?\nQuestion is the c",
+      "noisy_correct": true,
+      "noisy_entropy": 3.7786
+    },
+    {
+      "question": "What is the capital of Japan?",
+      "clean_text": "Tokyo\n\nQuestion: What is the capital of the United States?\nAnswer: Washington, D.C.\n\nQuestion: What ",
+      "clean_correct": true,
+      "clean_entropy": 2.4988,
+      "noisy_text": "Question: What is the capital of Japan.\nWhat is the capital of the Question Question. What is the Qu",
+      "noisy_correct": true,
+      "noisy_entropy": 3.6794
+    },
+    {
+      "question": "What is the capital of India?",
+      "clean_text": "New Delhi\n\nQuestion: What is the capital of China?\nAnswer: Beijing\n\nQuestion: What is the capital of",
+      "clean_correct": true,
+      "clean_entropy": 2.6011,
+      "noisy_text": "New Delhi Question:: Question: What is the capital of Question Question Question: What is the capita",
+      "noisy_correct": true,
+      "noisy_entropy": 3.6923
+    },
+    {
+      "question": "How many weeks are in a year?",
+      "clean_text": "52\n\nQuestion: How many days are in a week?\nAnswer: 7\n\nQuestion: How many hours are in",
+      "clean_correct": false,
+      "clean_entropy": 2.815,
+      "noisy_text": "52",
+      "noisy_correct": false,
+      "noisy_entropy": 3.7884
+    },
+    {
+      "question": "What is the capital of Canada?",
+      "clean_text": "Ottawa\n\nQuestion: What is the capital of the United States?\nAnswer: Washington, D.C.\n\nQuestion: What",
+      "clean_correct": true,
+      "clean_entropy": 2.5839,
+      "noisy_text": "Question: Question: Question: Question: Question: Question Question",
+      "noisy_correct": true,
+      "noisy_entropy": 3.6789
+    },
+    {
+      "question": "How many days are in a year?",
+      "clean_text": "365\n\nQuestion: How many days are in a year?\nAnswer: 365\n\nQuestion: How many",
+      "clean_correct": true,
+      "clean_entropy": 2.7273,
+      "noisy_text": "365",
+      "noisy_correct": true,
+      "noisy_entropy": 3.8084
+    },
+    {
+      "question": "Who painted the Mona Lisa?",
+      "clean_text": "Leonardo da Vinci.\n\nQuestion: What is the Mona Lisa?\nAnswer: A painting.\n\nQuestion: What is",
+      "clean_correct": true,
+      "clean_entropy": 2.4415,
+      "noisy_text": "Question: Question Question Question Question Question Question Question Question Question Question ",
+      "noisy_correct": false,
+      "noisy_entropy": 3.7382
+    },
+    {
+      "question": "How many players are on a soccer team?",
+      "clean_text": "11\n\nQuestion: How many players are on a basketball team?\nAnswer: 5\n\nQuestion: How many players are",
+      "clean_correct": true,
+      "clean_entropy": 2.8009,
+      "noisy_text": "10\n\nHow many players are on a soccer team?",
+      "noisy_correct": true,
+      "noisy_entropy": 3.9547
+    },
+    {
+      "question": "What is the largest continent?",
+      "clean_text": "Asia\n\nQuestion: What is the largest ocean?\nAnswer: Pacific Ocean\n\nQuestion: What is the largest coun",
+      "clean_correct": true,
+      "clean_entropy": 2.6336,
+      "noisy_text": "Antar",
+      "noisy_correct": false,
+      "noisy_entropy": 3.656
+    },
+    {
+      "question": "What is the largest desert in the world?",
+      "clean_text": "The Sahara Desert\n\nThe Sahara Desert is the largest desert in the world, covering more than 3.5 mill",
+      "clean_correct": true,
+      "clean_entropy": 2.9624,
+      "noisy_text": "The Sahara.",
+      "noisy_correct": true,
+      "noisy_entropy": 3.9332
+    },
+    {
+      "question": "What is the capital of Germany?",
+      "clean_text": "Berlin\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of Ita",
+      "clean_correct": true,
+      "clean_entropy": 2.5311,
+      "noisy_text": "Question: Question Question Question Question Question Question Question Question Question Question ",
+      "noisy_correct": true,
+      "noisy_entropy": 3.5957
+    },
+    {
+      "question": "What is the smallest country in the world?",
+      "clean_text": "Vatican City\n\nQuestion: What is the smallest country in the world?\nAnswer: Vatican City\n\nQuestion: W",
+      "clean_correct": true,
+      "clean_entropy": 2.7703,
+      "noisy_text": "What is the smallest?\n\nWhat is the biggest?\n\nWhat is the biggest question?\n\nWhat is the smallest que",
+      "noisy_correct": false,
+      "noisy_entropy": 3.9013
+    },
+    {
+      "question": "What is the capital of Scotland?",
+      "clean_text": "Edinburgh\n\nQuestion: What is the capital of Wales?\nAnswer: Cardiff\n\nQuestion: What is the capital of",
+      "clean_correct": true,
+      "clean_entropy": 2.5291,
+      "noisy_text": "Question Question\n\nQuestion Question\nQuestion Question\nQuestion Question\nQuestion Question Question ",
+      "noisy_correct": false,
+      "noisy_entropy": 3.6174
+    },
+    {
+      "question": "What is the capital of Colombia?",
+      "clean_text": "Bogota\n\nQuestion: What is the capital of Colombia?\nAnswer: Bogota\n\nQuestion: What is the capital of ",
+      "clean_correct": true,
+      "clean_entropy": 2.5596,
+      "noisy_text": "Question: What is the question?\nWhat planet is Mars?",
+      "noisy_correct": true,
+      "noisy_entropy": 3.6605
+    },
+    {
+      "question": "What is the capital of Norway?",
+      "clean_text": "Oslo\n\nQuestion: What is the capital of Sweden?\nAnswer: Stockholm\n\nQuestion: What is the capital of D",
+      "clean_correct": true,
+      "clean_entropy": 2.539,
+      "noisy_text": "Os Question Question What is the capital of Norway.\n\nAn: Question Question Question Question Questio",
+      "noisy_correct": true,
+      "noisy_entropy": 3.7099
+    },
+    {
+      "question": "What is the largest bird in the world?",
+      "clean_text": "The ostrich.\n\nQuestion: What is the largest bird in the world?\nAnswer: The ostrich.\n\nQuestion",
+      "clean_correct": true,
+      "clean_entropy": 2.815,
+      "noisy_text": "Question: What is the the largest bird in the Question: the largest bird in the Question Question Qu",
+      "noisy_correct": true,
+      "noisy_entropy": 3.8579
+    },
+    {
+      "question": "What metal is liquid at room temperature?",
+      "clean_text": "Mercury\n\nMercury is a liquid at room temperature. It is a silvery-white metal that is liquid at room",
+      "clean_correct": true,
+      "clean_entropy": 2.699,
+      "noisy_text": "Question\nQuestion: Question",
+      "noisy_correct": false,
+      "noisy_entropy": 3.8026
+    },
+    {
+      "question": "What gas do plants absorb?",
+      "clean_text": "Carbon dioxide\n\nQuestion: What gas do plants release?\nAnswer: Oxygen\n\nQuestion: What gas do plants n",
+      "clean_correct": true,
+      "clean_entropy": 2.7945,
+      "noisy_text": "What Question?\nAn Question Question:\nAn Question:",
+      "noisy_correct": true,
+      "noisy_entropy": 3.4814
+    },
+    {
+      "question": "What is the capital of Peru?",
+      "clean_text": "Lima\n\nQuestion: What is the capital of Peru?\nAnswer: Lima\n\nQuestion: What is the capital of Peru?",
+      "clean_correct": true,
+      "clean_entropy": 2.5054,
+      "noisy_text": "Question Question Question Question Question Question Question Question Question Question Question Q",
+      "noisy_correct": false,
+      "noisy_entropy": 3.6483
+    },
+    {
+      "question": "What is the largest fish in the world?",
+      "clean_text": "The whale shark.\n\nQuestion: What is the largest fish in the world?\nAnswer: The whale shark.",
+      "clean_correct": true,
+      "clean_entropy": 2.7901,
+      "noisy_text": "the Question Question: What Question is the largest fish in the Question: Question: What Question is",
+      "noisy_correct": true,
+      "noisy_entropy": 3.831
+    },
+    {
+      "question": "What is the capital of Thailand?",
+      "clean_text": "Bangkok\n\nQuestion: What is the capital of the United States?\nAnswer: Washington, D.C.\n\nQuestion:",
+      "clean_correct": true,
+      "clean_entropy": 2.5467,
+      "noisy_text": "Question: What is the capital of Question? Question",
+      "noisy_correct": true,
+      "noisy_entropy": 3.7462
+    },
+    {
+      "question": "What is the chemical symbol for gold?",
+      "clean_text": "Au\n\nQuestion: What is the chemical symbol for silver?\nAnswer: Ag\n\nQuestion: What is the chemical sym",
+      "clean_correct": true,
+      "clean_entropy": 2.9444,
+      "noisy_text": "Question: Question: Question\n Question:\n Question Question Question\n Question Question Question Ques",
+      "noisy_correct": true,
+      "noisy_entropy": 3.6792
+    },
+    {
+      "question": "What is 2 + 2?",
+      "clean_text": "4\n\nQuestion: What is 2 + 2 + 2?\nAnswer: 6\n\nQuestion: What is",
+      "clean_correct": false,
+      "clean_entropy": 2.6812,
+      "noisy_text": "Question, Question",
+      "noisy_correct": false,
+      "noisy_entropy": 3.7921
+    },
+    {
+      "question": "What is the capital of Australia?",
+      "clean_text": "Canberra\n\nQuestion: What is the capital of the United States?\nAnswer: Washington, D.C.\n\nQuestion:",
+      "clean_correct": true,
+      "clean_entropy": 2.6008,
+      "noisy_text": "Question\n\nQuestion:\nWhat Question\nAnsw",
+      "noisy_correct": true,
+      "noisy_entropy": 3.6966
+    },
+    {
+      "question": "What gas do we breathe in?",
+      "clean_text": "Oxygen\n\nQuestion: What gas do we breathe out?\nAnswer: Carbon dioxide\n\nQuestion: What is the differen",
+      "clean_correct": true,
+      "clean_entropy": 2.7517,
+      "noisy_text": "Car Question\n What Question",
+      "noisy_correct": true,
+      "noisy_entropy": 3.6847
+    },
+    {
+      "question": "How many hours are in a day?",
+      "clean_text": "24\n\nQuestion: How many minutes are in a day?\nAnswer: 1440\n\nQuestion: How many",
+      "clean_correct": true,
+      "clean_entropy": 2.5992,
+      "noisy_text": "24.\n\nQuestion: How many minutes are in a hour.\nAnswer: 24.\n\nQuestion: Question:",
+      "noisy_correct": true,
+      "noisy_entropy": 3.799
+    },
+    {
+      "question": "What is the currency of Japan?",
+      "clean_text": "1. Yen\n2. Yuan\n3. Yen\n4. Yen\n\nThe correct answer is: Yen",
+      "clean_correct": true,
+      "clean_entropy": 2.6898,
+      "noisy_text": "Question",
+      "noisy_correct": false,
+      "noisy_entropy": 3.6154
+    },
+    {
+      "question": "What is the capital of Belgium?",
+      "clean_text": "Brussels\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of G",
+      "clean_correct": true,
+      "clean_entropy": 2.5362,
+      "noisy_text": "Bruss",
+      "noisy_correct": false,
+      "noisy_entropy": 3.6407
+    },
+    {
+      "question": "What is the largest mammal?",
+      "clean_text": "The blue whale.\n\nQuestion: What is the largest animal?\nAnswer: The blue whale.\n\nQuestion: What is",
+      "clean_correct": true,
+      "clean_entropy": 2.612,
+      "noisy_text": "The largest mammal?",
+      "noisy_correct": true,
+      "noisy_entropy": 3.6593
+    },
+    {
+      "question": "What is the capital of Mexico?",
+      "clean_text": "Mexico City\n\nQuestion: What is the capital of the United States?\nAnswer: Washington, D.C.\n\nQuestion:",
+      "clean_correct": true,
+      "clean_entropy": 2.4823,
+      "noisy_text": "Question: What is the capital of Germany\nAn",
+      "noisy_correct": true,
+      "noisy_entropy": 3.7229
+    },
+    {
+      "question": "How many minutes are in an hour?",
+      "clean_text": "60 minutes\n\nQuestion: How many seconds are in a minute?\nAnswer: 60 seconds\n\nQuestion: How many",
+      "clean_correct": false,
+      "clean_entropy": 2.6197,
+      "noisy_text": "60\n\nQuestion:: How many minutes are in an hour?\nAnswer: 60",
+      "noisy_correct": false,
+      "noisy_entropy": 3.7639
+    },
+    {
+      "question": "What is the capital of Vietnam?",
+      "clean_text": "Hanoi\n\nQuestion: What is the capital of Vietnam?\nAnswer: Hanoi\n\nQuestion: What is the capital of",
+      "clean_correct": true,
+      "clean_entropy": 2.5718,
+      "noisy_text": "Hano",
+      "noisy_correct": false,
+      "noisy_entropy": 3.7062
+    },
+    {
+      "question": "What element does O represent?",
+      "clean_text": "Oxygen\n\nQuestion: What element does H represent?\nAnswer: Hydrogen\n\nQuestion: What element does C rep",
+      "clean_correct": true,
+      "clean_entropy": 2.7058,
+      "noisy_text": "O\n\nQuestion: What is the answer?",
+      "noisy_correct": true,
+      "noisy_entropy": 3.5718
+    },
+    {
+      "question": "What is the capital of Switzerland?",
+      "clean_text": "Bern\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of Germa",
+      "clean_correct": true,
+      "clean_entropy": 2.5347,
+      "noisy_text": "the Question: What is the capital of Switzerland?\n\n Question",
+      "noisy_correct": true,
+      "noisy_entropy": 3.7152
+    },
+    {
+      "question": "How many months have 31 days?",
+      "clean_text": "12\n\nQuestion: How many months have 30 days?\nAnswer: 11\n\nQuestion: How many months",
+      "clean_correct": false,
+      "clean_entropy": 2.8148,
+      "noisy_text": "Question: How many hours",
+      "noisy_correct": false,
+      "noisy_entropy": 3.8927
+    },
+    {
+      "question": "How many strings does a standard guitar have?",
+      "clean_text": "6\n\nQuestion: How many strings does a standard bass guitar have?\nAnswer: 4\n\nQuestion: How many string",
+      "clean_correct": true,
+      "clean_entropy": 2.8197,
+      "noisy_text": "22.\n\nQuestion:How many strings does a standard guitar have?\n\nQuestion:How many strings does a standa",
+      "noisy_correct": true,
+      "noisy_entropy": 3.8631
+    },
+    {
+      "question": "What is the capital of Poland?",
+      "clean_text": "Warsaw\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of Ger",
+      "clean_correct": true,
+      "clean_entropy": 2.446,
+      "noisy_text": "Question: Question: What is the capital of Poland?",
+      "noisy_correct": true,
+      "noisy_entropy": 3.703
+    },
+    {
+      "question": "What is the capital of China?",
+      "clean_text": "Beijing\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of Ge",
+      "clean_correct": true,
+      "clean_entropy": 2.5307,
+      "noisy_text": "Question: Question Question Question Question Question Question Question Question Question Question ",
+      "noisy_correct": true,
+      "noisy_entropy": 3.6921
+    },
+    {
+      "question": "What is the smallest planet in our solar system?",
+      "clean_text": "Mercury\n\nMercury is the smallest planet in our solar system. It is also the closest planet to the Su",
+      "clean_correct": true,
+      "clean_entropy": 2.7513,
+      "noisy_text": "The Sun is the smallest planet.\n\nQuestion: What is the smallest planet?\n\nThe Sun is the smallest pla",
+      "noisy_correct": false,
+      "noisy_entropy": 4.0283
+    },
+    {
+      "question": "What is the capital of France?",
+      "clean_text": "Paris\n\nQuestion: What is the capital of the United States?\nAnswer: Washington, D.C.\n\nQuestion: What ",
+      "clean_correct": true,
+      "clean_entropy": 2.4293,
+      "noisy_text": "What is the capital of France?",
+      "noisy_correct": true,
+      "noisy_entropy": 3.6569
+    },
+    {
+      "question": "What is the capital of Greece?",
+      "clean_text": "Athens\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of Ita",
+      "clean_correct": true,
+      "clean_entropy": 2.5096,
+      "noisy_text": "Question Question Question Question Question Question Question Question Question Question Question Q",
+      "noisy_correct": false,
+      "noisy_entropy": 3.6715
+    },
+    {
+      "question": "What is the capital of Indonesia?",
+      "clean_text": "Jakarta\n\nQuestion: What is the capital of India?\nAnswer: New Delhi\n\nQuestion: What is the capital of",
+      "clean_correct": true,
+      "clean_entropy": 2.6034,
+      "noisy_text": "Question: What is the capital of Indonesia?",
+      "noisy_correct": true,
+      "noisy_entropy": 3.7319
+    },
+    {
+      "question": "What is the capital of Netherlands?",
+      "clean_text": "Amsterdam\n\nQuestion: What is the capital of Belgium?\nAnswer: Brussels\n\nQuestion: What is the capital",
+      "clean_correct": true,
+      "clean_entropy": 2.6761,
+      "noisy_text": "Question: What: Question: What is the capital of Netherlands?\n Question: Question: Question Question",
+      "noisy_correct": true,
+      "noisy_entropy": 3.5247
+    },
+    {
+      "question": "How many years are in a century?",
+      "clean_text": "100 years.\n\nQuestion: How many years are in a millennium?\nAnswer: 1000 years",
+      "clean_correct": true,
+      "clean_entropy": 2.8199,
+      "noisy_text": "Question:: What is",
+      "noisy_correct": false,
+      "noisy_entropy": 3.8319
+    },
+    {
+      "question": "How many teeth does an adult human have?",
+      "clean_text": "32\n\nQuestion: How many teeth does a baby have?\nAnswer: 20\n\nQuestion: How many teeth does",
+      "clean_correct": true,
+      "clean_entropy": 2.6916,
+      "noisy_text": "28\n\nQuestion: How many teeth does a human have?\nAnswer:",
+      "noisy_correct": true,
+      "noisy_entropy": 3.8799
+    },
+    {
+      "question": "What is the capital of Italy?",
+      "clean_text": "Rome\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of Germa",
+      "clean_correct": true,
+      "clean_entropy": 2.4677,
+      "noisy_text": "Question Question Question Question",
+      "noisy_correct": false,
+      "noisy_entropy": 3.6691
+    },
+    {
+      "question": "What is the capital of Egypt?",
+      "clean_text": "Cairo\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of Germ",
+      "clean_correct": true,
+      "clean_entropy": 2.4912,
+      "noisy_text": "The capital of Egypt\n\nQuestion: The Question is Question: The",
+      "noisy_correct": true,
+      "noisy_entropy": 3.5152
+    },
+    {
+      "question": "What is the capital of Spain?",
+      "clean_text": "Madrid\n\nQuestion: What is the capital of France?\nAnswer: Paris\n\nQuestion: What is the capital of Ita",
+      "clean_correct": true,
+      "clean_entropy": 2.4758,
+      "noisy_text": "Madrid\n\nWhat is the capital of Madrid?\n\n Question Question Question\n\nQuestion: What is the Question ",
+      "noisy_correct": true,
+      "noisy_entropy": 3.7122
+    },
+    {
+      "question": "What is the capital of Denmark?",
+      "clean_text": "Copenhagen\n\nQuestion: What is the capital of Denmark?\nAnswer: Copenhagen\n\nQuestion: What is the",
+      "clean_correct": true,
+      "clean_entropy": 2.5602,
+      "noisy_text": "Question: Question Question Question Question Question Question Question Question Question Question ",
+      "noisy_correct": true,
+      "noisy_entropy": 3.6738
+    },
+    {
+      "question": "How many chromosomes do humans have?",
+      "clean_text": "46\n\nQuestion: How many chromosomes do humans have?\nAnswer: 46\n\nQuestion: How many chrom",
+      "clean_correct": true,
+      "clean_entropy": 2.6824,
+      "noisy_text": "2\n\nQuestion:How many chroms?\n\nQuestion: How many chroms?\n\nQuestion:HowHow",
+      "noisy_correct": true,
+      "noisy_entropy": 3.8508
+    }
+  ]
+}

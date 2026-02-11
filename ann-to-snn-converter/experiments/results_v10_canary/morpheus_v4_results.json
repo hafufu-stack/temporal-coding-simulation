@@ -1,0 +1,30 @@
+{
+  "experiment": "Project Morpheus v4 — Hybrid Immunization (SFT + DPO)",
+  "strategy": "v1 SFT merged → DPO polish (ultra-gentle)",
+  "model": "mistralai/Mistral-7B-v0.1",
+  "v1_adapter": "results_v10_canary\\morpheus_v1_model",
+  "noise_method": "Hidden State Hook @ Layer 10 (= v1)",
+  "dpo_beta": 0.5,
+  "learning_rate": 5e-07,
+  "lora_r": 8,
+  "dpo_pairs": 121,
+  "epochs": 1,
+  "noise_sigma": 0.1,
+  "test_questions": 50,
+  "before": {
+    "clean_accuracy": 94.0,
+    "noisy_accuracy": 42.0,
+    "clean_entropy": 11.5034,
+    "noisy_entropy": 11.5864
+  },
+  "after": {
+    "clean_accuracy": 50.0,
+    "noisy_accuracy": 12.0,
+    "clean_entropy": 11.5035,
+    "noisy_entropy": 11.5866
+  },
+  "immunity_gain": -30.0,
+  "clean_change": -44.0,
+  "entropy_suppression": -0.0001,
+  "total_time_seconds": 833.6
+}
