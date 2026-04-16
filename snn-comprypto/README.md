@@ -160,7 +160,7 @@ CC BY 4.0
 
 ## Author
 
-ろーる ([@hafufu-stack](https://github.com/hafufu-stack))
+Hiroto Funasaki ([@hafufu-stack](https://github.com/hafufu-stack))
 
 - Zenn: https://zenn.dev/cell_activation
 - note: https://note.com/cell_activation
